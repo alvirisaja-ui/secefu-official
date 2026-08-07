@@ -753,9 +753,10 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Masuk dari Welcome Screen
+        // Masuk dari Welcome Screen: Menutup layar sambutan dan mengubah URL ke /home
         function enterSite() {
             document.getElementById('welcome-screen').classList.add('hidden');
+            switchTab('home', true);
         }
 
         // Fungsi Utama Perpindahan Tab & Sync URL
@@ -782,7 +783,7 @@
                 links[activeIndex].classList.add('active');
             }
 
-            // Ubah Alamat URL di Browser tanpa Reload saat menu diklik
+            // Ubah Alamat URL di Browser tanpa Reload
             if (pushToHistory) {
                 let newPath = '/home';
                 if (tabName === 'news') newPath = '/news';
@@ -794,16 +795,21 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Synchronize Rute saat Halaman Pertama Kali Dibuka
+        // Synchronize Rute saat Halaman Pertama Kali Dibuka / Direfresh
         function handleInitialRouting() {
             const path = window.location.pathname;
             
             if (path === '/news') {
+                document.getElementById('welcome-screen').classList.add('hidden');
                 switchTab('news', false);
             } else if (path === '/daftar-lomba') {
+                document.getElementById('welcome-screen').classList.add('hidden');
                 switchTab('lomba', false);
+            } else if (path === '/home') {
+                document.getElementById('welcome-screen').classList.add('hidden');
+                switchTab('home', false);
             } else {
-                // Saat pertama kali buka / atau /home, tampilkan tab Home TANPA mengubah URL awal (tetap di URL saat dibuka)
+                // Jika dibuka dari domain utama (/), tampilkan welcome screen dulu
                 switchTab('home', false);
             }
         }
@@ -814,10 +820,17 @@
         window.addEventListener('popstate', (event) => {
             const path = window.location.pathname;
             if (path === '/news') {
+                document.getElementById('welcome-screen').classList.add('hidden');
                 switchTab('news', false);
             } else if (path === '/daftar-lomba') {
+                document.getElementById('welcome-screen').classList.add('hidden');
                 switchTab('lomba', false);
+            } else if (path === '/home') {
+                document.getElementById('welcome-screen').classList.add('hidden');
+                switchTab('home', false);
             } else {
+                // Jika kembali ke /
+                document.getElementById('welcome-screen').classList.remove('hidden');
                 switchTab('home', false);
             }
         });
