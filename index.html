@@ -795,7 +795,7 @@
 
             // Ubah Alamat URL di Browser tanpa Reload
             if (pushToHistory) {
-                let newPath = '/';
+                let newPath = '/home';
                 if (tabName === 'news') newPath = '/news';
                 if (tabName === 'lomba') newPath = '/daftar-lomba';
                 
@@ -806,8 +806,8 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Jalankan Sinkronisasi URL Saat Halaman Dimuat
-        window.addEventListener('DOMContentLoaded', () => {
+        // Synchronize Rute saat Halaman Pertama Kali Dibuka
+        function handleInitialRouting() {
             const path = window.location.pathname;
             
             if (path === '/news') {
@@ -815,9 +815,15 @@
             } else if (path === '/daftar-lomba') {
                 switchTab('lomba', false);
             } else {
+                // Jika akses / atau /home atau rute lain, set ke home dengan URL /home
                 switchTab('home', false);
+                if (path !== '/home') {
+                    history.replaceState({ tab: 'home' }, '', '/home');
+                }
             }
-        });
+        }
+
+        window.addEventListener('DOMContentLoaded', handleInitialRouting);
 
         // Menangani Tombol Back / Forward di Browser
         window.addEventListener('popstate', (event) => {
