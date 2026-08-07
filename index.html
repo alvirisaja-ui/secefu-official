@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SECEFU - Semangat Ceria Bersama Futsal</title>
     
     <!-- FAVICON (LOGO DI TAB BROWSER) -->
@@ -15,6 +15,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -27,6 +28,7 @@
             --accent-red: #ef4444;
             --text-dark: #1e293b;
             --text-muted: #64748b;
+            --nav-height: 65px;
         }
 
         body {
@@ -40,6 +42,7 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            padding-bottom: 20px;
         }
 
         /* --- WELCOME SCREEN --- */
@@ -55,9 +58,9 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
             text-align: center;
-            padding: 20px;
+            padding: 24px;
         }
 
         #welcome-screen.hidden {
@@ -67,12 +70,12 @@
 
         .welcome-logo-wrapper {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .welcome-logo {
-            max-width: 220px;
-            width: 70vw;
+            max-width: 180px;
+            width: 55vw;
             height: auto;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2), 0 15px 35px rgba(239, 68, 68, 0.15);
@@ -81,14 +84,14 @@
 
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(1deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
         }
 
         .welcome-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            letter-spacing: 3px;
-            margin-bottom: 8px;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
             background: linear-gradient(45deg, #ef4444, #f97316, #0284c7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -96,36 +99,37 @@
 
         .welcome-subtitle {
             color: var(--text-muted);
-            margin-bottom: 35px;
-            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-size: 1rem;
             font-weight: 600;
         }
 
         .btn-continue {
             background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
             color: white;
-            padding: 16px 45px;
+            padding: 14px 40px;
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            width: 100%;
+            max-width: 280px;
         }
 
-        .btn-continue:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 15px 30px rgba(249, 115, 22, 0.45);
+        .btn-continue:active {
+            transform: scale(0.98);
         }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR (DESKTOP DEFAULT) --- */
         header {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(2, 132, 199, 0.15);
+            border-bottom: 1px solid rgba(2, 132, 199, 0.15);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -133,7 +137,7 @@
         }
 
         nav {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -152,8 +156,8 @@
         }
 
         .nav-logo {
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             border-radius: 10px;
             object-fit: cover;
             border: 2px solid var(--blue-accent);
@@ -162,18 +166,21 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 10px;
+            gap: 8px;
         }
 
         .nav-link {
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 700;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 30px;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             cursor: pointer;
             font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -184,24 +191,24 @@
 
         /* --- MAIN CONTENT CONTAINER --- */
         main {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 850px;
+            margin: 25px auto;
+            padding: 0 16px;
             flex: 1;
             width: 100%;
         }
 
         .tab-content {
             display: none;
-            animation: slideUp 0.4s ease forwards;
+            animation: fadeIn 0.35s ease forwards;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -209,10 +216,10 @@
         .card {
             background: var(--bg-card);
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
             border: 1px solid rgba(226, 232, 240, 0.8);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
             overflow: hidden;
         }
@@ -223,28 +230,28 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
         }
 
         .section-header {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: var(--blue-primary);
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         /* --- THUMBNAIL (16:9 RATIO) --- */
         .memorial-thumbnail-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
             border: 1px solid rgba(226, 232, 240, 0.8);
             background-color: #000;
         }
@@ -259,44 +266,46 @@
 
         .card-title {
             color: var(--blue-primary);
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            margin-bottom: 10px;
-            line-height: 1.3;
+            margin-bottom: 8px;
+            line-height: 1.35;
         }
 
         .card-subtitle {
             color: var(--blue-accent);
-            font-size: 1.05rem;
-            margin-bottom: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 18px;
             font-weight: 600;
+            line-height: 1.4;
         }
 
         /* --- BUTTONS --- */
         .btn {
-            padding: 12px 28px;
+            padding: 12px 22px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
             cursor: pointer;
             border: none;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            text-align: center;
+            width: auto;
         }
 
         .btn-primary {
             background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
             color: white;
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+        .btn-primary:active {
+            transform: scale(0.98);
         }
 
         .btn-outline {
@@ -305,139 +314,217 @@
             color: var(--blue-accent);
         }
 
-        .btn-outline:hover {
+        .btn-outline:active {
             background: var(--blue-soft);
-            color: var(--blue-accent);
         }
 
         /* --- LOMBA FEATURED ITEM --- */
         .lomba-featured-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 18px;
             margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .lomba-featured-box:hover {
-            border-color: var(--blue-accent);
-            box-shadow: 0 5px 15px rgba(2, 132, 199, 0.1);
         }
 
         .badge-populer {
             display: inline-block;
             background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 800;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
             margin-bottom: 10px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* --- TOGGLEABLE CONTENT BOXES --- */
         .expandable-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
             opacity: 0;
         }
 
         .expandable-content.open {
-            max-height: 2500px;
+            max-height: 3000px;
             opacity: 1;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 18px;
+            padding-top: 18px;
             border-top: 1px solid #e2e8f0;
         }
 
         .content-body p {
             color: var(--text-dark);
-            line-height: 1.8;
-            margin-bottom: 15px;
+            line-height: 1.75;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
             text-align: justify;
         }
 
         .content-body h3 {
             color: var(--accent-orange);
-            margin: 20px 0 10px 0;
-            font-size: 1.2rem;
+            margin: 18px 0 8px 0;
+            font-size: 1.1rem;
             font-weight: 700;
         }
 
         .content-body ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
+            margin-left: 18px;
+            margin-bottom: 14px;
             color: var(--text-dark);
             line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         /* --- INFO BOX DAFTAR LOMBA --- */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
         }
 
         .info-card {
             background: var(--blue-soft);
             border: 1px solid rgba(2, 132, 199, 0.2);
-            padding: 15px;
+            padding: 14px;
             border-radius: 12px;
         }
 
         .info-card span {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--blue-accent);
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .info-card p {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--blue-primary);
             margin: 0;
+            font-size: 0.95rem;
         }
 
         .button-group {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 18px;
         }
 
         /* --- FOOTER --- */
         footer {
             background: #ffffff;
             text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
+            padding: 18px;
+            font-size: 0.85rem;
             color: var(--text-muted);
             margin-top: auto;
             border-top: 1px solid #e2e8f0;
         }
 
-        @media (max-width: 600px) {
+        /* ================= MOBILE OPTIMIZATIONS (HP) ================= */
+        @media (max-width: 650px) {
+            body {
+                padding-bottom: calc(var(--nav-height) + 20px);
+            }
+
+            /* Ubah Navbar Atas Menjadi Header Ringkas */
+            header {
+                position: relative;
+                border-bottom: 1px solid #e2e8f0;
+                box-shadow: none;
+            }
+
             nav {
+                justify-content: center;
+                padding: 12px 16px;
+            }
+
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+
+            /* Pindahkan Menu Navigasi ke Bawah (Bottom Bar) */
+            .nav-menu {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: var(--nav-height);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                border-top: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0 10px;
+                z-index: 999;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+            }
+
+            .nav-menu li {
+                flex: 1;
+                text-align: center;
+            }
+
+            .nav-link {
                 flex-direction: column;
-                gap: 12px;
+                gap: 2px;
+                padding: 6px 0;
+                border-radius: 12px;
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                background: transparent !important;
+                box-shadow: none !important;
             }
-            .welcome-title {
-                font-size: 2rem;
+
+            .nav-link.active {
+                color: var(--accent-red);
+                font-weight: 800;
             }
+
+            .nav-link-icon {
+                font-size: 1.25rem;
+            }
+
+            /* Pengaturan Isi Card & Elemen di HP */
+            main {
+                margin: 15px auto;
+                padding: 0 12px;
+            }
+
             .card {
-                padding: 20px;
+                padding: 16px;
+                border-radius: 16px;
+                margin-bottom: 16px;
             }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-subtitle {
+                font-size: 0.88rem;
+            }
+
             .button-group {
                 flex-direction: column;
+                width: 100%;
             }
+
             .btn {
                 width: 100%;
+                padding: 12px 16px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -462,9 +549,24 @@
                 <span>SECEFU</span>
             </div>
             <ul class="nav-menu">
-                <li><a class="nav-link active" onclick="switchTab('home')">🏠 Home</a></li>
-                <li><a class="nav-link" onclick="switchTab('news')">📰 News</a></li>
-                <li><a class="nav-link" onclick="switchTab('lomba')">🏆 Daftar Lomba</a></li>
+                <li>
+                    <a class="nav-link active" onclick="switchTab('home')">
+                        <span class="nav-link-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" onclick="switchTab('news')">
+                        <span class="nav-link-icon">📰</span>
+                        <span>News</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" onclick="switchTab('lomba')">
+                        <span class="nav-link-icon">🏆</span>
+                        <span>Daftar Lomba</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -478,7 +580,7 @@
             <!-- 1. RINGKASAN INFORMASI PLATFORM -->
             <div class="card">
                 <h2 class="section-header">📢 Tentang Platform SECEFU</h2>
-                <p style="color: var(--text-dark); line-height: 1.8; font-size: 1rem; text-align: justify;">
+                <p style="color: var(--text-dark); line-height: 1.75; font-size: 0.95rem; text-align: justify;">
                     <strong>SECEFU (Semangat Ceria Bersama Futsal)</strong> adalah wadah independen yang menyelenggarakan berbagai kompetisi olahraga futsal dan <em>e-sport</em> digital. Kami berkomitmen menciptakan ajang kompetisi yang menjunjung tinggi sportivitas, kebersamaan, dan wadah kreativitas positif bagi generasi muda.
                 </p>
             </div>
@@ -487,14 +589,14 @@
             <div class="card">
                 <h2 class="section-header">🔥 Lomba Pilihan & Populer</h2>
                 <div class="lomba-featured-box">
-                    <span class="badge-populer">⭐ Lomba Unggulan Spesial 17 Agustus</span>
-                    <h3 style="color: var(--blue-primary); font-size: 1.3rem; font-weight: 800; margin-bottom: 8px;">
+                    <span class="badge-populer">⭐ Lomba Unggulan 17 Agustus</span>
+                    <h3 style="color: var(--blue-primary); font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">
                         Turnamen Futsal & E-Sport EA FC Mobile 2026
                     </h3>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6;">
-                        Memorial Penghormatan Alm. Deyrril Almere Ghaisan. Kompetisi resmi dengan kategori Futsal Lapangan dan E-Sport EA FC Mobile.
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 14px; line-height: 1.6;">
+                        Memorial Penghormatan Alm. Deyrril Almere Ghaisan. Kategori Futsal Lapangan & E-Sport EA FC Mobile.
                     </p>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <div class="button-group">
                         <button class="btn btn-primary" onclick="switchTab('lomba')">
                             🏆 Rincian & Daftar Lomba
                         </button>
@@ -505,11 +607,11 @@
             <!-- 3. BERITA RINGKAS (CUPLIKAN) -->
             <div class="card">
                 <h2 class="section-header">📰 Berita Ringkas</h2>
-                <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 20px; border-radius: 10px;">
-                    <h3 style="color: var(--blue-primary); font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">
+                <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px;">
+                    <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
                         Mengenang Alm. Deyrril Almere Ghaisan: Kisah Keberanian dan Senyum yang Abadi
                     </h3>
-                    <p style="color: var(--text-dark); line-height: 1.7; font-size: 0.95rem; margin-bottom: 15px; text-align: justify;">
+                    <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
                         Pada hari Kamis, 6 Agustus 2026, Alm. Deyrril Almere Ghaisan berpulang di Rumah Sakit Onkologi Surakarta setelah perjuangan hebatnya melawan penyakit kanker leukemia (MDS-AML2). Deyrril dikenang sebagai sosok yang sangat periang dan tangguh...
                     </p>
                     <button class="btn btn-outline" onclick="switchTab('news')">
@@ -574,7 +676,7 @@
                 <!-- Tombol Aksi -->
                 <div class="button-group">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">
-                        📝 Klik Disini Untuk Memulai Pendaftaran
+                        📝 Disini Untuk Memulai Pendaftaran
                     </a>
                     <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()">
                         📄 Baca Selengkapnya
