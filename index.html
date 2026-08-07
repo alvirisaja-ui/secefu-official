@@ -8,7 +8,7 @@
     <!-- FAVICON (LOGO DI TAB BROWSER) -->
     <link rel="icon" type="image/png" href="secefulogobaruu.png">
 
-    <!-- ONESIGNAL PUSH NOTIFICATION SDK -->
+    <!-- ONESIGNAL PUSH NOTIFICATION SDK (POP-UP SLIDE PROMPT FOR MOBILE & DESKTOP) -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -16,9 +16,11 @@
         await OneSignal.init({
           appId: "8fb8605b-a657-411b-adea-5e86b96e2d0c",
           safari_web_id: "web.onesignal.auto.532534a2-fa6b-4796-aab8-c4e8f72a79c0",
-          notifyButton: {
-            enable: true,
-          },
+          slidePrompt: {
+            enabled: true,
+            autoPrompt: true, // Otomatis memunculkan pop-up izin di HP & Laptop
+            timeDelay: 2,     // Pop-up muncul setelah 2 detik website dibuka
+          }
         });
       });
     </script>
