@@ -125,9 +125,9 @@
             transform: scale(0.98);
         }
 
-        /* --- NAVBAR HEADER (DESKTOP) --- */
+        /* --- HEADER & NAVBAR --- */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(2, 132, 199, 0.15);
             position: sticky;
@@ -136,27 +136,49 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
+        /* Header khusus Atas HP */
+        .mobile-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .mobile-top-bar img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid var(--blue-accent);
+        }
+
+        .mobile-top-bar span {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--blue-primary);
+            letter-spacing: 1px;
+        }
+
         nav {
             max-width: 1000px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px;
+            padding: 10px 20px;
         }
 
         .nav-brand {
-            display: flex !important;
+            display: flex;
             align-items: center;
             gap: 10px;
             font-weight: 800;
             font-size: 1.25rem;
             letter-spacing: 1px;
             color: var(--blue-primary);
-        }
-
-        .nav-brand span {
-            display: inline-block !important;
         }
 
         .nav-logo {
@@ -171,6 +193,8 @@
             display: flex;
             list-style: none;
             gap: 8px;
+            width: 100%;
+            justify-content: space-around;
         }
 
         .nav-link {
@@ -424,89 +448,30 @@
             border-top: 1px solid #e2e8f0;
         }
 
-        /* ================= KHUSUS TAMPILAN HP ================= */
+        /* Desktop view defaults */
+        @media (min-width: 651px) {
+            .mobile-top-bar {
+                display: none; /* Sembunyikan top bar khusus hp di PC */
+            }
+        }
+
+        /* Mobile view optimizations */
         @media (max-width: 650px) {
-            body {
-                padding-bottom: calc(var(--nav-height) + 20px);
+            .desktop-brand {
+                display: none; /* Sembunyikan brand bawaan desktop agar tidak ganda */
             }
 
-            /* Header Paling Atas di HP */
             header {
-                position: sticky;
-                top: 0;
-                width: 100%;
-                background: #ffffff;
-                border-bottom: 1px solid #e2e8f0;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-                z-index: 100;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             }
 
             nav {
-                justify-content: center !important;
-                padding: 10px 16px;
-            }
-
-            /* Memastikan Logo & Teks SECEFU Muncul di Atas HP */
-            .nav-brand {
-                display: flex !important;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-            }
-
-            .nav-brand span {
-                display: inline-block !important;
-                font-size: 1.2rem;
-                font-weight: 800;
-                color: var(--blue-primary);
-            }
-
-            .nav-logo {
-                width: 32px;
-                height: 32px;
-            }
-
-            /* Navigasi Menu Pindah ke Bawah (Bottom Bar) */
-            .nav-menu {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: var(--nav-height);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                border-top: 1px solid #e2e8f0;
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                padding: 0 10px;
-                z-index: 999;
-                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
-            }
-
-            .nav-menu li {
-                flex: 1;
-                text-align: center;
+                padding: 6px 10px;
             }
 
             .nav-link {
-                flex-direction: column;
-                gap: 2px;
-                padding: 6px 0;
-                border-radius: 12px;
-                font-size: 0.75rem;
-                color: var(--text-muted);
-                background: transparent !important;
-                box-shadow: none !important;
-            }
-
-            .nav-link.active {
-                color: var(--accent-red);
-                font-weight: 800;
-            }
-
-            .nav-link-icon {
-                font-size: 1.2rem;
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
 
             main {
@@ -556,31 +521,36 @@
         <button class="btn-continue" onclick="enterSite()">Lanjut 🚀</button>
     </div>
 
-    <!-- MAIN NAVBAR HEADER -->
+    <!-- MAIN HEADER -->
     <header>
+        <!-- BARIS ATAS KHUSUS HP (LOGO & TULISAN SECEFU) -->
+        <div class="mobile-top-bar">
+            <img src="secefukeren.png" alt="Logo SECEFU">
+            <span>SECEFU</span>
+        </div>
+
         <nav>
-            <!-- LOGO DAN TULISAN SECEFU (TETAP TAMPIL DI ATAS HP & PC) -->
-            <div class="nav-brand">
+            <!-- BRAND UNTUK TAMPILAN PC -->
+            <div class="nav-brand desktop-brand">
                 <img src="secefukeren.png" alt="Logo SECEFU" class="nav-logo">
                 <span>SECEFU</span>
             </div>
+
+            <!-- MENU NAVIGASI -->
             <ul class="nav-menu">
                 <li>
                     <a class="nav-link active" onclick="switchTab('home')">
-                        <span class="nav-link-icon">🏠</span>
-                        <span>Home</span>
+                        <span>🏠 Home</span>
                     </a>
                 </li>
                 <li>
                     <a class="nav-link" onclick="switchTab('news')">
-                        <span class="nav-link-icon">📰</span>
-                        <span>News</span>
+                        <span>📰 News</span>
                     </a>
                 </li>
                 <li>
                     <a class="nav-link" onclick="switchTab('lomba')">
-                        <span class="nav-link-icon">🏆</span>
-                        <span>Daftar Lomba</span>
+                        <span>🏆 Daftar Lomba</span>
                     </a>
                 </li>
             </ul>
