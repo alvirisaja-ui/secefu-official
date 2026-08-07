@@ -162,18 +162,18 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 10px;
         }
 
         .nav-link {
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 700;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 30px;
             transition: all 0.3s ease;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -225,6 +225,16 @@
             width: 100%;
             height: 5px;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--blue-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* --- THUMBNAIL (16:9 RATIO) --- */
@@ -298,6 +308,33 @@
         .btn-outline:hover {
             background: var(--blue-soft);
             color: var(--blue-accent);
+        }
+
+        /* --- LOMBA FEATURED ITEM --- */
+        .lomba-featured-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .lomba-featured-box:hover {
+            border-color: var(--blue-accent);
+            box-shadow: 0 5px 15px rgba(2, 132, 199, 0.1);
+        }
+
+        .badge-populer {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         /* --- TOGGLEABLE CONTENT BOXES --- */
@@ -426,6 +463,7 @@
             </div>
             <ul class="nav-menu">
                 <li><a class="nav-link active" onclick="switchTab('home')">🏠 Home</a></li>
+                <li><a class="nav-link" onclick="switchTab('news')">📰 News</a></li>
                 <li><a class="nav-link" onclick="switchTab('lomba')">🏆 Daftar Lomba</a></li>
             </ul>
         </nav>
@@ -433,8 +471,58 @@
 
     <!-- MAIN CONTENT AREA -->
     <main>
-        <!-- HOME SECTION -->
+        
+        <!-- ================= HOME SECTION ================= -->
         <section id="tab-home" class="tab-content active">
+            
+            <!-- 1. RINGKASAN INFORMASI PLATFORM -->
+            <div class="card">
+                <h2 class="section-header">📢 Tentang Platform SECEFU</h2>
+                <p style="color: var(--text-dark); line-height: 1.8; font-size: 1rem; text-align: justify;">
+                    <strong>SECEFU (Semangat Ceria Bersama Futsal)</strong> adalah wadah independen yang menyelenggarakan berbagai kompetisi olahraga futsal dan <em>e-sport</em> digital. Kami berkomitmen menciptakan ajang kompetisi yang menjunjung tinggi sportivitas, kebersamaan, dan wadah kreativitas positif bagi generasi muda.
+                </p>
+            </div>
+
+            <!-- 2. LOMBA PILIHAN (UNGGULAN / POPULER) -->
+            <div class="card">
+                <h2 class="section-header">🔥 Lomba Pilihan & Populer</h2>
+                <div class="lomba-featured-box">
+                    <span class="badge-populer">⭐ Lomba Unggulan Spesial 17 Agustus</span>
+                    <h3 style="color: var(--blue-primary); font-size: 1.3rem; font-weight: 800; margin-bottom: 8px;">
+                        Turnamen Futsal & E-Sport EA FC Mobile 2026
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6;">
+                        Memorial Penghormatan Alm. Deyrril Almere Ghaisan. Kompetisi resmi dengan kategori Futsal Lapangan dan E-Sport EA FC Mobile.
+                    </p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="switchTab('lomba')">
+                            🏆 Rincian & Daftar Lomba
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. BERITA RINGKAS (CUPLIKAN) -->
+            <div class="card">
+                <h2 class="section-header">📰 Berita Ringkas</h2>
+                <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 20px; border-radius: 10px;">
+                    <h3 style="color: var(--blue-primary); font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">
+                        Mengenang Alm. Deyrril Almere Ghaisan: Kisah Keberanian dan Senyum yang Abadi
+                    </h3>
+                    <p style="color: var(--text-dark); line-height: 1.7; font-size: 0.95rem; margin-bottom: 15px; text-align: justify;">
+                        Pada hari Kamis, 6 Agustus 2026, Alm. Deyrril Almere Ghaisan berpulang di Rumah Sakit Onkologi Surakarta setelah perjuangan hebatnya melawan penyakit kanker leukemia (MDS-AML2). Deyrril dikenang sebagai sosok yang sangat periang dan tangguh...
+                    </p>
+                    <button class="btn btn-outline" onclick="switchTab('news')">
+                        📖 Baca Selengkapnya di News 📰
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= NEWS SECTION ================= -->
+        <section id="tab-news" class="tab-content">
             <div class="card">
                 <!-- Thumbnail Foto Alm. Deyrril -->
                 <div class="memorial-thumbnail-container">
@@ -444,35 +532,24 @@
                 <h1 class="card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h1>
                 <h2 class="card-subtitle">Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨</h2>
                 
-                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
-                    Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua...
-                </p>
-
-                <!-- Tombol Buka Teks Utuh Home -->
-                <button class="btn btn-outline" id="btn-home-toggle" onclick="toggleHomeText()">
-                    📖 Baca Selengkapnya
-                </button>
-
-                <!-- Isi Teks Utuh yang Disembunyikan di Awal -->
-                <div id="home-text-full" class="expandable-content">
-                    <div class="content-body">
-                        <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
-                        
-                        <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
-                        
-                        <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga, teman, dan semua orang yang mengenalnya, Deyrril selalu memancarkan energi yang luar biasa. Ia adalah anak yang sangat ceria dan periang. Kehadirannya selalu membawa kehangatan, dan senyum tulusnya tidak pernah pudar, seolah menjadi sumber kekuatan bagi orang-orang di sekelilingnya agar tidak ikut bersedih.</p>
-                        
-                        <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus yang seharusnya menjadi bulan perayaan penuh kebahagiaan untuk menyambut bertambahnya usia Deyrril, kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
-                        
-                        <p>Meskipun kini raganya telah tiada dan ia tidak lagi merasakan sakit, warisan terindah yang Deyrril tinggalkan akan selalu hidup. Kita akan selalu mengingat Deyrril bukan dari rasa sakit yang ia lawan, melainkan dari tawa renyahnya, sifat periangnya, dan keberaniannya yang tiada tara.</p>
-                        
-                        <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
-                    </div>
+                <div class="content-body">
+                    <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
+                    
+                    <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
+                    
+                    <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga, teman, dan semua orang yang mengenalnya, Deyrril selalu memancarkan energi yang luar biasa. Ia adalah anak yang sangat ceria dan periang. Kehadirannya selalu membawa kehangatan, dan senyum tulusnya tidak pernah pudar, seolah menjadi sumber kekuatan bagi orang-orang di sekelilingnya agar tidak ikut bersedih.</p>
+                    
+                    <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus yang seharusnya menjadi bulan perayaan penuh kebahagiaan untuk menyambut bertambahnya usia Deyrril, kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
+                    
+                    <p>Meskipun kini raganya telah tiada dan ia tidak lagi merasakan sakit, warisan terindah yang Deyrril tinggalkan akan selalu hidup. Kita akan selalu mengingat Deyrril bukan dari rasa sakit yang ia lawan, melainkan dari tawa renyahnya, sifat periangnya, dan keberaniannya yang tiada tara.</p>
+                    
+                    <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
                 </div>
             </div>
         </section>
 
-        <!-- DAFTAR LOMBA SECTION -->
+
+        <!-- ================= DAFTAR LOMBA SECTION ================= -->
         <section id="tab-lomba" class="tab-content">
             <div class="card">
                 <h1 class="card-title">Lomba Futsal & E-Sport</h1>
@@ -543,6 +620,7 @@
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -557,7 +635,7 @@
             document.getElementById('welcome-screen').classList.add('hidden');
         }
 
-        // Perpindahan Tab (Home / Daftar Lomba)
+        // Perpindahan Tab (Home / News / Daftar Lomba)
         function switchTab(tabName) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -567,21 +645,14 @@
 
             document.getElementById('tab-' + tabName).classList.add('active');
 
-            const activeIndex = tabName === 'home' ? 0 : 1;
+            let activeIndex = 0;
+            if (tabName === 'news') activeIndex = 1;
+            if (tabName === 'lomba') activeIndex = 2;
+
             links[activeIndex].classList.add('active');
-        }
 
-        // Toggle Buka/Tutup Teks Home
-        function toggleHomeText() {
-            const container = document.getElementById('home-text-full');
-            const btn = document.getElementById('btn-home-toggle');
-
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
-                btn.innerHTML = '⚡ Sembunyikan';
-            } else {
-                btn.innerHTML = '📖 Baca Selengkapnya';
-            }
+            // Gulung otomatis ke paling atas saat berpindah tab
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Toggle Buka/Tutup Teks Daftar Lomba
