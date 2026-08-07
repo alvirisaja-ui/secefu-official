@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SECEFU - Semangat Ceria Bersama Futsal</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --blue-primary: #0f172a;
+            --blue-accent: #0284c7;
+            --blue-soft: #e0f2fe;
+            --accent-orange: #f97316;
+            --accent-red: #ef4444;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- WELCOME SCREEN --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #welcome-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .welcome-logo-wrapper {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .welcome-logo {
+            max-width: 220px;
+            width: 70vw;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2), 0 15px 35px rgba(239, 68, 68, 0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #ef4444, #f97316, #0284c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .btn-continue {
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            padding: 16px 45px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-continue:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(249, 115, 22, 0.45);
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(2, 132, 199, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: var(--blue-primary);
+        }
+
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--blue-accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: slideUp 0.4s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- CARDS & CARDS LIGHT --- */
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
+        }
+
+        /* --- THUMBNAIL DEYRRIL (LOCKED TO 16:9 RATIO) --- */
+        .memorial-thumbnail-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            background-color: #000; /* Latar gelap jika foto menggunakan object-fit contain */
+        }
+
+        .memorial-thumbnail {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover; /* Mengisi penuh frame 16:9 secara rapi */
+            object-position: center;
+        }
+
+        .card-title {
+            color: var(--blue-primary);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-subtitle {
+            color: var(--blue-accent);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blue-accent);
+            color: var(--blue-accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue-soft);
+            color: var(--blue-accent);
+        }
+
+        /* --- TOGGLEABLE CONTENT BOXES --- */
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+
+        .expandable-content.open {
+            max-height: 2500px;
+            opacity: 1;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .content-body p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-body h3 {
+            color: var(--accent-orange);
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .content-body ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* --- INFO BOX DAFTAR LOMBA --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: var(--blue-soft);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .info-card span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--blue-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: var(--blue-primary);
+            margin: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #ffffff;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .welcome-title {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 20px;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WELCOME / LANDING SCREEN -->
+    <div id="welcome-screen">
+        <div class="welcome-logo-wrapper">
+            <img src="secefukeren.png" alt="Logo SECEFU" class="welcome-logo">
+        </div>
+        <h1 class="welcome-title">SECEFU</h1>
+        <p class="welcome-subtitle">Semangat Ceria Bersama Futsal ⚽🔥</p>
+        <button class="btn-continue" onclick="enterSite()">Lanjut 🚀</button>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <img src="secefukeren.png" alt="Logo SECEFU" class="nav-logo">
+                <span>SECEFU</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a class="nav-link active" onclick="switchTab('home')">🏠 Home</a></li>
+                <li><a class="nav-link" onclick="switchTab('lomba')">🏆 Daftar Lomba</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main>
+        <!-- HOME SECTION -->
+        <section id="tab-home" class="tab-content active">
+            <div class="card">
+                <!-- Thumbnail Foto Alm. Deyrril Dikonunci ke Frame 16:9 -->
+                <div class="memorial-thumbnail-container">
+                    <img src="fotodeyrril.png" alt="Mengenang Alm. Deyrril Almere Ghaisan" class="memorial-thumbnail">
+                </div>
+
+                <h1 class="card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h1>
+                <h2 class="card-subtitle">Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨</h2>
+                
+                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+                    Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua...
+                </p>
+
+                <!-- Tombol Buka Teks Utuh Home -->
+                <button class="btn btn-outline" id="btn-home-toggle" onclick="toggleHomeText()">
+                    📖 Baca Selengkapnya
+                </button>
+
+                <!-- Isi Teks Utuh yang Disembunyikan di Awal -->
+                <div id="home-text-full" class="expandable-content">
+                    <div class="content-body">
+                        <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
+                        
+                        <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
+                        
+                        <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga, teman, dan semua orang yang mengenalnya, Deyrril selalu memancarkan energi yang luar biasa. Ia adalah anak yang sangat ceria dan periang. Kehadirannya selalu membawa kehangatan, dan senyum tulusnya tidak pernah pudar, seolah menjadi sumber kekuatan bagi orang-orang di sekelilingnya agar tidak ikut bersedih.</p>
+                        
+                        <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus yang seharusnya menjadi bulan perayaan penuh kebahagiaan untuk menyambut bertambahnya usia Deyrril, kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
+                        
+                        <p>Meskipun kini raganya telah tiada dan ia tidak lagi merasakan sakit, warisan terindah yang Deyrril tinggalkan akan selalu hidup. Kita akan selalu mengingat Deyrril bukan dari rasa sakit yang ia lawan, melainkan dari tawa renyahnya, sifat periangnya, dan keberaniannya yang tiada tara.</p>
+                        
+                        <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DAFTAR LOMBA SECTION -->
+        <section id="tab-lomba" class="tab-content">
+            <div class="card">
+                <h1 class="card-title">Lomba Futsal & E-Sport</h1>
+                <h2 class="card-subtitle">Special 17 Agustus & Penghormatan Atas Meninggalnya Alm. Deyrril Almere Ghaisan ⚽🎮</h2>
+
+                <!-- Ringkasan Informasi -->
+                <div class="info-grid">
+                    <div class="info-card">
+                        <span>📅 Hari / Tanggal</span>
+                        <p>Sabtu, 22 Agustus 2026</p>
+                    </div>
+                    <div class="info-card">
+                        <span>⏰ Waktu</span>
+                        <p>08.00 WIB s.d. Selesai</p>
+                    </div>
+                    <div class="info-card">
+                        <span>📍 Tempat</span>
+                        <p>LAPANGAN BASKET GRIYA SAKINAH</p>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi -->
+                <div class="button-group">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">
+                        📝 Klik Disini Untuk Memulai Pendaftaran
+                    </a>
+                    <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()">
+                        📄 Baca Selengkapnya
+                    </button>
+                </div>
+
+                <!-- Isi Proposal / Deskripsi Acara yang Disembunyikan di Awal -->
+                <div id="lomba-text-full" class="expandable-content">
+                    <div class="content-body">
+                        <h3>PROPOSAL & DESKRIPSI ACARA</h3>
+                        <p><strong>TURNAMEN FUTSAL & E-SPORT 2026</strong><br>Spesial 17 Agustus & Memorial Penghormatan untuk Alm. Deyrril Almere Ghaisan</p>
+
+                        <h3>1. Waktu & Tempat Pelaksanaan</h3>
+                        <p><strong>Hari / Tanggal:</strong> Sabtu, 22 Agustus 2026<br>
+                        <strong>Waktu:</strong> Jam 08.00 WIB s.d. Selesai<br>
+                        <strong>Tempat:</strong> LAPANGAN BASKET GRIYA SAKINAH</p>
+
+                        <h3>2. Latar Belakang & Dedikasi Khusus</h3>
+                        <p>Agustus tahun ini membawa arti yang sangat mendalam bagi kita semua. Di tengah semangat menyambut Hari Kemerdekaan Republik Indonesia, kita juga berkumpul untuk mengenang dan menghormati salah satu sahabat terbaik kita yang telah berpulang ke Rahmatullah, Alm. Deyrril Almere Ghaisan.</p>
+                        <p>Alm. Deyrril mengembuskan napas terakhirnya pada hari Kamis, 6 Agustus 2026, pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, setelah perjuangan panjang dan luar biasa melawan kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2).</p>
+                        <p>Semasa hidupnya, Deyrril dikenal sebagai anak yang sangat ceria dan periang. Senyum dan semangatnya selalu membawa kehangatan bagi siapa saja di sekelilingnya. Kebetulan yang sangat menyentuh, tanggal 17 Agustus adalah hari ulang tahunnya. Oleh karena itu, seluruh rangkaian kompetisi yang diadakan pada tanggal 22 Agustus 2026 di LAPANGAN BASKET GRIYA SAKINAH ini didedikasikan sepenuhnya untuk merayakan semangat hidup Deyrril, mengabadikan keceriaannya, serta menyatukan solidaritas kita melalui bidang yang penuh sportivitas.</p>
+
+                        <h3>3. Penjelasan Rangkaian Lomba</h3>
+                        <p>Turnamen memorial ini dibagi menjadi dua kategori utama yang memadukan aktivitas fisik dan ketangkasan digital:</p>
+
+                        <p><strong>⚽ Turnamen Futsal</strong></p>
+                        <ul>
+                            <li><strong>Konsep:</strong> Kompetisi sepak bola dalam ruangan yang mengutamakan kerja sama tim, sportivitas, dan solidaritas.</li>
+                            <li><strong>Tujuan:</strong> Menjadi wadah untuk menyalurkan energi positif, mempererat tali persaudaraan antarpeserta, dan meneladani ketangguhan Alm. Deyrril yang tidak pernah menyerah.</li>
+                            <li><strong>Sistem Lomba:</strong> Pertandingan menggunakan sistem gugur/setengah kompetisi (disesuaikan dengan jumlah tim) dengan durasi waktu resmi yang diawasi oleh wasit.</li>
+                        </ul>
+
+                        <p><strong>🎮 Turnamen E-Sport (EA SPORTS FC MOBILE)</strong></p>
+                        <ul>
+                            <li><strong>Konsep:</strong> Kompetisi mobile gaming menggunakan platform EA FC Mobile, game simulasi sepak bola terpopuler di dunia.</li>
+                            <li><strong>Tujuan:</strong> Mengakomodasi minat generasi muda di bidang olahraga digital (e-sport) sekaligus menghadirkan kompetisi yang tak kalah seru secara virtual.</li>
+                            <li><strong>Sistem Lomba:</strong> Pertandingan menggunakan mode Head-to-Head (H2H) secara real-time. Peserta akan bertanding satu lawan satu menggunakan skuad terbaik mereka untuk memperebutkan gelar juara.</li>
+                        </ul>
+
+                        <h3>4. Penutup & Nilai Acara</h3>
+                        <p>Melalui Lomba Futsal dan E-Sport EA FC Mobile ini, kita tidak hanya berkompetisi untuk meraih piala, tetapi juga untuk merayakan persahabatan. Mari kita bawa keceriaan dan keberanian yang selalu ditunjukkan oleh Alm. Deyrril Almere Ghaisan ke dalam lapangan futsal maupun ke dalam arena game. Semoga acara pada tanggal 22 Agustus nanti menjadi penghormatan terbaik bagi almarhum dan pengingat bagi kita semua untuk selalu bersyukur dan saling mendukung.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 SECEFU - Semangat Ceria Bersama Futsal. All Rights Reserved.
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Masuk dari Welcome Screen
+        function enterSite() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+        }
+
+        // Perpindahan Tab (Home / Daftar Lomba)
+        function switchTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            const activeIndex = tabName === 'home' ? 0 : 1;
+            links[activeIndex].classList.add('active');
+        }
+
+        // Toggle Buka/Tutup Teks Home
+        function toggleHomeText() {
+            const container = document.getElementById('home-text-full');
+            const btn = document.getElementById('btn-home-toggle');
+
+            container.classList.toggle('open');
+            if (container.classList.contains('open')) {
+                btn.innerHTML = '⚡ Sembunyikan';
+            } else {
+                btn.innerHTML = '📖 Baca Selengkapnya';
+            }
+        }
+
+        // Toggle Buka/Tutup Teks Daftar Lomba
+        function toggleLombaText() {
+            const container = document.getElementById('lomba-text-full');
+            const btn = document.getElementById('btn-lomba-toggle');
+
+            container.classList.toggle('open');
+            if (container.classList.contains('open')) {
+                btn.innerHTML = '⚡ Sembunyikan Deskripsi';
+            } else {
+                btn.innerHTML = '📄 Baca Selengkapnya';
+            }
+        }
+    </script>
+</body>
+</html>
