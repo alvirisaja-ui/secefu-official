@@ -351,9 +351,7 @@
         .expandable-content.open {
             max-height: 3000px;
             opacity: 1;
-            margin-top: 18px;
-            padding-top: 18px;
-            border-top: 1px solid #e2e8f0;
+            margin-top: 10px;
         }
 
         .content-body p {
@@ -434,23 +432,34 @@
                 padding-bottom: calc(var(--nav-height) + 20px);
             }
 
-            /* Ubah Navbar Atas Menjadi Header Ringkas */
+            /* Header Tetap Menempel di Atas HP */
             header {
-                position: relative;
+                position: sticky;
+                top: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(12px);
                 border-bottom: 1px solid #e2e8f0;
-                box-shadow: none;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+                z-index: 100;
             }
 
+            /* Tampilkan Logo & Tulisan SECEFU di Tengah Atas */
             nav {
                 justify-content: center;
-                padding: 12px 16px;
+                padding: 10px 16px;
             }
 
             .nav-brand {
-                font-size: 1.2rem;
+                font-size: 1.25rem;
+                gap: 10px;
             }
 
-            /* Pindahkan Menu Navigasi ke Bawah (Bottom Bar) */
+            .nav-logo {
+                width: 36px;
+                height: 36px;
+            }
+
+            /* Menu Navigasi Tetap di Bawah HP (Bottom Bar) */
             .nav-menu {
                 position: fixed;
                 bottom: 0;
@@ -541,9 +550,10 @@
         <button class="btn-continue" onclick="enterSite()">Lanjut 🚀</button>
     </div>
 
-    <!-- MAIN NAVBAR -->
+    <!-- MAIN NAVBAR HEADER -->
     <header>
         <nav>
+            <!-- LOGO DAN TULISAN SECEFU (TETAP TAMPIL DI ATAS HP & PC) -->
             <div class="nav-brand">
                 <img src="secefukeren.png" alt="Logo SECEFU" class="nav-logo">
                 <span>SECEFU</span>
@@ -634,18 +644,31 @@
                 <h1 class="card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h1>
                 <h2 class="card-subtitle">Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨</h2>
                 
+                <!-- Paragraf Pembuka / Cuplikan Awal -->
                 <div class="content-body">
                     <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
-                    
-                    <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
-                    
-                    <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga, teman, dan semua orang yang mengenalnya, Deyrril selalu memancarkan energi yang luar biasa. Ia adalah anak yang sangat ceria dan periang. Kehadirannya selalu membawa kehangatan, dan senyum tulusnya tidak pernah pudar, seolah menjadi sumber kekuatan bagi orang-orang di sekelilingnya agar tidak ikut bersedih.</p>
-                    
-                    <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus yang seharusnya menjadi bulan perayaan penuh kebahagiaan untuk menyambut bertambahnya usia Deyrril, kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
-                    
-                    <p>Meskipun kini raganya telah tiada dan ia tidak lagi merasakan sakit, warisan terindah yang Deyrril tinggalkan akan selalu hidup. Kita akan selalu mengingat Deyrril bukan dari rasa sakit yang ia lawan, melainkan dari tawa renyahnya, sifat periangnya, dan keberaniannya yang tiada tara.</p>
-                    
-                    <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
+                </div>
+
+                <!-- Sisa Isi Berita Lengkap yang Disembunyikan di Awal -->
+                <div id="news-text-full" class="expandable-content">
+                    <div class="content-body">
+                        <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
+                        
+                        <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga, teman, dan semua orang yang mengenalnya, Deyrril selalu memancarkan energi yang luar biasa. Ia adalah anak yang sangat ceria dan periang. Kehadirannya selalu membawa kehangatan, dan senyum tulusnya tidak pernah pudar, seolah menjadi sumber kekuatan bagi orang-orang di sekelilingnya agar tidak ikut bersedih.</p>
+                        
+                        <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus yang seharusnya menjadi bulan perayaan penuh kebahagiaan untuk menyambut bertambahnya usia Deyrril, kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
+                        
+                        <p>Meskipun kini raganya telah tiada dan ia tidak lagi merasakan sakit, warisan terindah yang Deyrril tinggalkan akan selalu hidup. Kita akan selalu mengingat Deyrril bukan dari rasa sakit yang ia lawan, melainkan dari tawa renyahnya, sifat periangnya, dan keberaniannya yang tiada tara.</p>
+                        
+                        <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
+                    </div>
+                </div>
+
+                <!-- Tombol Toggle Ditaruh di Paling Bawah Berita -->
+                <div class="button-group" style="margin-top: 15px;">
+                    <button class="btn btn-outline" id="btn-news-toggle" onclick="toggleNewsText()">
+                        📄 Baca Selengkapnya
+                    </button>
                 </div>
             </div>
         </section>
@@ -755,6 +778,19 @@
 
             // Gulung otomatis ke paling atas saat berpindah tab
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Buka/Tutup Teks News
+        function toggleNewsText() {
+            const container = document.getElementById('news-text-full');
+            const btn = document.getElementById('btn-news-toggle');
+
+            container.classList.toggle('open');
+            if (container.classList.contains('open')) {
+                btn.innerHTML = '⚡ Sembunyikan Berita';
+            } else {
+                btn.innerHTML = '📄 Baca Selengkapnya';
+            }
         }
 
         // Toggle Buka/Tutup Teks Daftar Lomba
