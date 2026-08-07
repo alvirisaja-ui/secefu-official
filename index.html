@@ -452,7 +452,6 @@
                 padding-bottom: calc(var(--nav-height) + 20px);
             }
 
-            /* Ubah Navbar Atas Menjadi Header Ringkas */
             header {
                 position: relative;
                 border-bottom: 1px solid #e2e8f0;
@@ -468,7 +467,6 @@
                 font-size: 1.2rem;
             }
 
-            /* Pindahkan Menu Navigasi ke Bawah (Bottom Bar) */
             .nav-menu {
                 position: fixed;
                 bottom: 0;
@@ -511,7 +509,6 @@
                 font-size: 1.25rem;
             }
 
-            /* Pengaturan Isi Card & Elemen di HP */
             main {
                 margin: 15px auto;
                 padding: 0 12px;
@@ -644,7 +641,6 @@
         <!-- ================= NEWS SECTION ================= -->
         <section id="tab-news" class="tab-content">
             <div class="card">
-                <!-- Thumbnail Foto Alm. Deyrril -->
                 <div class="memorial-thumbnail-container">
                     <img src="fotodeyrril.png" alt="Mengenang Alm. Deyrril Almere Ghaisan" class="memorial-thumbnail">
                 </div>
@@ -652,12 +648,10 @@
                 <h1 class="card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h1>
                 <h2 class="card-subtitle">Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨</h2>
                 
-                <!-- Paragraf Pembuka / Cuplikan Awal -->
                 <div class="content-body">
                     <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
                 </div>
 
-                <!-- Sisa Isi Berita Lengkap yang Disembunyikan di Awal -->
                 <div id="news-text-full" class="expandable-content">
                     <div class="content-body">
                         <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
@@ -672,7 +666,6 @@
                     </div>
                 </div>
 
-                <!-- Tombol Toggle Ditaruh di Paling Bawah Berita -->
                 <div class="button-group" style="margin-top: 15px;">
                     <button class="btn btn-outline" id="btn-news-toggle" onclick="toggleNewsText()">
                         📄 Baca Selengkapnya
@@ -688,7 +681,6 @@
                 <h1 class="card-title">Lomba Futsal & E-Sport</h1>
                 <h2 class="card-subtitle">Special 17 Agustus & Penghormatan Atas Meninggalnya Alm. Deyrril Almere Ghaisan ⚽🎮</h2>
 
-                <!-- Ringkasan Informasi -->
                 <div class="info-grid">
                     <div class="info-card">
                         <span>📅 Hari / Tanggal</span>
@@ -704,7 +696,6 @@
                     </div>
                 </div>
 
-                <!-- Tombol Aksi -->
                 <div class="button-group">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">
                         📝 Disini Untuk Memulai Pendaftaran
@@ -714,7 +705,6 @@
                     </button>
                 </div>
 
-                <!-- Isi Proposal / Deskripsi Acara yang Disembunyikan di Awal -->
                 <div id="lomba-text-full" class="expandable-content">
                     <div class="content-body">
                         <h3>PROPOSAL & DESKRIPSI ACARA</h3>
@@ -776,7 +766,6 @@
             const links = document.querySelectorAll('.nav-link');
             links.forEach(link => link.classList.remove('active'));
 
-            // Aktifkan tab yang dipilih
             const targetTab = document.getElementById('tab-' + tabName);
             if (targetTab) {
                 targetTab.classList.add('active');
@@ -793,7 +782,7 @@
                 links[activeIndex].classList.add('active');
             }
 
-            // Ubah Alamat URL di Browser tanpa Reload
+            // Ubah Alamat URL di Browser tanpa Reload saat menu diklik
             if (pushToHistory) {
                 let newPath = '/home';
                 if (tabName === 'news') newPath = '/news';
@@ -802,7 +791,6 @@
                 history.pushState({ tab: tabName }, '', newPath);
             }
 
-            // Gulung otomatis ke paling atas
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -815,11 +803,8 @@
             } else if (path === '/daftar-lomba') {
                 switchTab('lomba', false);
             } else {
-                // Jika akses / atau /home atau rute lain, set ke home dengan URL /home
+                // Saat pertama kali buka / atau /home, tampilkan tab Home TANPA mengubah URL awal (tetap di URL saat dibuka)
                 switchTab('home', false);
-                if (path !== '/home') {
-                    history.replaceState({ tab: 'home' }, '', '/home');
-                }
             }
         }
 
