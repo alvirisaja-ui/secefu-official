@@ -49,30 +49,6 @@
             --text-dark: #1e293b;
             --text-muted: #64748b;
             --nav-height: 65px;
-            --border-color: rgba(226, 232, 240, 0.8);
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --welcome-bg: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
-            --lomba-featured-bg: #f8fafc;
-            --info-card-bg: #e0f2fe;
-            --footer-bg: #ffffff;
-        }
-
-        [data-theme="dark"] {
-            --bg-light: #090d16;
-            --bg-card: #111827;
-            --blue-primary: #f1f5f9;
-            --blue-accent: #38bdf8;
-            --blue-soft: #0c2136;
-            --accent-orange: #fb923c;
-            --accent-red: #f87171;
-            --text-dark: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border-color: #1f2937;
-            --header-bg: rgba(17, 24, 39, 0.95);
-            --welcome-bg: linear-gradient(135deg, #090d16 0%, #111827 50%, #030712 100%);
-            --lomba-featured-bg: #1f2937;
-            --info-card-bg: #0c2136;
-            --footer-bg: #111827;
         }
 
         body {
@@ -87,7 +63,6 @@
             flex-direction: column;
             overflow-x: hidden;
             padding-bottom: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* --- WELCOME SCREEN --- */
@@ -97,13 +72,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--welcome-bg);
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.4s ease, visibility 0.4s ease, background 0.3s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
             text-align: center;
             padding: 24px;
         }
@@ -172,14 +147,13 @@
 
         /* --- NAVBAR (DESKTOP DEFAULT) --- */
         header {
-            background: var(--header-bg);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(2, 132, 199, 0.15);
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-            transition: background 0.3s ease;
         }
 
         nav {
@@ -209,12 +183,6 @@
             border: 2px solid var(--blue-accent);
         }
 
-        .nav-right-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
         .nav-menu {
             display: flex;
             list-style: none;
@@ -239,31 +207,6 @@
             background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
             color: white;
             box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-        }
-
-        /* --- THEME TOGGLE BUTTON --- */
-        .theme-toggle-btn {
-            background: var(--blue-soft);
-            border: 2px solid var(--blue-accent);
-            color: var(--blue-accent);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: all 0.25s ease;
-            flex-shrink: 0;
-        }
-
-        .theme-toggle-btn:hover {
-            transform: scale(1.08);
-        }
-
-        .theme-toggle-btn:active {
-            transform: scale(0.95);
         }
 
         /* --- MAIN CONTENT CONTAINER --- */
@@ -295,11 +238,10 @@
             border-radius: 20px;
             padding: 24px;
             box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(226, 232, 240, 0.8);
             margin-bottom: 20px;
             position: relative;
             overflow: hidden;
-            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .card::before {
@@ -330,7 +272,7 @@
             overflow: hidden;
             margin-bottom: 18px;
             box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(226, 232, 240, 0.8);
             background-color: #000;
         }
 
@@ -398,12 +340,11 @@
 
         /* --- LOMBA FEATURED ITEM --- */
         .lomba-featured-box {
-            background: var(--lomba-featured-bg);
-            border: 1px solid var(--border-color);
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 18px;
             margin-top: 10px;
-            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .badge-populer {
@@ -465,11 +406,10 @@
         }
 
         .info-card {
-            background: var(--info-card-bg);
+            background: var(--blue-soft);
             border: 1px solid rgba(2, 132, 199, 0.2);
             padding: 14px;
             border-radius: 12px;
-            transition: background 0.3s ease;
         }
 
         .info-card span {
@@ -497,14 +437,13 @@
 
         /* --- FOOTER --- */
         footer {
-            background: var(--footer-bg);
+            background: #ffffff;
             text-align: center;
             padding: 18px;
             font-size: 0.85rem;
             color: var(--text-muted);
             margin-top: auto;
-            border-top: 1px solid var(--border-color);
-            transition: background 0.3s ease, border-color 0.3s ease;
+            border-top: 1px solid #e2e8f0;
         }
 
         /* ================= MOBILE OPTIMIZATIONS (HP) ================= */
@@ -515,12 +454,12 @@
 
             header {
                 position: relative;
-                border-bottom: 1px solid var(--border-color);
+                border-bottom: 1px solid #e2e8f0;
                 box-shadow: none;
             }
 
             nav {
-                justify-content: space-between;
+                justify-content: center;
                 padding: 12px 16px;
             }
 
@@ -534,9 +473,9 @@
                 left: 0;
                 width: 100%;
                 height: var(--nav-height);
-                background: var(--header-bg);
+                background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(15px);
-                border-top: 1px solid var(--border-color);
+                border-top: 1px solid #e2e8f0;
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
@@ -624,33 +563,26 @@
                 <img src="secefukeren.png" alt="Logo SECEFU" class="nav-logo">
                 <span>SECEFU</span>
             </div>
-            
-            <div class="nav-right-group">
-                <ul class="nav-menu">
-                    <li>
-                        <a class="nav-link active" onclick="switchTab('home')">
-                            <span class="nav-link-icon">🏠</span>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" onclick="switchTab('news')">
-                            <span class="nav-link-icon">📰</span>
-                            <span>News</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" onclick="switchTab('lomba')">
-                            <span class="nav-link-icon">🏆</span>
-                            <span>Daftar Lomba</span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- TOMBOL DARK/LIGHT MODE TOGGLE -->
-                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-                    🌙
-                </button>
-            </div>
+            <ul class="nav-menu">
+                <li>
+                    <a class="nav-link active" onclick="switchTab('home')">
+                        <span class="nav-link-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" onclick="switchTab('news')">
+                        <span class="nav-link-icon">📰</span>
+                        <span>News</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" onclick="switchTab('lomba')">
+                        <span class="nav-link-icon">🏆</span>
+                        <span>Daftar Lomba</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
     </header>
 
@@ -690,7 +622,7 @@
             <!-- 3. BERITA RINGKAS (CUPLIKAN) -->
             <div class="card">
                 <h2 class="section-header">📰 Berita Ringkas</h2>
-                <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px; transition: background 0.3s ease;">
+                <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
                         Mengenang Alm. Deyrril Almere Ghaisan: Kisah Keberanian dan Senyum yang Abadi
                     </h3>
@@ -821,31 +753,6 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Cek Preferensi Theme yang Tersimpan saat Halaman Dimuat
-        (function() {
-            const savedTheme = localStorage.getItem('secefu_theme') || 'light';
-            if (savedTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                document.getElementById('theme-toggle').innerHTML = '☀️';
-            }
-        })();
-
-        // Fungsi Toggle Dark Mode / Light Mode
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const toggleBtn = document.getElementById('theme-toggle');
-
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('secefu_theme', 'light');
-                toggleBtn.innerHTML = '🌙';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('secefu_theme', 'dark');
-                toggleBtn.innerHTML = '☀️';
-            }
-        }
-
         // Masuk dari Welcome Screen: Menutup layar sambutan dan mengubah URL ke /home
         function enterSite() {
             document.getElementById('welcome-screen').classList.add('hidden');
@@ -922,7 +829,7 @@
                 document.getElementById('welcome-screen').classList.add('hidden');
                 switchTab('home', false);
             } else {
-                // Jika kembali ke root (/)
+                // Jika kembali ke /
                 document.getElementById('welcome-screen').classList.remove('hidden');
                 switchTab('home', false);
             }
