@@ -139,7 +139,6 @@
             margin-bottom: auto;
         }
 
-        /* BANNER PENJELASAN LOCAL STORAGE (RINGKAS) */
         .storage-info-box {
             background: #fff7ed;
             border-left: 4px solid #f97316;
@@ -223,25 +222,27 @@
             text-decoration: underline;
         }
 
+        /* --- USER PROFILE BADGE & HEADER --- */
         .user-profile-badge {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             color: var(--blue-primary);
             background: var(--blue-soft);
-            padding: 5px 10px;
+            padding: 4px 8px;
             border-radius: 20px;
+            white-space: nowrap;
         }
 
         .btn-logout {
             background: var(--accent-red);
             color: white;
             border: none;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 0.7rem;
+            padding: 3px 7px;
+            border-radius: 8px;
+            font-size: 0.65rem;
             font-weight: 700;
             cursor: pointer;
         }
@@ -263,24 +264,32 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 16px;
+            padding: 10px 12px;
+            gap: 8px;
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--blue-primary);
+            flex-shrink: 0;
         }
 
         .nav-logo {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 8px;
             object-fit: cover;
             border: 1.5px solid var(--blue-accent);
+        }
+
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-menu {
@@ -543,8 +552,8 @@
             border-top: 1px solid #e2e8f0;
         }
 
-        /* --- DESKTOP ENHANCEMENTS --- */
-        @media (min-width: 650px) {
+        /* --- DESKTOP / TABLET ENHANCEMENTS --- */
+        @media (min-width: 768px) {
             body {
                 padding-bottom: 0;
             }
@@ -604,7 +613,7 @@
         <!-- AUTH CONTAINER -->
         <div class="auth-card">
             
-            <!-- PENJELASAN LOCAL STORAGE (RINGKAS) -->
+            <!-- PENJELASAN LOCAL STORAGE -->
             <div class="storage-info-box">
                 <strong>📌 Penting:</strong>
                 Akun ini tersimpan di <b>Local Storage</b> (hanya di HP/browser ini). Jika pindah ke HP/laptop lain, Anda <b>harus mendaftar akun baru lagi</b> di perangkat tersebut.
@@ -663,7 +672,7 @@
                 <div id="user-badge-container"></div>
             </div>
 
-            <!-- NAVBAR MENU (Terikat di Bawah Layar untuk HP) -->
+            <!-- NAVBAR MENU -->
             <ul class="nav-menu">
                 <li>
                     <a class="nav-link active" onclick="switchTab('home')">
