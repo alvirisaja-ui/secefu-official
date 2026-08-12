@@ -8,7 +8,7 @@
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="secefulogobaruu.png">
@@ -29,12 +29,12 @@
     </script>
 
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* --- RESET & MOBILE FIRST BASE --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -48,11 +48,16 @@
             --accent-red: #ef4444;
             --text-dark: #1e293b;
             --text-muted: #64748b;
-            --nav-height: 65px;
+            --nav-height: 60px;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-light);
         }
 
         body {
-            background-color: var(--bg-light);
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 40%);
@@ -61,57 +66,55 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
-            padding-bottom: 20px;
+            padding-bottom: calc(var(--nav-height) + 15px);
         }
 
-        /* --- WELCOME SCREEN --- */
+        /* --- AUTH & WELCOME SCREEN --- */
         #welcome-screen {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
             text-align: center;
-            padding: 24px;
+            padding: 20px 16px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         #welcome-screen.hidden {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
 
-        .welcome-logo-wrapper {
-            position: relative;
-            margin-bottom: 20px;
+        .welcome-header {
+            margin-top: auto;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .welcome-logo {
-            max-width: 180px;
-            width: 55vw;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2), 0 15px 35px rgba(239, 68, 68, 0.15);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.2);
+            margin-bottom: 8px;
         }
 
         .welcome-title {
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             font-weight: 900;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
+            letter-spacing: 1px;
             background: linear-gradient(45deg, #ef4444, #f97316, #0284c7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -119,108 +122,224 @@
 
         .welcome-subtitle {
             color: var(--text-muted);
-            margin-bottom: 30px;
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
         }
 
-        .btn-continue {
-            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
-            color: white;
-            padding: 14px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* --- AUTH CARD --- */
+        .auth-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 18px 16px;
             width: 100%;
-            max-width: 280px;
+            max-width: 380px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            text-align: left;
+            margin-bottom: auto;
         }
 
-        .btn-continue:active {
-            transform: scale(0.98);
+        /* BANNER PENJELASAN LOCAL STORAGE (RINGKAS) */
+        .storage-info-box {
+            background: #fff7ed;
+            border-left: 4px solid #f97316;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            font-size: 0.78rem;
+            color: #7c2d12;
+            line-height: 1.4;
+            text-align: left;
         }
 
-        /* --- NAVBAR --- */
+        .storage-info-box strong {
+            display: block;
+            margin-bottom: 2px;
+            color: #c2410c;
+            font-size: 0.82rem;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--blue-primary);
+            margin-bottom: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            border-color: var(--blue-accent);
+            background: #ffffff;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 25px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .auth-btn:active {
+            opacity: 0.85;
+        }
+
+        .btn-guest {
+            background: #f1f5f9;
+            color: var(--text-dark);
+            border: 1px solid #cbd5e1;
+        }
+
+        .auth-toggle-text {
+            font-size: 0.78rem;
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-muted);
+        }
+
+        .auth-toggle-link {
+            color: var(--blue-accent);
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .user-profile-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--blue-primary);
+            background: var(--blue-soft);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .btn-logout {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* --- NAVBAR & BOTTOM NAVIGATION --- */
         header {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(2, 132, 199, 0.15);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         nav {
+            width: 100%;
             max-width: 1000px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px;
+            padding: 10px 16px;
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
+            font-size: 1.1rem;
             color: var(--blue-primary);
         }
 
         .nav-logo {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             object-fit: cover;
-            border: 2px solid var(--blue-accent);
+            border: 1.5px solid var(--blue-accent);
         }
 
         .nav-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #e2e8f0;
             display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 8px;
+            z-index: 999;
+            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
             list-style: none;
-            gap: 8px;
+        }
+
+        .nav-menu li {
+            flex: 1;
+            text-align: center;
         }
 
         .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 6px 0;
+            font-size: 0.72rem;
             color: var(--text-muted);
             text-decoration: none;
-            font-weight: 700;
-            padding: 8px 18px;
-            border-radius: 30px;
-            transition: all 0.25s ease;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
-        .nav-link:hover, .nav-link.active {
-            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
-            color: white;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        .nav-link.active {
+            color: var(--accent-red);
+            font-weight: 800;
         }
 
-        /* --- MAIN CONTENT CONTAINER --- */
+        .nav-link-icon {
+            font-size: 1.2rem;
+        }
+
+        /* --- MAIN CONTENT --- */
         main {
-            max-width: 850px;
-            margin: 25px auto;
-            padding: 0 16px;
-            flex: 1;
             width: 100%;
+            max-width: 800px;
+            margin: 12px auto;
+            padding: 0 12px;
+            flex: 1;
         }
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.35s ease forwards;
+            animation: fadeIn 0.25s ease forwards;
         }
 
         .tab-content.active {
@@ -228,18 +347,17 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- CARDS --- */
         .card {
             background: var(--bg-card);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
             border: 1px solid rgba(226, 232, 240, 0.8);
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             position: relative;
             overflow: hidden;
         }
@@ -250,310 +368,287 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
         }
 
         .section-header {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--blue-primary);
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
-        /* --- THUMBNAIL (16:9) --- */
         .memorial-thumbnail-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 18px;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            margin-bottom: 14px;
             background-color: #000;
         }
 
         .memorial-thumbnail {
             width: 100%;
             height: 100%;
-            display: block;
             object-fit: cover;
-            object-position: center;
         }
 
         .card-title {
             color: var(--blue-primary);
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            margin-bottom: 8px;
-            line-height: 1.35;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
 
         .card-subtitle {
             color: var(--blue-accent);
-            font-size: 0.95rem;
-            margin-bottom: 18px;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
             font-weight: 600;
-            line-height: 1.4;
+            line-height: 1.35;
         }
 
-        /* --- BUTTONS --- */
         .btn {
-            padding: 12px 22px;
-            border-radius: 30px;
+            width: 100%;
+            padding: 11px 16px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 700;
             cursor: pointer;
             border: none;
-            transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 0.9rem;
+            gap: 6px;
+            font-size: 0.85rem;
             text-align: center;
-            width: auto;
         }
 
         .btn-primary {
             background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
             color: white;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
-        }
-
-        .btn-primary:active {
-            transform: scale(0.98);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
         }
 
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--blue-accent);
+            border: 1.5px solid var(--blue-accent);
             color: var(--blue-accent);
         }
 
-        .btn-outline:active {
-            background: var(--blue-soft);
-        }
-
-        /* --- FEATURED BOX --- */
         .lomba-featured-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 18px;
-            margin-top: 10px;
+            border-radius: 12px;
+            padding: 14px;
         }
 
         .badge-populer {
             display: inline-block;
             background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-bottom: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* --- EXPANDABLE CONTENT --- */
         .expandable-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            transition: max-height 0.35s ease-out, opacity 0.35s ease-out;
             opacity: 0;
         }
 
         .expandable-content.open {
-            max-height: 3000px;
+            max-height: 3500px;
             opacity: 1;
             margin-top: 10px;
         }
 
         .content-body p {
             color: var(--text-dark);
-            line-height: 1.75;
-            margin-bottom: 14px;
-            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: 0.88rem;
             text-align: justify;
         }
 
         .content-body h3 {
             color: var(--accent-orange);
-            margin: 18px 0 8px 0;
-            font-size: 1.1rem;
+            margin: 14px 0 6px 0;
+            font-size: 0.98rem;
             font-weight: 700;
         }
 
         .content-body ul {
-            margin-left: 18px;
-            margin-bottom: 14px;
+            margin-left: 16px;
+            margin-bottom: 12px;
             color: var(--text-dark);
-            line-height: 1.7;
-            font-size: 0.95rem;
+            line-height: 1.6;
+            font-size: 0.88rem;
         }
 
-        /* --- INFO GRID --- */
         .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin: 18px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 14px 0;
         }
 
         .info-card {
             background: var(--blue-soft);
             border: 1px solid rgba(2, 132, 199, 0.2);
-            padding: 14px;
-            border-radius: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
         }
 
         .info-card span {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--blue-accent);
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .info-card p {
             font-weight: 700;
             color: var(--blue-primary);
             margin: 0;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
         }
 
         .button-group {
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 18px;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 14px;
         }
 
-        /* --- FOOTER --- */
         footer {
             background: #ffffff;
             text-align: center;
-            padding: 18px;
-            font-size: 0.85rem;
+            padding: 14px;
+            font-size: 0.75rem;
             color: var(--text-muted);
             margin-top: auto;
             border-top: 1px solid #e2e8f0;
         }
 
-        /* --- MOBILE OPTIMIZATIONS --- */
-        @media (max-width: 650px) {
+        /* --- DESKTOP ENHANCEMENTS --- */
+        @media (min-width: 650px) {
             body {
-                padding-bottom: calc(var(--nav-height) + 20px);
-            }
-
-            header {
-                position: relative;
-                border-bottom: 1px solid #e2e8f0;
-                box-shadow: none;
-            }
-
-            nav {
-                justify-content: center;
-                padding: 12px 16px;
-            }
-
-            .nav-brand {
-                font-size: 1.2rem;
+                padding-bottom: 0;
             }
 
             .nav-menu {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: var(--nav-height);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                border-top: 1px solid #e2e8f0;
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                padding: 0 10px;
-                z-index: 999;
-                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
-            }
-
-            .nav-menu li {
-                flex: 1;
-                text-align: center;
+                position: static;
+                height: auto;
+                width: auto;
+                background: transparent;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+                gap: 8px;
             }
 
             .nav-link {
-                flex-direction: column;
-                gap: 2px;
-                padding: 6px 0;
-                border-radius: 12px;
-                font-size: 0.75rem;
-                color: var(--text-muted);
-                background: transparent !important;
-                box-shadow: none !important;
+                flex-direction: row;
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 0.85rem;
             }
 
             .nav-link.active {
-                color: var(--accent-red);
-                font-weight: 800;
-            }
-
-            .nav-link-icon {
-                font-size: 1.25rem;
+                background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+                color: white;
             }
 
             main {
-                margin: 15px auto;
-                padding: 0 12px;
-            }
-
-            .card {
-                padding: 16px;
-                border-radius: 16px;
-                margin-bottom: 16px;
-            }
-
-            .card-title {
-                font-size: 1.2rem;
-            }
-
-            .card-subtitle {
-                font-size: 0.88rem;
-            }
-
-            .button-group {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 12px 16px;
+                margin: 20px auto;
             }
 
             .info-grid {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .button-group {
+                flex-direction: row;
+            }
+
+            .btn {
+                width: auto;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- WELCOME / LANDING SCREEN -->
+    <!-- WELCOME / AUTH SCREEN -->
     <div id="welcome-screen">
-        <div class="welcome-logo-wrapper">
+        <div class="welcome-header">
             <img src="secefukeren.png" alt="Logo SECEFU" class="welcome-logo">
+            <h1 class="welcome-title">SECEFU</h1>
+            <p class="welcome-subtitle">Semangat Ceria Bersama Futsal ⚽🔥</p>
         </div>
-        <h1 class="welcome-title">SECEFU</h1>
-        <p class="welcome-subtitle">Semangat Ceria Bersama Futsal ⚽🔥</p>
-        <button class="btn-continue" onclick="enterSite()">Lanjut 🚀</button>
+
+        <!-- AUTH CONTAINER -->
+        <div class="auth-card">
+            
+            <!-- PENJELASAN LOCAL STORAGE (RINGKAS) -->
+            <div class="storage-info-box">
+                <strong>📌 Penting:</strong>
+                Akun ini tersimpan di <b>Local Storage</b> (hanya di HP/browser ini). Jika pindah ke HP/laptop lain, Anda <b>harus mendaftar akun baru lagi</b> di perangkat tersebut.
+            </div>
+
+            <!-- FORM LOGIN -->
+            <form id="form-login" action="javascript:void(0);" onsubmit="handleLogin(event)">
+                <h3 style="font-size: 1rem; font-weight: 800; color: var(--blue-primary); margin-bottom: 10px; text-align: center;">Masuk Akun</h3>
+                <div class="form-group">
+                    <label for="login-email">Email / Username</label>
+                    <input type="text" id="login-email" name="username" class="form-control" autocomplete="username" placeholder="Masukkan email/username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" class="form-control" autocomplete="current-password" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="auth-btn btn-primary">Masuk 🚀</button>
+                <p class="auth-toggle-text">Belum punya akun? <span class="auth-toggle-link" onclick="toggleAuthForm('signup')">Daftar Akun</span></p>
+            </form>
+
+            <!-- FORM SIGNUP -->
+            <form id="form-signup" action="javascript:void(0);" onsubmit="handleSignup(event)" style="display: none;">
+                <h3 style="font-size: 1rem; font-weight: 800; color: var(--blue-primary); margin-bottom: 10px; text-align: center;">Daftar Akun Baru</h3>
+                <div class="form-group">
+                    <label for="signup-name">Nama Lengkap</label>
+                    <input type="text" id="signup-name" class="form-control" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email / Username</label>
+                    <input type="text" id="signup-email" name="username" class="form-control" autocomplete="username" placeholder="Email atau Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="new-password" class="form-control" autocomplete="new-password" placeholder="Buat password" required>
+                </div>
+                <button type="submit" class="auth-btn btn-primary">Buat Akun 🚀</button>
+                <p class="auth-toggle-text">Sudah punya akun? <span class="auth-toggle-link" onclick="toggleAuthForm('login')">Masuk</span></p>
+            </form>
+
+            <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
+
+            <!-- GUEST BUTTON -->
+            <button type="button" class="auth-btn btn-guest" onclick="handleGuestLogin()">👤 Masuk sebagai Tamu</button>
+        </div>
     </div>
 
     <!-- MAIN NAVBAR -->
@@ -563,6 +658,12 @@
                 <img src="secefukeren.png" alt="Logo SECEFU" class="nav-logo">
                 <span>SECEFU</span>
             </div>
+
+            <div class="nav-right-container">
+                <div id="user-badge-container"></div>
+            </div>
+
+            <!-- NAVBAR MENU (Terikat di Bawah Layar untuk HP) -->
             <ul class="nav-menu">
                 <li>
                     <a class="nav-link active" onclick="switchTab('home')">
@@ -592,24 +693,22 @@
         <!-- ================= HOME SECTION ================= -->
         <section id="tab-home" class="tab-content active">
             
-            <!-- 1. RINGKASAN INFORMASI PLATFORM -->
             <div class="card">
-                <h2 class="section-header">📢 Tentang Platform SECEFU</h2>
-                <p style="color: var(--text-dark); line-height: 1.75; font-size: 0.95rem; text-align: justify;">
-                    <strong>SECEFU (Semangat Ceria Bersama Futsal)</strong> adalah wadah independen yang menyelenggarakan berbagai kompetisi olahraga futsal dan <em>e-sport</em> digital. Kami berkomitmen menciptakan ajang kompetisi yang menjunjung tinggi sportivitas, kebersamaan, dan wadah kreativitas positif bagi generasi muda.
+                <h2 class="section-header">📢 Tentang SECEFU</h2>
+                <p style="color: var(--text-dark); line-height: 1.6; font-size: 0.88rem; text-align: justify;">
+                    <strong>SECEFU (Semangat Ceria Bersama Futsal)</strong> adalah wadah independen yang menyelenggarakan kompetisi olahraga futsal dan <em>e-sport</em> digital. Kami berkomitmen menciptakan ajang kompetisi yang menjunjung tinggi sportivitas dan kebersamaan.
                 </p>
             </div>
 
-            <!-- 2. LOMBA PILIHAN -->
             <div class="card">
                 <h2 class="section-header">🔥 Lomba Pilihan & Populer</h2>
                 <div class="lomba-featured-box">
                     <span class="badge-populer">⭐ Lomba Unggulan 17 Agustus</span>
-                    <h3 style="color: var(--blue-primary); font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">
+                    <h3 style="color: var(--blue-primary); font-size: 1rem; font-weight: 800; margin-bottom: 6px;">
                         Turnamen Futsal & E-Sport EA FC Mobile 2026
                     </h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 14px; line-height: 1.6;">
-                        Memorial Penghormatan Alm. Deyrril Almere Ghaisan. Kategori Futsal Lapangan & E-Sport EA FC Mobile.
+                    <p style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 12px; line-height: 1.5;">
+                        Memorial Penghormatan Alm. Deyrril Almere Ghaisan. Futsal Lapangan & E-Sport EA FC Mobile.
                     </p>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="switchTab('lomba')">
@@ -619,24 +718,22 @@
                 </div>
             </div>
 
-            <!-- 3. BERITA RINGKAS -->
             <div class="card">
                 <h2 class="section-header">📰 Berita Ringkas</h2>
-                <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px;">
-                    <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        Mengenang Alm. Deyrril Almere Ghaisan: Kisah Keberanian dan Senyum yang Abadi
+                <div style="background: var(--blue-soft); border-left: 3px solid var(--blue-accent); padding: 12px; border-radius: 10px;">
+                    <h3 style="color: var(--blue-primary); font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; line-height: 1.35;">
+                        Mengenang Alm. Deyrril Almere Ghaisan
                     </h3>
-                    <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        Pada hari Kamis, 6 Agustus 2026, Alm. Deyrril Almere Ghaisan berpulang di Rumah Sakit Onkologi Surakarta setelah perjuangan hebatnya melawan penyakit kanker leukemia (MDS-AML2). Deyrril dikenang sebagai sosok yang sangat periang dan tangguh...
+                    <p style="color: var(--text-dark); line-height: 1.5; font-size: 0.82rem; margin-bottom: 10px; text-align: justify;">
+                        Pada hari Kamis, 6 Agustus 2026, Alm. Deyrril Almere Ghaisan berpulang di Rumah Sakit Onkologi Surakarta...
                     </p>
                     <button class="btn btn-outline" onclick="switchTab('news')">
-                        📖 Baca Selengkapnya di News 📰
+                        📖 Baca di News 📰
                     </button>
                 </div>
             </div>
 
         </section>
-
 
         <!-- ================= NEWS SECTION ================= -->
         <section id="tab-news" class="tab-content">
@@ -654,19 +751,15 @@
 
                 <div id="news-text-full" class="expandable-content">
                     <div class="content-body">
-                        <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
+                        <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Namun, ia justru menunjukkan ketangguhan yang luar biasa.</p>
                         
-                        <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga, teman, dan semua orang yang mengenalnya, Deyrril selalu memancarkan energi yang luar biasa. Ia adalah anak yang sangat ceria dan periang. Kehadirannya selalu membawa kehangatan, dan senyum tulusnya tidak pernah pudar, seolah menjadi sumber kekuatan bagi orang-orang di sekelilingnya agar tidak ikut bersedih.</p>
+                        <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga dan teman-teman, Deyrril selalu memancarkan energi positif, keceriaan, dan senyuman tulus yang selalu menguatkan orang-orang di sekitarnya.</p>
                         
-                        <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus yang seharusnya menjadi bulan perayaan penuh kebahagiaan untuk menyambut bertambahnya usia Deyrril, kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
-                        
-                        <p>Meskipun kini raganya telah tiada dan ia tidak lagi merasakan sakit, warisan terindah yang Deyrril tinggalkan akan selalu hidup. Kita akan selalu mengingat Deyrril bukan dari rasa sakit yang ia lawan, melainkan dari tawa renyahnya, sifat periangnya, dan keberaniannya yang tiada tara.</p>
-                        
-                        <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
+                        <p>Satu hal yang sangat berkesan, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus kini menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya.</p>
                     </div>
                 </div>
 
-                <div class="button-group" style="margin-top: 15px;">
+                <div class="button-group">
                     <button class="btn btn-outline" id="btn-news-toggle" onclick="toggleNewsText()">
                         📄 Baca Selengkapnya
                     </button>
@@ -674,12 +767,11 @@
             </div>
         </section>
 
-
         <!-- ================= DAFTAR LOMBA SECTION ================= -->
         <section id="tab-lomba" class="tab-content">
             <div class="card">
                 <h1 class="card-title">Lomba Futsal & E-Sport</h1>
-                <h2 class="card-subtitle">Special 17 Agustus & Penghormatan Atas Meninggalnya Alm. Deyrril Almere Ghaisan ⚽🎮</h2>
+                <h2 class="card-subtitle">Special 17 Agustus & Memorial Penghormatan Alm. Deyrril Almere Ghaisan ⚽🎮</h2>
 
                 <div class="info-grid">
                     <div class="info-card">
@@ -698,7 +790,7 @@
 
                 <div class="button-group">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">
-                        📝 Disini Untuk Memulai Pendaftaran
+                        📝 Mulai Pendaftaran
                     </a>
                     <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()">
                         📄 Baca Selengkapnya
@@ -715,30 +807,9 @@
                         <strong>Waktu:</strong> Jam 16.00 WIB s.d. Selesai<br>
                         <strong>Tempat:</strong> LAPANGAN BASKET GRIYA SAKINAH</p>
 
-                        <h3>2. Latar Belakang & Dedikasi Khusus</h3>
-                        <p>Agustus tahun ini membawa arti yang sangat mendalam bagi kita semua. Di tengah semangat menyambut Hari Kemerdekaan Republik Indonesia, kita juga berkumpul untuk mengenang dan menghormati salah satu sahabat terbaik kita yang telah berpulang ke Rahmatullah, Alm. Deyrril Almere Ghaisan.</p>
-                        <p>Alm. Deyrril mengembuskan napas terakhirnya pada hari Kamis, 6 Agustus 2026, pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, setelah perjuangan panjang dan luar biasa melawan kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2).</p>
-                        <p>Semasa hidupnya, Deyrril dikenal sebagai anak yang sangat ceria dan periang. Senyum dan semangatnya selalu membawa kehangatan bagi siapa saja di sekelilingnya. Kebetulan yang sangat menyentuh, tanggal 17 Agustus adalah hari ulang tahunnya. Oleh karena itu, seluruh rangkaian kompetisi yang diadakan pada tanggal 22 Agustus 2026 jam 16.00 WIB di LAPANGAN BASKET GRIYA SAKINAH ini didedikasikan sepenuhnya untuk merayakan semangat hidup Deyrril, mengabadikan keceriaannya, serta menyatukan solidaritas kita melalui bidang yang penuh sportivitas.</p>
-
-                        <h3>3. Penjelasan Rangkaian Lomba</h3>
-                        <p>Turnamen memorial ini dibagi menjadi dua kategori utama yang memadukan aktivitas fisik dan ketangkasan digital:</p>
-
-                        <p><strong>⚽ Turnamen Futsal</strong></p>
-                        <ul>
-                            <li><strong>Konsep:</strong> Kompetisi sepak bola dalam ruangan yang mengutamakan kerja sama tim, sportivitas, dan solidaritas.</li>
-                            <li><strong>Tujuan:</strong> Menjadi wadah untuk menyalurkan energi positif, mempererat tali persaudaraan antarpeserta, dan meneladani ketangguhan Alm. Deyrril yang tidak pernah menyerah.</li>
-                            <li><strong>Sistem Lomba:</strong> Pertandingan menggunakan sistem gugur/setengah kompetisi (disesuaikan dengan jumlah tim) dengan durasi waktu resmi yang diawasi oleh wasit.</li>
-                        </ul>
-
-                        <p><strong>🎮 Turnamen E-Sport (EA SPORTS FC MOBILE)</strong></p>
-                        <ul>
-                            <li><strong>Konsep:</strong> Kompetisi mobile gaming menggunakan platform EA FC Mobile, game simulasi sepak bola terpopuler di dunia.</li>
-                            <li><strong>Tujuan:</strong> Mengakomodasi minat generasi muda di bidang olahraga digital (e-sport) sekaligus menghadirkan kompetisi yang tak kalah seru secara virtual.</li>
-                            <li><strong>Sistem Lomba:</strong> Pertandingan menggunakan mode Head-to-Head (H2H) secara real-time. Peserta akan bertanding satu lawan satu menggunakan skuad terbaik mereka untuk memperebutkan gelar juara.</li>
-                        </ul>
-
-                        <h3>4. Penutup & Nilai Acara</h3>
-                        <p>Melalui Lomba Futsal dan E-Sport EA FC Mobile ini, kita tidak hanya berkompetisi untuk meraih piala, tetapi juga untuk merayakan persahabatan. Mari kita bawa keceriaan dan keberanian yang selalu ditunjukkan oleh Alm. Deyrril Almere Ghaisan ke dalam lapangan futsal maupun ke dalam arena game. Semoga acara pada tanggal 22 Agustus jam 16.00 WIB nanti menjadi penghormatan terbaik bagi almarhum dan pengingat bagi kita semua untuk selalu bersyukur dan saling mendukung.</p>
+                        <h3>2. Penjelasan Kategori Lomba</h3>
+                        <p><strong>⚽ Turnamen Futsal:</strong> Kompetisi futsal lapangan menggunakan sistem gugur/setengah kompetisi untuk mempererat kebersamaan.</p>
+                        <p><strong>🎮 Turnamen E-Sport (EA SPORTS FC MOBILE):</strong> Kompetisi mobile gaming H2H (Head-to-Head) menggunakan aplikasi EA FC Mobile.</p>
                     </div>
                 </div>
             </div>
@@ -748,18 +819,111 @@
 
     <!-- FOOTER -->
     <footer>
-        &copy; 2026 SECEFU - Semangat Ceria Bersama Futsal. All Rights Reserved.
+        &copy; 2026 SECEFU - Semangat Ceria Bersama Futsal.
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Masuk dari Welcome Screen
-        function enterSite() {
-            document.getElementById('welcome-screen').classList.add('hidden');
-            switchTab('home', true);
+        function getStoredUsers() {
+            return JSON.parse(localStorage.getItem('secefu_users')) || [];
         }
 
-        // Perpindahan Tab & Sync URL
+        function toggleAuthForm(type) {
+            const loginForm = document.getElementById('form-login');
+            const signupForm = document.getElementById('form-signup');
+            if (type === 'signup') {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+            } else {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            }
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value.trim();
+            const username = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+
+            let users = getStoredUsers();
+            const existingUser = users.find(u => u.username.toLowerCase() === username.toLowerCase());
+
+            if (existingUser) {
+                alert('Username/Email sudah terdaftar di HP ini!');
+                return;
+            }
+
+            users.push({ name, username, password });
+            localStorage.setItem('secefu_users', JSON.stringify(users));
+
+            const session = { name, username, isGuest: false };
+            localStorage.setItem('secefu_session', JSON.stringify(session));
+
+            alert('Pendaftaran berhasil! Selamat datang, ' + name);
+            initUserSession();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            let users = getStoredUsers();
+            const user = users.find(u => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+
+            if (!user) {
+                alert('Username/Email atau Password tidak cocok dengan data di HP ini!');
+                return;
+            }
+
+            const session = { name: user.name, username: user.username, isGuest: false };
+            localStorage.setItem('secefu_session', JSON.stringify(session));
+
+            alert('Login berhasil! Selamat datang kembali, ' + user.name);
+            initUserSession();
+        }
+
+        function handleGuestLogin() {
+            const session = { name: 'Tamu', username: 'guest', isGuest: true };
+            localStorage.setItem('secefu_session', JSON.stringify(session));
+            initUserSession();
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('secefu_session');
+            document.getElementById('welcome-screen').classList.remove('hidden');
+            renderUserBadge(null);
+            switchTab('home', false);
+        }
+
+        function renderUserBadge(session) {
+            const container = document.getElementById('user-badge-container');
+            if (!container) return;
+            if (session) {
+                container.innerHTML = `
+                    <div class="user-profile-badge">
+                        <span>👤 ${session.name}</span>
+                        <button class="btn-logout" onclick="handleLogout()">Keluar</button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '';
+            }
+        }
+
+        function initUserSession() {
+            const sessionData = localStorage.getItem('secefu_session');
+            if (sessionData) {
+                const session = JSON.parse(sessionData);
+                document.getElementById('welcome-screen').classList.add('hidden');
+                renderUserBadge(session);
+                handleInitialRouting();
+            } else {
+                document.getElementById('welcome-screen').classList.remove('hidden');
+            }
+        }
+
         function switchTab(tabName, pushToHistory = true) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -794,46 +958,28 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Routing saat Halaman Dibuka / Direfresh
         function handleInitialRouting() {
             const path = window.location.pathname;
-            
-            if (path === '/news') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('news', false);
-            } else if (path === '/daftar-lomba') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('lomba', false);
-            } else if (path === '/home') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('home', false);
-            } else {
-                switchTab('home', false);
+            const sessionData = localStorage.getItem('secefu_session');
+
+            if (!sessionData) {
+                document.getElementById('welcome-screen').classList.remove('hidden');
+                return;
             }
+            
+            if (path === '/news') switchTab('news', false);
+            else if (path === '/daftar-lomba') switchTab('lomba', false);
+            else switchTab('home', false);
         }
 
-        window.addEventListener('DOMContentLoaded', handleInitialRouting);
-
-        // Menangani Tombol Back / Forward di Browser (Popstate)
-        window.addEventListener('popstate', (event) => {
-            const path = window.location.pathname;
-            if (path === '/news') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('news', false);
-            } else if (path === '/daftar-lomba') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('lomba', false);
-            } else if (path === '/home') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('home', false);
-            } else {
-                // Jika kembali ke /
-                document.getElementById('welcome-screen').classList.remove('hidden');
-                switchTab('home', false);
-            }
+        window.addEventListener('DOMContentLoaded', () => {
+            initUserSession();
         });
 
-        // Toggle Buka/Tutup Teks News
+        window.addEventListener('popstate', () => {
+            handleInitialRouting();
+        });
+
         function toggleNewsText() {
             const container = document.getElementById('news-text-full');
             const btn = document.getElementById('btn-news-toggle');
@@ -846,7 +992,6 @@
             }
         }
 
-        // Toggle Buka/Tutup Teks Daftar Lomba
         function toggleLombaText() {
             const container = document.getElementById('lomba-text-full');
             const btn = document.getElementById('btn-lomba-toggle');
