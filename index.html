@@ -5,589 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SECEFU - Semangat Ceria Bersama Futsal</title>
     
-    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="secefulogobaruu.png">
 
-    <!-- ONESIGNAL PUSH NOTIFICATION SDK -->
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: "8fb8605b-a657-411b-adea-5e86b96e2d0c",
-          safari_web_id: "web.onesignal.auto.532534a2-fa6b-4796-aab8-c4e8f72a79c0",
-          notifyButton: {
-            enable: true,
-          },
-        });
-      });
-    </script>
-
     <style>
-        /* --- RESET & MOBILE FIRST BASE --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        :root { --bg-light: #f8fafc; --bg-card: #ffffff; --blue-primary: #0f172a; --blue-accent: #0284c7; --blue-soft: #e0f2fe; --accent-orange: #f97316; --accent-red: #ef4444; --accent-green: #10b981; --text-dark: #1e293b; --text-muted: #64748b; --nav-height: 60px; }
+        html, body { width: 100%; overflow-x: hidden; background-color: var(--bg-light); }
+        body { background-image: radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 40%); background-attachment: fixed; color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; padding-bottom: calc(var(--nav-height) + 15px); }
+        
+        #welcome-screen { position: fixed; inset: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; z-index: 1000; transition: opacity 0.3s, visibility 0.3s; text-align: center; padding: 20px 16px; overflow-y: auto; }
+        #welcome-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .welcome-header { margin-top: auto; margin-bottom: 12px; display: flex; flex-direction: column; align-items: center; }
+        .welcome-logo { width: 80px; height: 80px; object-fit: cover; border-radius: 16px; box-shadow: 0 8px 20px rgba(2, 132, 199, 0.2); margin-bottom: 8px; }
+        .welcome-title { font-size: 1.5rem; font-weight: 900; background: linear-gradient(45deg, #ef4444, #f97316, #0284c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .welcome-subtitle { color: var(--text-muted); font-size: 0.8rem; font-weight: 600; }
+        .auth-card { background: #ffffff; border-radius: 18px; padding: 18px 16px; width: 100%; max-width: 380px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08); border: 1px solid rgba(226, 232, 240, 0.9); text-align: left; margin-bottom: auto; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--blue-primary); margin-bottom: 4px; }
+        .form-control { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid #cbd5e1; font-size: 0.9rem; outline: none; background: #f8fafc; }
+        .auth-btn { width: 100%; padding: 12px; border-radius: 25px; font-weight: 700; border: none; cursor: pointer; font-size: 0.9rem; margin-top: 6px; }
+        .btn-guest { background: #f1f5f9; color: var(--text-dark); border: 1px solid #cbd5e1; }
+        
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #e2e8f0; }
+        nav { width: 100%; max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; }
+        .nav-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.1rem; color: var(--blue-primary); }
+        .nav-logo { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; }
+        .nav-menu { position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height); background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; align-items: center; list-style: none; z-index: 999; }
+        .nav-link { display: flex; flex-direction: column; align-items: center; font-size: 0.72rem; color: var(--text-muted); text-decoration: none; font-weight: 600; cursor: pointer; }
+        .nav-link.active { color: var(--accent-red); font-weight: 800; }
+        
+        main { width: 100%; max-width: 800px; margin: 12px auto; padding: 0 12px; flex: 1; }
+        .tab-content { display: none; animation: fadeIn 0.25s ease forwards; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: var(--bg-card); border-radius: 16px; padding: 16px; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04); border: 1px solid rgba(226, 232, 240, 0.8); margin-bottom: 14px; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent)); }
+        .section-header { font-size: 1.1rem; font-weight: 800; color: var(--blue-primary); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .memorial-thumbnail-container { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; margin-bottom: 14px; background: #000; }
+        .memorial-thumbnail { width: 100%; height: 100%; object-fit: cover; }
+        .card-title { color: var(--blue-primary); font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
+        .badge-date { display: inline-block; background: var(--blue-soft); color: var(--blue-accent); font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-bottom: 8px; }
+        
+        .btn { width: 100%; padding: 11px 16px; border-radius: 25px; font-weight: 700; cursor: pointer; border: none; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+        .btn-primary { background: linear-gradient(45deg, var(--accent-red), var(--accent-orange)); color: white; }
+        .btn-green { background: linear-gradient(45deg, #10b981, #059669); color: white; }
+        .btn-outline { background: transparent; border: 1.5px solid var(--blue-accent); color: var(--blue-accent); }
+        .btn-new-news { background: linear-gradient(45deg, #10b981, #0284c7); color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; cursor: pointer; }
+        
+        #admin-news-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(5px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 16px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+        #admin-news-modal.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: #ffffff; border-radius: 20px; width: 100%; max-width: 500px; padding: 20px; max-height: 90vh; overflow-y: auto; }
+        .img-preview-box { width: 100%; aspect-ratio: 16 / 9; border: 2px dashed #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #f8fafc; overflow: hidden; margin-top: 6px; }
+        .img-preview-box img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .expandable-content { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, opacity 0.35s ease; opacity: 0; }
+        .expandable-content.open { max-height: 3500px; opacity: 1; margin-top: 10px; }
+        .user-profile-badge { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; color: var(--blue-primary); background: var(--blue-soft); padding: 5px 10px; border-radius: 20px; }
+        .admin-badge-label { background: var(--accent-red); color: white; font-size: 0.65rem; padding: 2px 6px; border-radius: 8px; }
+        .btn-logout { background: var(--accent-red); color: white; border: none; padding: 3px 8px; border-radius: 10px; font-size: 0.7rem; cursor: pointer; }
 
-        :root {
-            --bg-light: #f8fafc;
-            --bg-card: #ffffff;
-            --blue-primary: #0f172a;
-            --blue-accent: #0284c7;
-            --blue-soft: #e0f2fe;
-            --accent-orange: #f97316;
-            --accent-red: #ef4444;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --nav-height: 60px;
-        }
-
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            background-color: var(--bg-light);
-        }
-
-        body {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 40%);
-            background-attachment: fixed;
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: calc(var(--nav-height) + 15px);
-        }
-
-        /* --- AUTH & WELCOME SCREEN --- */
-        #welcome-screen {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            text-align: center;
-            padding: 20px 16px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        #welcome-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .welcome-header {
-            margin-top: auto;
-            margin-bottom: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .welcome-logo {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.2);
-            margin-bottom: 8px;
-        }
-
-        .welcome-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-            background: linear-gradient(45deg, #ef4444, #f97316, #0284c7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .welcome-subtitle {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* --- AUTH CARD --- */
-        .auth-card {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 18px 16px;
-            width: 100%;
-            max-width: 380px;
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            text-align: left;
-            margin-bottom: auto;
-        }
-
-        /* BANNER PENJELASAN LOCAL STORAGE (RINGKAS) */
-        .storage-info-box {
-            background: #fff7ed;
-            border-left: 4px solid #f97316;
-            border-radius: 8px;
-            padding: 10px 12px;
-            margin-bottom: 14px;
-            font-size: 0.78rem;
-            color: #7c2d12;
-            line-height: 1.4;
-            text-align: left;
-        }
-
-        .storage-info-box strong {
-            display: block;
-            margin-bottom: 2px;
-            color: #c2410c;
-            font-size: 0.82rem;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--blue-primary);
-            margin-bottom: 4px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1.5px solid #cbd5e1;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.2s;
-            background: #f8fafc;
-        }
-
-        .form-control:focus {
-            border-color: var(--blue-accent);
-            background: #ffffff;
-        }
-
-        .auth-btn {
-            width: 100%;
-            padding: 12px;
-            border-radius: 25px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            margin-top: 6px;
-            transition: opacity 0.2s;
-        }
-
-        .auth-btn:active {
-            opacity: 0.85;
-        }
-
-        .btn-guest {
-            background: #f1f5f9;
-            color: var(--text-dark);
-            border: 1px solid #cbd5e1;
-        }
-
-        .auth-toggle-text {
-            font-size: 0.78rem;
-            text-align: center;
-            margin-top: 10px;
-            color: var(--text-muted);
-        }
-
-        .auth-toggle-link {
-            color: var(--blue-accent);
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .user-profile-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--blue-primary);
-            background: var(--blue-soft);
-            padding: 5px 10px;
-            border-radius: 20px;
-        }
-
-        .btn-logout {
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* --- NAVBAR & BOTTOM NAVIGATION --- */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        nav {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 16px;
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--blue-primary);
-        }
-
-        .nav-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1.5px solid var(--blue-accent);
-        }
-
-        .nav-menu {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0 8px;
-            z-index: 999;
-            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
-            list-style: none;
-        }
-
-        .nav-menu li {
-            flex: 1;
-            text-align: center;
-        }
-
-        .nav-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            padding: 6px 0;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .nav-link.active {
-            color: var(--accent-red);
-            font-weight: 800;
-        }
-
-        .nav-link-icon {
-            font-size: 1.2rem;
-        }
-
-        /* --- MAIN CONTENT --- */
-        main {
-            width: 100%;
-            max-width: 800px;
-            margin: 12px auto;
-            padding: 0 12px;
-            flex: 1;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.25s ease forwards;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            margin-bottom: 14px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
-        }
-
-        .section-header {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--blue-primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .memorial-thumbnail-container {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 14px;
-            background-color: #000;
-        }
-
-        .memorial-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-title {
-            color: var(--blue-primary);
-            font-size: 1.15rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            line-height: 1.3;
-        }
-
-        .card-subtitle {
-            color: var(--blue-accent);
-            font-size: 0.85rem;
-            margin-bottom: 14px;
-            font-weight: 600;
-            line-height: 1.35;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 11px 16px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
-            color: white;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--blue-accent);
-            color: var(--blue-accent);
-        }
-
-        .lomba-featured-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 14px;
-        }
-
-        .badge-populer {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .expandable-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease-out, opacity 0.35s ease-out;
-            opacity: 0;
-        }
-
-        .expandable-content.open {
-            max-height: 3500px;
-            opacity: 1;
-            margin-top: 10px;
-        }
-
-        .content-body p {
-            color: var(--text-dark);
-            line-height: 1.6;
-            margin-bottom: 12px;
-            font-size: 0.88rem;
-            text-align: justify;
-        }
-
-        .content-body h3 {
-            color: var(--accent-orange);
-            margin: 14px 0 6px 0;
-            font-size: 0.98rem;
-            font-weight: 700;
-        }
-
-        .content-body ul {
-            margin-left: 16px;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-            line-height: 1.6;
-            font-size: 0.88rem;
-        }
-
-        .info-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin: 14px 0;
-        }
-
-        .info-card {
-            background: var(--blue-soft);
-            border: 1px solid rgba(2, 132, 199, 0.2);
-            padding: 10px 12px;
-            border-radius: 10px;
-        }
-
-        .info-card span {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--blue-accent);
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-
-        .info-card p {
-            font-weight: 700;
-            color: var(--blue-primary);
-            margin: 0;
-            font-size: 0.88rem;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 14px;
-        }
-
-        footer {
-            background: #ffffff;
-            text-align: center;
-            padding: 14px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: auto;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        /* --- DESKTOP ENHANCEMENTS --- */
         @media (min-width: 650px) {
-            body {
-                padding-bottom: 0;
-            }
-
-            .nav-menu {
-                position: static;
-                height: auto;
-                width: auto;
-                background: transparent;
-                backdrop-filter: none;
-                border: none;
-                box-shadow: none;
-                gap: 8px;
-            }
-
-            .nav-link {
-                flex-direction: row;
-                padding: 6px 14px;
-                border-radius: 20px;
-                font-size: 0.85rem;
-            }
-
-            .nav-link.active {
-                background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
-                color: white;
-            }
-
-            main {
-                margin: 20px auto;
-            }
-
-            .info-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .button-group {
-                flex-direction: row;
-            }
-
-            .btn {
-                width: auto;
-            }
+            body { padding-bottom: 0; }
+            .nav-menu { position: static; height: auto; width: auto; background: transparent; border: none; gap: 8px; }
+            .nav-link { flex-direction: row; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; }
+            .nav-link.active { background: linear-gradient(45deg, var(--accent-red), var(--accent-orange)); color: white; }
         }
     </style>
 </head>
@@ -601,291 +84,126 @@
             <p class="welcome-subtitle">Semangat Ceria Bersama Futsal ⚽🔥</p>
         </div>
 
-        <!-- AUTH CONTAINER -->
         <div class="auth-card">
-            
-            <!-- PENJELASAN LOCAL STORAGE (RINGKAS) -->
-            <div class="storage-info-box">
-                <strong>📌 Penting:</strong>
-                Akun ini tersimpan di <b>Local Storage</b> (hanya di HP/browser ini). Jika pindah ke HP/laptop lain, Anda <b>harus mendaftar akun baru lagi</b> di perangkat tersebut.
-            </div>
-
-            <!-- FORM LOGIN -->
             <form id="form-login" action="javascript:void(0);" onsubmit="handleLogin(event)">
                 <h3 style="font-size: 1rem; font-weight: 800; color: var(--blue-primary); margin-bottom: 10px; text-align: center;">Masuk Akun</h3>
                 <div class="form-group">
-                    <label for="login-email">Email / Username</label>
-                    <input type="text" id="login-email" name="username" class="form-control" autocomplete="username" placeholder="Masukkan email/username" required>
+                    <label>Username / Email</label>
+                    <input type="text" id="login-email" class="form-control" placeholder="Masukkan username" required>
                 </div>
                 <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" name="password" class="form-control" autocomplete="current-password" placeholder="Masukkan password" required>
+                    <label>Password</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Masukkan password" required>
                 </div>
                 <button type="submit" class="auth-btn btn-primary">Masuk 🚀</button>
-                <p class="auth-toggle-text">Belum punya akun? <span class="auth-toggle-link" onclick="toggleAuthForm('signup')">Daftar Akun</span></p>
             </form>
-
-            <!-- FORM SIGNUP -->
-            <form id="form-signup" action="javascript:void(0);" onsubmit="handleSignup(event)" style="display: none;">
-                <h3 style="font-size: 1rem; font-weight: 800; color: var(--blue-primary); margin-bottom: 10px; text-align: center;">Daftar Akun Baru</h3>
-                <div class="form-group">
-                    <label for="signup-name">Nama Lengkap</label>
-                    <input type="text" id="signup-name" class="form-control" placeholder="Nama Anda" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-email">Email / Username</label>
-                    <input type="text" id="signup-email" name="username" class="form-control" autocomplete="username" placeholder="Email atau Username" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-password">Password</label>
-                    <input type="password" id="signup-password" name="new-password" class="form-control" autocomplete="new-password" placeholder="Buat password" required>
-                </div>
-                <button type="submit" class="auth-btn btn-primary">Buat Akun 🚀</button>
-                <p class="auth-toggle-text">Sudah punya akun? <span class="auth-toggle-link" onclick="toggleAuthForm('login')">Masuk</span></p>
-            </form>
-
             <hr style="margin: 12px 0; border: none; border-top: 1px solid #e2e8f0;">
-
-            <!-- GUEST BUTTON -->
             <button type="button" class="auth-btn btn-guest" onclick="handleGuestLogin()">👤 Masuk sebagai Tamu</button>
         </div>
     </div>
 
-    <!-- MAIN NAVBAR -->
+    <!-- NAVBAR -->
     <header>
         <nav>
             <div class="nav-brand">
                 <img src="secefukeren.png" alt="Logo SECEFU" class="nav-logo">
                 <span>SECEFU</span>
             </div>
-
-            <div class="nav-right-container">
-                <div id="user-badge-container"></div>
-            </div>
-
-            <!-- NAVBAR MENU (Terikat di Bawah Layar untuk HP) -->
+            <div id="user-badge-container"></div>
             <ul class="nav-menu">
-                <li>
-                    <a class="nav-link active" onclick="switchTab('home')">
-                        <span class="nav-link-icon">🏠</span>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" onclick="switchTab('news')">
-                        <span class="nav-link-icon">📰</span>
-                        <span>News</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" onclick="switchTab('lomba')">
-                        <span class="nav-link-icon">🏆</span>
-                        <span>Daftar Lomba</span>
-                    </a>
-                </li>
+                <li><a class="nav-link active" onclick="switchTab('home')">🏠 Home</a></li>
+                <li><a class="nav-link" onclick="switchTab('news')">📰 News</a></li>
+                <li><a class="nav-link" onclick="switchTab('lomba')">🏆 Daftar Lomba</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
+    <!-- MAIN CONTENT -->
     <main>
-        
-        <!-- ================= HOME SECTION ================= -->
         <section id="tab-home" class="tab-content active">
-            
             <div class="card">
                 <h2 class="section-header">📢 Tentang SECEFU</h2>
-                <p style="color: var(--text-dark); line-height: 1.6; font-size: 0.88rem; text-align: justify;">
-                    <strong>SECEFU (Semangat Ceria Bersama Futsal)</strong> adalah wadah independen yang menyelenggarakan kompetisi olahraga futsal dan <em>e-sport</em> digital. Kami berkomitmen menciptakan ajang kompetisi yang menjunjung tinggi sportivitas dan kebersamaan.
-                </p>
+                <p style="font-size: 0.88rem; line-height: 1.6;">SECEFU (Semangat Ceria Bersama Futsal) adalah wadah kompetisi futsal & e-sport digital yang menjunjung tinggi kebersamaan.</p>
             </div>
-
             <div class="card">
-                <h2 class="section-header">🔥 Lomba Pilihan & Populer</h2>
-                <div class="lomba-featured-box">
-                    <span class="badge-populer">⭐ Lomba Unggulan 17 Agustus</span>
-                    <h3 style="color: var(--blue-primary); font-size: 1rem; font-weight: 800; margin-bottom: 6px;">
-                        Turnamen Futsal & E-Sport EA FC Mobile 2026
-                    </h3>
-                    <p style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 12px; line-height: 1.5;">
-                        Memorial Penghormatan Alm. Deyrril Almere Ghaisan. Futsal Lapangan & E-Sport EA FC Mobile.
-                    </p>
-                    <div class="button-group">
-                        <button class="btn btn-primary" onclick="switchTab('lomba')">
-                            🏆 Rincian & Daftar Lomba
-                        </button>
-                    </div>
-                </div>
+                <h2 class="section-header">📰 Berita Terkini</h2>
+                <div id="home-news-preview"></div>
             </div>
-
-            <div class="card">
-                <h2 class="section-header">📰 Berita Ringkas</h2>
-                <div style="background: var(--blue-soft); border-left: 3px solid var(--blue-accent); padding: 12px; border-radius: 10px;">
-                    <h3 style="color: var(--blue-primary); font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; line-height: 1.35;">
-                        Mengenang Alm. Deyrril Almere Ghaisan
-                    </h3>
-                    <p style="color: var(--text-dark); line-height: 1.5; font-size: 0.82rem; margin-bottom: 10px; text-align: justify;">
-                        Pada hari Kamis, 6 Agustus 2026, Alm. Deyrril Almere Ghaisan berpulang di Rumah Sakit Onkologi Surakarta...
-                    </p>
-                    <button class="btn btn-outline" onclick="switchTab('news')">
-                        📖 Baca di News 📰
-                    </button>
-                </div>
-            </div>
-
         </section>
 
-        <!-- ================= NEWS SECTION ================= -->
         <section id="tab-news" class="tab-content">
-            <div class="card">
-                <div class="memorial-thumbnail-container">
-                    <img src="fotodeyrril.png" alt="Mengenang Alm. Deyrril Almere Ghaisan" class="memorial-thumbnail">
-                </div>
-
-                <h1 class="card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h1>
-                <h2 class="card-subtitle">Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨</h2>
-                
-                <div class="content-body">
-                    <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
-                </div>
-
-                <div id="news-text-full" class="expandable-content">
-                    <div class="content-body">
-                        <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Namun, ia justru menunjukkan ketangguhan yang luar biasa.</p>
-                        
-                        <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga dan teman-teman, Deyrril selalu memancarkan energi positif, keceriaan, dan senyuman tulus yang selalu menguatkan orang-orang di sekitarnya.</p>
-                        
-                        <p>Satu hal yang sangat berkesan, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus kini menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya.</p>
-                    </div>
-                </div>
-
-                <div class="button-group">
-                    <button class="btn btn-outline" id="btn-news-toggle" onclick="toggleNewsText()">
-                        📄 Baca Selengkapnya
-                    </button>
-                </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h2 style="font-size: 1.2rem; font-weight: 800; color: var(--blue-primary);">📰 Berita & Kabar Terkini</h2>
+                <div id="admin-new-button-container"></div>
             </div>
+            <div id="news-list-container"></div>
         </section>
 
-        <!-- ================= DAFTAR LOMBA SECTION ================= -->
         <section id="tab-lomba" class="tab-content">
             <div class="card">
-                <h1 class="card-title">Lomba Futsal & E-Sport</h1>
-                <h2 class="card-subtitle">Special 17 Agustus & Memorial Penghormatan Alm. Deyrril Almere Ghaisan ⚽🎮</h2>
-
-                <div class="info-grid">
-                    <div class="info-card">
-                        <span>📅 Hari / Tanggal</span>
-                        <p>Sabtu, 22 Agustus 2026</p>
-                    </div>
-                    <div class="info-card">
-                        <span>⏰ Waktu</span>
-                        <p>16.00 WIB s.d. Selesai</p>
-                    </div>
-                    <div class="info-card">
-                        <span>📍 Tempat</span>
-                        <p>LAPANGAN BASKET GRIYA SAKINAH</p>
-                    </div>
-                </div>
-
-                <div class="button-group">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">
-                        📝 Mulai Pendaftaran
-                    </a>
-                    <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()">
-                        📄 Baca Selengkapnya
-                    </button>
-                </div>
-
-                <div id="lomba-text-full" class="expandable-content">
-                    <div class="content-body">
-                        <h3>PROPOSAL & DESKRIPSI ACARA</h3>
-                        <p><strong>TURNAMEN FUTSAL & E-SPORT 2026</strong><br>Spesial 17 Agustus & Memorial Penghormatan untuk Alm. Deyrril Almere Ghaisan</p>
-
-                        <h3>1. Waktu & Tempat Pelaksanaan</h3>
-                        <p><strong>Hari / Tanggal:</strong> Sabtu, 22 Agustus 2026<br>
-                        <strong>Waktu:</strong> Jam 16.00 WIB s.d. Selesai<br>
-                        <strong>Tempat:</strong> LAPANGAN BASKET GRIYA SAKINAH</p>
-
-                        <h3>2. Penjelasan Kategori Lomba</h3>
-                        <p><strong>⚽ Turnamen Futsal:</strong> Kompetisi futsal lapangan menggunakan sistem gugur/setengah kompetisi untuk mempererat kebersamaan.</p>
-                        <p><strong>🎮 Turnamen E-Sport (EA SPORTS FC MOBILE):</strong> Kompetisi mobile gaming H2H (Head-to-Head) menggunakan aplikasi EA FC Mobile.</p>
-                    </div>
-                </div>
+                <h1 class="card-title">Turnamen Futsal & E-Sport EA FC Mobile 2026</h1>
+                <p style="font-size: 0.88rem; margin: 10px 0;">Spesial 17 Agustus & Memorial Penghormatan Alm. Deyrril Almere Ghaisan ⚽🎮</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">📝 Mulai Pendaftaran</a>
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-        &copy; 2026 SECEFU - Semangat Ceria Bersama Futsal.
-    </footer>
+    <!-- MODAL POPUP PUBLISH (ADMIN) -->
+    <div id="admin-news-modal">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3>✨ Tambah Berita Baru (New)</h3>
+                <button onclick="closeNewsModal()" style="border:none; background:none; font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+            <form id="form-publish-news" action="javascript:void(0);" onsubmit="handlePublishNews(event)">
+                <div class="form-group">
+                    <label>📷 Foto Berita (16:9)</label>
+                    <input type="file" id="news-photo-input" class="form-control" accept="image/*" onchange="previewImage(event)" required>
+                    <div class="img-preview-box">
+                        <span id="preview-placeholder" style="color: var(--text-muted); font-size: 0.8rem;">Preview foto</span>
+                        <img id="news-img-preview" alt="Preview Foto">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>📰 Judul Berita</label>
+                    <input type="text" id="news-title-input" class="form-control" placeholder="Judul berita" required>
+                </div>
+                <div class="form-group">
+                    <label>📅 Tanggal Berita</label>
+                    <input type="text" id="news-date-input" class="form-control" placeholder="Contoh: Kamis, 6 Agustus 2026" required>
+                </div>
+                <div class="form-group">
+                    <label>📝 Isi Berita</label>
+                    <textarea id="news-desc-input" class="form-control" rows="4" placeholder="Tuliskan berita lengkap..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-green" style="margin-top: 10px;">🚀 Publish Berita</button>
+            </form>
+        </div>
+    </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT SYSTEM UTAMA -->
     <script>
-        function getStoredUsers() {
-            return JSON.parse(localStorage.getItem('secefu_users')) || [];
-        }
-
-        function toggleAuthForm(type) {
-            const loginForm = document.getElementById('form-login');
-            const signupForm = document.getElementById('form-signup');
-            if (type === 'signup') {
-                loginForm.style.display = 'none';
-                signupForm.style.display = 'block';
-            } else {
-                signupForm.style.display = 'none';
-                loginForm.style.display = 'block';
-            }
-        }
-
-        function handleSignup(e) {
-            e.preventDefault();
-            const name = document.getElementById('signup-name').value.trim();
-            const username = document.getElementById('signup-email').value.trim();
-            const password = document.getElementById('signup-password').value;
-
-            let users = getStoredUsers();
-            const existingUser = users.find(u => u.username.toLowerCase() === username.toLowerCase());
-
-            if (existingUser) {
-                alert('Username/Email sudah terdaftar di HP ini!');
-                return;
-            }
-
-            users.push({ name, username, password });
-            localStorage.setItem('secefu_users', JSON.stringify(users));
-
-            const session = { name, username, isGuest: false };
-            localStorage.setItem('secefu_session', JSON.stringify(session));
-
-            alert('Pendaftaran berhasil! Selamat datang, ' + name);
-            initUserSession();
+        function getStoredNews() {
+            return JSON.parse(localStorage.getItem('secefu_news')) || [];
         }
 
         function handleLogin(e) {
             e.preventDefault();
-            const username = document.getElementById('login-email').value.trim();
-            const password = document.getElementById('login-password').value;
+            const u = document.getElementById('login-email').value.trim();
+            const p = document.getElementById('login-password').value;
 
-            let users = getStoredUsers();
-            const user = users.find(u => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
-
-            if (!user) {
-                alert('Username/Email atau Password tidak cocok dengan data di HP ini!');
-                return;
+            if (u.toLowerCase() === 'rafialviris' && p === 'lakone2014') {
+                const session = { name: 'Rafi Alviris', username: 'rafialviris', isAdmin: true };
+                localStorage.setItem('secefu_session', JSON.stringify(session));
+                alert('Selamat datang Admin Rafi Alviris!');
+                initUserSession();
+            } else {
+                alert('Username atau Password salah!');
             }
-
-            const session = { name: user.name, username: user.username, isGuest: false };
-            localStorage.setItem('secefu_session', JSON.stringify(session));
-
-            alert('Login berhasil! Selamat datang kembali, ' + user.name);
-            initUserSession();
         }
 
         function handleGuestLogin() {
-            const session = { name: 'Tamu', username: 'guest', isGuest: true };
+            const session = { name: 'Tamu', username: 'guest', isAdmin: false };
             localStorage.setItem('secefu_session', JSON.stringify(session));
             initUserSession();
         }
@@ -893,23 +211,6 @@
         function handleLogout() {
             localStorage.removeItem('secefu_session');
             document.getElementById('welcome-screen').classList.remove('hidden');
-            renderUserBadge(null);
-            switchTab('home', false);
-        }
-
-        function renderUserBadge(session) {
-            const container = document.getElementById('user-badge-container');
-            if (!container) return;
-            if (session) {
-                container.innerHTML = `
-                    <div class="user-profile-badge">
-                        <span>👤 ${session.name}</span>
-                        <button class="btn-logout" onclick="handleLogout()">Keluar</button>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = '';
-            }
         }
 
         function initUserSession() {
@@ -917,92 +218,170 @@
             if (sessionData) {
                 const session = JSON.parse(sessionData);
                 document.getElementById('welcome-screen').classList.add('hidden');
-                renderUserBadge(session);
-                handleInitialRouting();
-            } else {
-                document.getElementById('welcome-screen').classList.remove('hidden');
-            }
-        }
-
-        function switchTab(tabName, pushToHistory = true) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => link.classList.remove('active'));
-
-            const targetTab = document.getElementById('tab-' + tabName);
-            if (targetTab) {
-                targetTab.classList.add('active');
-            } else {
-                document.getElementById('tab-home').classList.add('active');
-                tabName = 'home';
-            }
-
-            let activeIndex = 0;
-            if (tabName === 'news') activeIndex = 1;
-            if (tabName === 'lomba') activeIndex = 2;
-
-            if (links[activeIndex]) {
-                links[activeIndex].classList.add('active');
-            }
-
-            if (pushToHistory) {
-                let newPath = '/home';
-                if (tabName === 'news') newPath = '/news';
-                if (tabName === 'lomba') newPath = '/daftar-lomba';
                 
-                history.pushState({ tab: tabName }, '', newPath);
-            }
+                // Badge User
+                document.getElementById('user-badge-container').innerHTML = `
+                    <div class="user-profile-badge">
+                        <span>👤 ${session.name} ${session.isAdmin ? '<span class="admin-badge-label">ADMIN</span>' : ''}</span>
+                        <button class="btn-logout" onclick="handleLogout()">Keluar</button>
+                    </div>
+                `;
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function handleInitialRouting() {
-            const path = window.location.pathname;
-            const sessionData = localStorage.getItem('secefu_session');
-
-            if (!sessionData) {
+                // Tombol New Berita khusus RafiAlviris
+                const btnContainer = document.getElementById('admin-new-button-container');
+                if (btnContainer) {
+                    btnContainer.innerHTML = session.isAdmin ? `<button class="btn-new-news" onclick="openNewsModal()">✨ New Berita</button>` : '';
+                }
+                
+                window.renderAllNews();
+            } else {
                 document.getElementById('welcome-screen').classList.remove('hidden');
-                return;
             }
-            
-            if (path === '/news') switchTab('news', false);
-            else if (path === '/daftar-lomba') switchTab('lomba', false);
-            else switchTab('home', false);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            initUserSession();
+        window.renderAllNews = function() {
+            const newsList = getStoredNews();
+            const newsContainer = document.getElementById('news-list-container');
+            const homePreviewContainer = document.getElementById('home-news-preview');
+
+            if (!newsContainer) return;
+            newsContainer.innerHTML = '';
+
+            newsList.forEach((news) => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'card';
+                newsCard.innerHTML = `
+                    <div class="memorial-thumbnail-container">
+                        <img src="${news.image}" class="memorial-thumbnail">
+                    </div>
+                    <span class="badge-date">📅 ${news.date}</span>
+                    <h1 class="card-title">${news.title}</h1>
+                    <p style="font-size:0.88rem; line-height:1.5;">${news.shortDesc}</p>
+                    <div id="news-full-${news.id}" class="expandable-content">
+                        <p style="font-size:0.88rem; line-height:1.6; white-space: pre-line;">${news.fullDesc}</p>
+                    </div>
+                    <button class="btn btn-outline" style="margin-top:10px;" onclick="toggleNews('${news.id}', this)">📄 Baca Selengkapnya</button>
+                `;
+                newsContainer.appendChild(newsCard);
+            });
+
+            if (homePreviewContainer && newsList.length > 0) {
+                const latest = newsList[0];
+                homePreviewContainer.innerHTML = `
+                    <div style="background: var(--blue-soft); padding: 12px; border-radius: 10px;">
+                        <span class="badge-date">📅 ${latest.date}</span>
+                        <h3 style="font-size: 0.95rem; font-weight:800; margin-bottom: 6px;">${latest.title}</h3>
+                        <p style="font-size: 0.82rem; margin-bottom: 10px;">${latest.shortDesc}</p>
+                        <button class="btn btn-outline" onclick="switchTab('news')">📖 Lihat di Menu News</button>
+                    </div>
+                `;
+            }
+        };
+
+        function toggleNews(id, btn) {
+            const el = document.getElementById(`news-full-${id}`);
+            el.classList.toggle('open');
+            btn.innerHTML = el.classList.contains('open') ? '⚡ Sembunyikan' : '📄 Baca Selengkapnya';
+        }
+
+        let currentUploadedImageBase64 = '';
+        function openNewsModal() { document.getElementById('admin-news-modal').classList.add('active'); }
+        function closeNewsModal() { document.getElementById('admin-news-modal').classList.remove('active'); }
+
+        function previewImage(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    currentUploadedImageBase64 = evt.target.result;
+                    const img = document.getElementById('news-img-preview');
+                    img.src = currentUploadedImageBase64;
+                    img.style.display = 'block';
+                    document.getElementById('preview-placeholder').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function handlePublishNews(e) {
+            e.preventDefault();
+            const title = document.getElementById('news-title-input').value.trim();
+            const date = document.getElementById('news-date-input').value.trim();
+            const desc = document.getElementById('news-desc-input').value.trim();
+
+            if (!currentUploadedImageBase64) return alert('Pilih foto terlebih dahulu!');
+
+            const newArticle = {
+                title: title,
+                date: date,
+                image: currentUploadedImageBase64,
+                shortDesc: desc.length > 120 ? desc.substring(0, 120) + '...' : desc,
+                fullDesc: desc
+            };
+
+            if (window.publishNewsToCloud) {
+                const ok = await window.publishNewsToCloud(newArticle);
+                if (ok) {
+                    alert('🎉 Berita berhasil terpublish ke semua HP!');
+                    closeNewsModal();
+                }
+            }
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        window.addEventListener('DOMContentLoaded', initUserSession);
+    </script>
+
+    <!-- SCRIPT FIREBASE INTEGRATION (CLOUDFIRESTORE ENGINE) -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBUT9Lg_P69vMRxJNe3yf3I4YdjAMn2o1U",
+        authDomain: "secefu-news.firebaseapp.com",
+        projectId: "secefu-news",
+        storageBucket: "secefu-news.firebasestorage.app",
+        messagingSenderId: "898036408626",
+        appId: "1:898036408626:web:af53eab451a5000212772b"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Fungsi Mengirim Berita
+      window.publishNewsToCloud = async function(newsData) {
+        try {
+          await addDoc(collection(db, "news"), {
+            ...newsData,
+            createdAt: Date.now()
+          });
+          return true;
+        } catch (err) {
+          alert("Gagal koneksi database: " + err.message);
+          return false;
+        }
+      };
+
+      // Listener Realtime (Otomatis tarik berita baru ke HP siapapun yang sedang buka web)
+      const q = query(collection(db, "news"), orderBy("createdAt", "desc"));
+      onSnapshot(q, (snapshot) => {
+        let cloudNews = [];
+        snapshot.forEach((doc) => {
+          cloudNews.push({ id: doc.id, ...doc.data() });
         });
-
-        window.addEventListener('popstate', () => {
-            handleInitialRouting();
-        });
-
-        function toggleNewsText() {
-            const container = document.getElementById('news-text-full');
-            const btn = document.getElementById('btn-news-toggle');
-
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
-                btn.innerHTML = '⚡ Sembunyikan Berita';
-            } else {
-                btn.innerHTML = '📄 Baca Selengkapnya';
-            }
+        if (cloudNews.length > 0) {
+          localStorage.setItem('secefu_news', JSON.stringify(cloudNews));
+          if (typeof window.renderAllNews === 'function') {
+            window.renderAllNews();
+          }
         }
-
-        function toggleLombaText() {
-            const container = document.getElementById('lomba-text-full');
-            const btn = document.getElementById('btn-lomba-toggle');
-
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
-                btn.innerHTML = '⚡ Sembunyikan Deskripsi';
-            } else {
-                btn.innerHTML = '📄 Baca Selengkapnya';
-            }
-        }
+      });
     </script>
 </body>
 </html>
