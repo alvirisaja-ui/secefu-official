@@ -284,6 +284,22 @@
             background-color: #000;
         }
 
+        /* BANNER TANPA GAMBAR (TEXT BANNER) */
+        .news-card-no-img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0284c7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
         .news-card-body {
             padding: 16px;
             display: flex;
@@ -688,15 +704,15 @@
 
             <!-- 3. BERITA RINGKAS -->
             <div class="card">
-                <h2 class="section-header">📰 Berita Ringkas</h2>
+                <h2 class="section-header">📰 Berita Terkini</h2>
                 <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px; margin-bottom: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        ⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆
+                        🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING SMP ABBS SURAKARTA DI UNS TOWER! ✨
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        BERITA UTAMA — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu...
+                        Detail baru terungkap dari gelaran akbar Parent Gathering SMP ABBS Surakarta di Gedung UNS Tower! Alviris dipastikan berkolaborasi langsung dengan gurunya, Mr. Joe...
                     </p>
-                    <button class="btn btn-primary" onclick="openNewsDetail('jadwal-lomba-futsal-dimajukan')">
+                    <button class="btn btn-primary" onclick="openNewsDetail('kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower')">
                         🚀 Mulai Baca Berita
                     </button>
                 </div>
@@ -717,49 +733,65 @@
                 <!-- GRID KARTU BERITA KECIL KECIL / SAMPING-SAMPINGAN -->
                 <div class="news-grid">
 
-                    <!-- CARD 1: JADWAL DIMAJUKAN -->
+                    <!-- CARD BERITA 1 (TANPA GAMBAR): ALVIRIS & MR. JOE -->
+                    <div class="news-card">
+                        <div class="news-card-no-img">
+                            🎙️ DUET MC SENSASIONAL<br>ALVIRIS & MR. JOE
+                        </div>
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING SMP ABBS SURAKARTA DI UNS TOWER! ✨</h3>
+                            <p class="news-card-snippet">Detail baru terungkap dari Parent Gathering SMP ABBS Surakarta di UNS Tower! Alviris akan berkolaborasi dengan gurunya, Mr. Joe sebagai duet MC panggung...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: JADWAL DIMAJUKAN -->
                     <div class="news-card">
                         <img src="newspanitiaa.png" alt="Jadwal Dimajukan" class="news-card-thumb">
                         <div class="news-card-body">
-                            <h3 class="news-card-title">⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN!</h3>
+                            <h3 class="news-card-title">⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆</h3>
                             <p class="news-card-snippet">Berdasarkan jadwal awal kompetisi digelar Sabtu 22 Agustus, kini resmi dimajukan ke Minggu, 16 Agustus 2026 pukul 08.00 WIB pagi karena antusiasme tinggi...</p>
                             <div class="news-card-footer">
-                                <button class="btn btn-primary" onclick="openNewsDetail('jadwal-lomba-futsal-dimajukan')">
+                                <button class="btn btn-primary" onclick="openNewsDetail('jadwal-diupdate-lomba-futsal-secefu-indonesia-resmi-dimajukan-karena-antusiasme-tinggi')">
                                     Mulai Baca 🚀
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CARD 2: DUET OWNER SECEFU & ZIDAN (SLUG DIBERBAIKI: latihan-duet-alviris-dan-zidan) -->
+                    <!-- CARD 3: DUET OWNER SECEFU & ZIDAN -->
                     <div class="news-card">
                         <img src="pentas.png" alt="Duet UNS Tower" class="news-card-thumb">
                         <div class="news-card-body">
-                            <h3 class="news-card-title">🎤 DUET PENUH HARU! OWNER SECEFU & ZIDAN SIAP GEBRAK UNS TOWER!</h3>
+                            <h3 class="news-card-title">🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING DI UNS TOWER! 🎶</h3>
                             <p class="news-card-snippet">Alviris dan Zidan intens latihan membawakan lagu 'Yang Terbaik Bagimu' karya ADA Band untuk Parent Gathering di Gedung UNS Tower...</p>
                             <div class="news-card-footer">
-                                <button class="btn btn-primary" onclick="openNewsDetail('latihan-duet-alviris-dan-zidan')">
+                                <button class="btn btn-primary" onclick="openNewsDetail('duet-penuh-haru-owner-secefu-indonesia-zidan-siap-gebrak-panggung-parent-gathering-di-uns-tower')">
                                     Mulai Baca 🚀
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CARD 3: KEPANITIAAN SECEFU 2026 -->
+                    <!-- CARD 4: KEPANITIAAN SECEFU 2026 -->
                     <div class="news-card">
                         <img src="newspanitiaa.png" alt="KepStructure Panitia" class="news-card-thumb">
                         <div class="news-card-body">
-                            <h3 class="news-card-title">🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026</h3>
+                            <h3 class="news-card-title">🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆</h3>
                             <p class="news-card-snippet">Pembentukan komite resmi penyelenggara perayaan 17 Agustus 2026. Susunan lengkap divisi futsal dan e-sports EA FC Mobile...</p>
                             <div class="news-card-footer">
-                                <button class="btn btn-primary" onclick="openNewsDetail('struktur-kepanitiaan-secefu-2026')">
+                                <button class="btn btn-primary" onclick="openNewsDetail('struktur-kepanitiaan-informasi-lomba-secefu-2026-spesial-17-agustus')">
                                     Mulai Baca 🚀
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CARD 4: MEMORIAL DEYRRIL -->
+                    <!-- CARD 5: MEMORIAL DEYRRIL -->
                     <div class="news-card">
                         <img src="fotodeyrril.png" alt="Memorial Deyrril" class="news-card-thumb">
                         <div class="news-card-body">
@@ -872,7 +904,23 @@
     <!-- DATA BERITA TERINTEGRASI -->
     <script>
         const newsDatabase = {
-            'jadwal-lomba-futsal-dimajukan': {
+            'kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower': {
+                title: '🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING SMP ABBS SURAKARTA DI UNS TOWER! ✨',
+                subtitle: 'Sinergi Kompak Guru dan Murid Memandu Acara Akbar di Gedung UNS Tower 🏢🤝',
+                img: null, // Tanpa Gambar
+                content: `
+                    <p><strong>SURAKARTA</strong> — Detail baru terungkap dari gelaran akbar Parent Gathering SMP ABBS Surakarta yang akan dihelat di Gedung UNS Tower pada Sabtu pagi, 15 Agustus 2026! 🏢 Alviris dipastikan tidak tampil sendirian dalam memandu acara bergengsi ini. Dirinya akan berkolaborasi langsung dengan gurunya, Mr. Joe, di atas panggung kehormatan. 🤝⚡</p>
+                    <p>Dalam pembagian tugas di panggung, Mr. Joe akan bertindak sebagai MC Utama, sementara Alviris akan mendukung penuh jalannya acara sebagai MC Kedua. 🎤👦👨‍🏫</p>
+                    <p>Kombinasi guru dan murid ini membawa pembagian peran yang sangat solid untuk menyukseskan acara:</p>
+                    <ul>
+                        <li><strong>Mr. Joe (MC Utama):</strong> Memimpin jalannya acara formal, membuka sesi sambutan resmi, serta menjaga protokol jalannya seluruh rangkaian agenda SMP ABBS Surakarta agar tetap khidmat. 📄🏛️</li>
+                        <li><strong>Alviris (MC Kedua):</strong> Menyeimbangkan suasana dengan interaksi yang segar, membantu memandu sesi diskusi/hiburan, serta menjaga energi para orang tua murid agar tetap antusias dari awal hingga akhir. 🌟🔥</li>
+                        <li><strong>Sinergi Duet Panggung:</strong> Keduanya bertugas membangun komunikasi dua arah yang kompak, melakukan ice breaking, dan memastikan transisi saat Alviris harus maju bernyanyi duet bersama Zidan tetap berjalan mulus. 🎶🔄</li>
+                    </ul>
+                    <p>Perpaduan karisma pendidik dari Mr. Joe dan bakat komunikasi dinamis dari Alviris dijamin akan membuat atmosfer Parent Gathering SMP ABBS Surakarta tahun ini menjadi sangat hidup, interaktif, dan penuh kehangatan keluarga! ❤️ Sukses besar untuk duet MC hebat ini! 🚀🙌</p>
+                `
+            },
+            'jadwal-diupdate-lomba-futsal-secefu-indonesia-resmi-dimajukan-karena-antusiasme-tinggi': {
                 title: '⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆',
                 subtitle: 'Perubahan Jadwal Resmi Menjadi Minggu, 16 Agustus 2026 Pukul 08.00 WIB Pagi ⚡☀️',
                 img: 'newspanitiaa.png',
@@ -885,7 +933,7 @@
                     <p>Perubahan ini diharapkan membawa atmosfer pertandingan yang jauh lebih segar di hari Minggu pagi, sekaligus menjawab langsung harapan besar dari tim Griya Sakinah dan Atlantis yang sudah tidak sabar untuk unjuk gigi di lapangan hijau! ⚽ Siapakah yang bakal membawa pulang trofi juara? 🏆🔥</p>
                 `
             },
-            'latihan-duet-alviris-dan-zidan': {
+            'duet-penuh-haru-owner-secefu-indonesia-zidan-siap-gebrak-panggung-parent-gathering-di-uns-tower': {
                 title: '🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING DI UNS TOWER! 🎶',
                 subtitle: 'Persiapan Maraton & Peran Ganda Alviris Sebagai MC di Acara Bergengsi UNS Tower ✨',
                 img: 'pentas.png',
@@ -898,7 +946,7 @@
                     <p>Sukses terus untuk latihannya, Alviris dan Zidan! Sampai jumpa di UNS Tower hari Sabtu nanti! 🙌🚀</p>
                 `
             },
-            'struktur-kepanitiaan-secefu-2026': {
+            'struktur-kepanitiaan-informasi-lomba-secefu-2026-spesial-17-agustus': {
                 title: '🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆',
                 subtitle: 'Pembentukan Komite Resmi Penyelenggara Rangkaian Lomba Kemerdekaan 🇮🇩✨',
                 img: 'newspanitiaa.png',
@@ -988,10 +1036,19 @@
             if (!data) return;
 
             const detailContainer = document.getElementById('full-news-content');
+            
+            // Cek apakah artikel memiliki gambar atau tidak
+            let imageHeader = '';
+            if (data.img) {
+                imageHeader = `
+                    <div class="memorial-thumbnail-container">
+                        <img src="${data.img}" alt="${data.title}" class="memorial-thumbnail">
+                    </div>
+                `;
+            }
+
             detailContainer.innerHTML = `
-                <div class="memorial-thumbnail-container">
-                    <img src="${data.img}" alt="${data.title}" class="memorial-thumbnail">
-                </div>
+                ${imageHeader}
                 <h1 class="card-title">${data.title}</h1>
                 <h2 class="card-subtitle">${data.subtitle}</h2>
                 <div class="content-body">
