@@ -211,7 +211,7 @@
 
         /* --- MAIN CONTENT CONTAINER --- */
         main {
-            max-width: 850px;
+            max-width: 1000px;
             margin: 25px auto;
             padding: 0 16px;
             flex: 1;
@@ -232,7 +232,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- CARDS --- */
+        /* --- CARDS & GRID --- */
         .card {
             background: var(--bg-card);
             border-radius: 20px;
@@ -252,6 +252,71 @@
             width: 100%;
             height: 4px;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
+        }
+
+        /* NEWS GRID LAYOUT (SAMPING-SAMPINGAN) */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+        }
+
+        .news-card-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        .news-card-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .news-card-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--blue-primary);
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card-snippet {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-align: justify;
+        }
+
+        .news-card-footer {
+            margin-top: auto;
         }
 
         .section-header {
@@ -302,7 +367,7 @@
 
         /* --- BUTTONS --- */
         .btn {
-            padding: 12px 22px;
+            padding: 10px 20px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
@@ -313,9 +378,9 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-align: center;
-            width: auto;
+            width: 100%;
         }
 
         .btn-primary {
@@ -338,6 +403,31 @@
             background: var(--blue-soft);
         }
 
+        /* --- TOMBOL KEMBALI ICON-ONLY --- */
+        .btn-back-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+            color: var(--blue-primary);
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.25s ease;
+            margin-bottom: 16px;
+        }
+
+        .btn-back-icon:hover {
+            background: var(--blue-soft);
+            color: var(--blue-accent);
+            transform: translateX(-3px);
+        }
+
         /* --- FEATURED BOX --- */
         .lomba-featured-box {
             background: #f8fafc;
@@ -358,20 +448,6 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        /* --- EXPANDABLE CONTENT --- */
-        .expandable-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
-            opacity: 0;
-        }
-
-        .expandable-content.open {
-            max-height: 3000px;
-            opacity: 1;
-            margin-top: 10px;
         }
 
         .content-body p {
@@ -520,22 +596,13 @@
                 margin-bottom: 16px;
             }
 
-            .card-title {
-                font-size: 1.2rem;
-            }
-
-            .card-subtitle {
-                font-size: 0.88rem;
+            .news-grid {
+                grid-template-columns: 1fr;
             }
 
             .button-group {
                 flex-direction: column;
                 width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 12px 16px;
             }
 
             .info-grid {
@@ -627,10 +694,10 @@
                         ⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        BERITA UTAMA — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama...
+                        BERITA UTAMA — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu...
                     </p>
-                    <button class="btn btn-outline" onclick="switchTab('news')">
-                        📖 Baca Selengkapnya di News 📰
+                    <button class="btn btn-primary" onclick="openNewsDetail('jadwal-lomba-futsal-dimajukan')">
+                        🚀 Mulai Baca Berita
                     </button>
                 </div>
             </div>
@@ -638,169 +705,91 @@
         </section>
 
 
-        <!-- ================= NEWS SECTION ================= -->
+        <!-- ================= NEWS SECTION (LIST DAFTAR BERITA) ================= -->
         <section id="tab-news" class="tab-content">
 
-            <!-- BERITA BARU 1: JADWAL DIMAJUKAN -->
             <div class="card">
-                <div class="memorial-thumbnail-container">
-                    <img src="newspanitiaa.png" alt="Jadwal Lomba Futsal SECEFU Indonesia Resmi Dimajukan" class="memorial-thumbnail">
-                </div>
+                <h2 class="section-header">📰 Berita & Informasi Terkini SECEFU</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                    Klik <strong>"Mulai Baca 🚀"</strong> pada berita di bawah untuk membaca artikel selengkapnya.
+                </p>
 
-                <h1 class="card-title">⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆</h1>
-                <h2 class="card-subtitle">Perubahan Jadwal Resmi Menjadi Minggu, 16 Agustus 2026 Pukul 08.00 WIB Pagi ⚡☀️</h2>
-                
-                <div class="content-body">
-                    <p><strong>BERITA UTAMA</strong> — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama. 🔄</p>
-                </div>
+                <!-- GRID KARTU BERITA KECIL KECIL / SAMPING-SAMPINGAN -->
+                <div class="news-grid">
 
-                <div id="news-jadwal-full" class="expandable-content">
-                    <div class="content-body">
-                        <p>Berdasarkan jadwal awal, kompetisi ini seharusnya digelar pada Sabtu, 22 Agustus 2026 pukul 16.00 WIB. Namun, agenda tersebut bentrok dengan kegiatan lain dari pihak manajemen. 🗓️</p>
-
-                        <p><em>"Awalnya mau diadakan tanggal 22 Agustus jam 4 sore, tapi saya tidak bisa karena ada acara lain berbarengan,"</em> ucap Alviris selaku Owner SECEFU INDONESIA saat memberikan keterangan resmi. 🎙️👑</p>
-
-                        <p>Alviris melanjutkan bahwa keputusan pemajuan jadwal ini diambil setelah melihat semangat luar biasa dari para peserta. Anak-anak dari Griya Sakinah dan Atlantis menunjukkan antusiasme yang sangat tinggi dan secara khusus meminta agar waktu perlombaan dimajukan agar bisa segera bertanding. 💥💪</p>
-
-                        <p>Melihat desakan positif dan semangat membara dari anak-anak Griya Sakinah maupun Atlantis, ditambah adanya agenda pribadi yang bertabrakan di jadwal lama, Alviris akhirnya mempertimbangkan keputusan tersebut secara mendalam. Hasilnya, manajemen resmi memajukan lomba futsal ke hari <strong>Minggu, 16 Agustus 2026 pukul 08.00 WIB pagi</strong>. ⚡☀️</p>
-
-                        <p>Perubahan ini diharapkan membawa atmosfer pertandingan yang jauh lebih segar di hari Minggu pagi, sekaligus menjawab langsung harapan besar dari tim Griya Sakinah dan Atlantis yang sudah tidak sabar untuk unjuk gigi di lapangan hijau! ⚽ Siapakah yang bakal membawa pulang trofi juara? 🏆🔥</p>
+                    <!-- CARD 1: JADWAL DIMAJUKAN -->
+                    <div class="news-card">
+                        <img src="newspanitiaa.png" alt="Jadwal Dimajukan" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN!</h3>
+                            <p class="news-card-snippet">Berdasarkan jadwal awal kompetisi digelar Sabtu 22 Agustus, kini resmi dimajukan ke Minggu, 16 Agustus 2026 pukul 08.00 WIB pagi karena antusiasme tinggi...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('jadwal-lomba-futsal-dimajukan')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="button-group" style="margin-top: 15px;">
-                    <button class="btn btn-outline" id="btn-news-jadwal-toggle" onclick="toggleJadwalText()">
-                        📄 Baca Selengkapnya
-                    </button>
+                    <!-- CARD 2: DUET OWNER SECEFU & ZIDAN -->
+                    <div class="news-card">
+                        <img src="pentas.png" alt="Duet UNS Tower" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🎤 DUET PENUH HARU! OWNER SECEFU & ZIDAN SIAP GEBRAK UNS TOWER!</h3>
+                            <p class="news-card-snippet">Alviris dan Zidan intens latihan membawakan lagu 'Yang Terbaik Bagimu' karya ADA Band untuk Parent Gathering di Gedung UNS Tower...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('duet-owner-secefu-zidan-uns-tower')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3: KEPANITIAAN SECEFU 2026 -->
+                    <div class="news-card">
+                        <img src="newspanitiaa.png" alt="KepStructure Panitia" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026</h3>
+                            <p class="news-card-snippet">Pembentukan komite resmi penyelenggara perayaan 17 Agustus 2026. Susunan lengkap divisi futsal dan e-sports EA FC Mobile...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('struktur-kepanitiaan-secefu-2026')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4: MEMORIAL DEYRRIL -->
+                    <div class="news-card">
+                        <img src="fotodeyrril.png" alt="Memorial Deyrril" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h3>
+                            <p class="news-card-snippet">Kisah tentang keberanian, keceriaan, dan senyum abadi pejuang kecil sejati melawan leukemia MDS-AML2...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('mengenang-alm-deyrril-almere-ghaisan')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <!-- BERITA 2: DUET OWNER SECEFU & ZIDAN DI UNS TOWER -->
+        </section>
+
+
+        <!-- ================= FULL NEWS DETAIL READ SECTION (FULL TAMPILAN) ================= -->
+        <section id="tab-news-detail" class="tab-content">
             <div class="card">
-                <div class="memorial-thumbnail-container">
-                    <img src="pentas.png" alt="Duet Owner SECEFU & Zidan di UNS Tower" class="memorial-thumbnail">
-                </div>
+                <!-- TOMBOL KEMBALI HANYA BENTUK IKON PANAH (TANPA TEKS) -->
+                <button class="btn-back-icon" onclick="switchTab('news')">←</button>
 
-                <h1 class="card-title">🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING DI UNS TOWER! 🎶</h1>
-                <h2 class="card-subtitle">Persiapan Maraton & Peran Ganda Alviris Sebagai MC di Acara Bergengsi UNS Tower ✨</h2>
-                
-                <div class="content-body">
-                    <p><strong>SURAKARTA</strong> — Persiapan matang sedang dilakukan oleh Alviris, Owner SECEFU INDONESIA! 🔥 Demi menyuguhkan penampilan terbaik, Alviris kedapatan sedang intens latihan menyanyi duet bersama temannya, Zidan, sejak Senin lalu. Latihan maraton ini dijadwalkan berlangsung hingga Jumat, 14 Agustus 2026. 🗓️</p>
-                </div>
-
-                <div id="news-duet-full" class="expandable-content">
-                    <div class="content-body">
-                        <p>Keduanya bakal membawakan lagu legendaris penuh makna, "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band. 🎵 Liriknya yang mendalam dipastikan siap menguras emosi dan menyentuh hati para penonton yang hadir. 💧👨‍👦</p>
-
-                        <p>Penampilan spesial Alviris dan Zidan ini dipersiapkan khusus untuk memeriahkan acara Parent Gathering yang akan digelar di Gedung UNS Tower pada Sabtu pagi, 15 Agustus 2026. 🏢✨</p>
-
-                        <p>Hebatnya lagi, Alviris tidak hanya menyumbang suara emasnya bersama Zidan! Di acara bergengsi tersebut, sang Owner SECEFU INDONESIA juga akan langsung turun tangan memandu jalannya acara sebagai Master of Ceremony (MC). 🎙️👑</p>
-
-                        <p>Perpaduan bakat public speaking dan tarik suara dari Alviris, ditambah kolaborasi apik bersama Zidan, dijamin membuat atmosfer Parent Gathering besok menjadi sangat spektakuler, hangat, dan tak terlupakan! 🌟</p>
-
-                        <p>Sukses terus untuk latihannya, Alviris dan Zidan! Sampai jumpa di UNS Tower hari Sabtu nanti! 🙌🚀</p>
-                    </div>
-                </div>
-
-                <div class="button-group" style="margin-top: 15px;">
-                    <button class="btn btn-outline" id="btn-news-duet-toggle" onclick="toggleDuetText()">
-                        📄 Baca Selengkapnya
-                    </button>
+                <!-- KONTEN BERITA FULL HALAMAN -->
+                <div id="full-news-content">
+                    <!-- Dimuat dinamis melalui JS -->
                 </div>
             </div>
-
-            <!-- BERITA 3: KEPANITIAAN SECEFU 2026 -->
-            <div class="card">
-                <div class="memorial-thumbnail-container">
-                    <img src="newspanitiaa.png" alt="Struktur Kepanitiaan SECEFU 2026" class="memorial-thumbnail">
-                </div>
-
-                <h1 class="card-title">🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆</h1>
-                <h2 class="card-subtitle">Pembentukan Komite Resmi Penyelenggara Rangkaian Lomba Kemerdekaan 🇮🇩✨</h2>
-                
-                <div class="content-body">
-                    <p>Pada hari Sabtu, 1 Agustus 2026, Organisasi SECEFU (Semangat Ceria Bersama Futsal) Indonesia secara resmi membentuk susunan kepanitiaan baru. Komite ini dibentuk secara khusus untuk menyelenggarakan dan menyukseskan rangkaian acara SECEFU 2026 Spesial 17 Agustus, sebuah momentum besar untuk merayakan Hari Kemerdekaan Republik Indonesia melalui semangat olahraga dan kebersamaan!</p>
-                </div>
-
-                <div id="news-panitia-full" class="expandable-content">
-                    <div class="content-body">
-                        <p>Kepanitiaan khusus ini terbagi ke dalam beberapa peran strategis demi kelancaran seluruh lini kompetisi:</p>
-
-                        <h3>👑 Pimpinan Utama</h3>
-                        <p><strong>Alviris</strong><br>
-                        💼 <strong>Peran:</strong> CEO, Founder, & Owner SECEFU Indonesia<br>
-                        📝 <strong>Deskripsi:</strong> Bertanggung jawab penuh atas arah kebijakan, koordinasi utama, dan pengawasan seluruh jalannya acara.</p>
-
-                        <h3>⚽ Divisi Lomba Futsal</h3>
-                        <p>📅 <strong>Jadwal Lomba:</strong> Minggu, 16 Agustus 2026<br>
-                        ⏰ <strong>Waktu:</strong> 08:00 WIB – Selesai<br>
-                        📍 <strong>Lokasi:</strong> Lapangan Basket Griya Sakinah</p>
-                        <p><strong>Anggota Panitia:</strong></p>
-                        <ul>
-                            <li>👤 <strong>Bellva</strong> (Panitia Lomba Futsal SECEFU 2026) | 📞 Kontak: +62 856-4163-0500</li>
-                            <li>👤 <strong>Aisyah</strong> (Panitia Lomba Futsal SECEFU 2026) | 📞 Kontak: +62 851-1758-1011</li>
-                            <li>👤 <strong>Nayla</strong> (Panitia Lomba Futsal SECEFU 2026) | 📞 Kontak: +62 822-2705-1003</li>
-                            <li>👤 <strong>Mika</strong> (Panitia Lomba Futsal SECEFU 2026) | 📞 Kontak: +62 895-1522-4141</li>
-                        </ul>
-
-                        <h3>🎮 Divisi Lomba E-Sports (EA FC MOBILE)</h3>
-                        <p>📅 <strong>Jadwal Lomba:</strong> Akan Segera Datang (To Be Announced) ⏳<br>
-                        ⏰ <strong>Waktu:</strong> Akan Segera Datang (To Be Announced) ⏳<br>
-                        📍 <strong>Lokasi:</strong> Online / Dari Rumah Masing-Masing 🌐</p>
-                        <p><strong>Anggota Panitia:</strong></p>
-                        <ul>
-                            <li>👤 <strong>Raihan</strong> (Panitia Lomba E-Sports Game EA FC Mobile SECEFU 2026) | 📞 Kontak: +62 812-3339-9608</li>
-                            <li>👤 <strong>Ridho</strong> (Panitia Lomba E-Sports Game EA FC Mobile SECEFU 2026) | 📞 Kontak: +62 895-6231-50686</li>
-                            <li>👤 <strong>Angkasa</strong> (Panitia Lomba E-Sports Game EA FC Mobile SECEFU 2026) | 📞 Kontak: +62 812-5285-2445</li>
-                        </ul>
-
-                        <p>📢 <strong>Catatan Pengunjung:</strong> Pantau terus website dan media sosial resmi kami untuk mendapatkan pembaruan berkala mengenai jadwal dan jam pelaksanaan turnamen E-Sports EA FC Mobile mendatang!</p>
-
-                        <p>🔥 Dengan terbentuknya struktur organisasi yang solid ini, SECEFU Indonesia siap menghadirkan perayaan 17 Agustus 2026 yang meriah, interaktif, dan penuh dengan semangat sportivitas, baik di dalam lapangan futsal maupun di arena permainan virtual! Salam Olahraga! ⚽🎮🔥</p>
-                    </div>
-                </div>
-
-                <div class="button-group" style="margin-top: 15px;">
-                    <button class="btn btn-outline" id="btn-news-panitia-toggle" onclick="togglePanitiaText()">
-                        📄 Baca Selengkapnya
-                    </button>
-                </div>
-            </div>
-
-            <!-- BERITA 4: MEMORIAL DEYRRIL -->
-            <div class="card">
-                <div class="memorial-thumbnail-container">
-                    <img src="fotodeyrril.png" alt="Mengenang Alm. Deyrril Almere Ghaisan" class="memorial-thumbnail">
-                </div>
-
-                <h1 class="card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h1>
-                <h2 class="card-subtitle">Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨</h2>
-                
-                <div class="content-body">
-                    <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
-                </div>
-
-                <div id="news-text-full" class="expandable-content">
-                    <div class="content-body">
-                        <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melelahkan, dan penuh tantangan. Namun, di hadapan penyakit yang begitu tangguh tersebut, Deyrril justru menunjukkan ketangguhan yang jauh lebih besar.</p>
-                        
-                        <p>Ia tidak pernah membiarkan rasa sakit mencuri jati dirinya. Di mata keluarga, teman, dan semua orang yang mengenalnya, Deyrril selalu memancarkan energi yang luar biasa. Ia adalah anak yang sangat ceria dan periang. Kehadirannya selalu membawa kehangatan, dan senyum tulusnya tidak pernah pudar, seolah menjadi sumber kekuatan bagi orang-orang di sekelilingnya agar tidak ikut bersedih.</p>
-                        
-                        <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus yang seharusnya menjadi bulan perayaan penuh kebahagiaan untuk menyambut bertambahnya usia Deyrril, kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
-                        
-                        <p>Meskipun kini raganya telah tiada dan ia tidak lagi merasakan sakit, warisan terindah yang Deyrril tinggalkan akan selalu hidup. Kita akan selalu mengingat Deyrril bukan dari rasa sakit yang ia lawan, melainkan dari tawa renyahnya, sifat periangnya, dan keberaniannya yang tiada tara.</p>
-                        
-                        <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
-                    </div>
-                </div>
-
-                <div class="button-group" style="margin-top: 15px;">
-                    <button class="btn btn-outline" id="btn-news-toggle" onclick="toggleNewsText()">
-                        📄 Baca Selengkapnya
-                    </button>
-                </div>
-            </div>
-
         </section>
 
 
@@ -826,15 +815,15 @@
                 </div>
 
                 <div class="button-group">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary" style="width: auto;">
                         📝 Disini Untuk Memulai Pendaftaran
                     </a>
-                    <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()">
+                    <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()" style="width: auto;">
                         📄 Baca Selengkapnya
                     </button>
                 </div>
 
-                <div id="lomba-text-full" class="expandable-content">
+                <div id="lomba-text-full" style="display:none; margin-top: 15px;">
                     <div class="content-body">
                         <h3>PROPOSAL & DESKRIPSI ACARA</h3>
                         <p><strong>TURNAMEN FUTSAL & E-SPORT 2026</strong><br>Spesial 17 Agustus & Memorial Penghormatan untuk Alm. Deyrril Almere Ghaisan</p>
@@ -880,15 +869,85 @@
         &copy; 2026 SECEFU - Semangat Ceria Bersama Futsal. All Rights Reserved.
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- DATA BERITA TERINTEGRASI -->
     <script>
+        const newsDatabase = {
+            'jadwal-lomba-futsal-dimajukan': {
+                title: '⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆',
+                subtitle: 'Perubahan Jadwal Resmi Menjadi Minggu, 16 Agustus 2026 Pukul 08.00 WIB Pagi ⚡☀️',
+                img: 'newspanitiaa.png',
+                content: `
+                    <p><strong>BERITA UTAMA</strong> — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama. 🔄</p>
+                    <p>Berdasarkan jadwal awal, kompetisi ini seharusnya digelar pada Sabtu, 22 Agustus 2026 pukul 16.00 WIB. Namun, agenda tersebut bentrok dengan kegiatan lain dari pihak manajemen. 🗓️</p>
+                    <p><em>"Awalnya mau diadakan tanggal 22 Agustus jam 4 sore, tapi saya tidak bisa karena ada acara lain berbarengan,"</em> ucap Alviris selaku Owner SECEFU INDONESIA saat memberikan keterangan resmi. 🎙️👑</p>
+                    <p>Alviris melanjutkan bahwa keputusan pemajuan jadwal ini diambil setelah melihat semangat luar biasa dari para peserta. Anak-anak dari Griya Sakinah dan Atlantis menunjukkan antusiasme yang sangat tinggi dan secara khusus meminta agar waktu perlombaan dimajukan agar bisa segera bertanding. 💥💪</p>
+                    <p>Melihat desakan positif dan semangat membara dari anak-anak Griya Sakinah maupun Atlantis, ditambah adanya agenda pribadi yang bertabrakan di jadwal lama, Alviris akhirnya mempertimbangkan keputusan tersebut secara mendalam. Hasilnya, manajemen resmi memajukan lomba futsal ke hari <strong>Minggu, 16 Agustus 2026 pukul 08.00 WIB pagi</strong>. ⚡☀️</p>
+                    <p>Perubahan ini diharapkan membawa atmosfer pertandingan yang jauh lebih segar di hari Minggu pagi, sekaligus menjawab langsung harapan besar dari tim Griya Sakinah dan Atlantis yang sudah tidak sabar untuk unjuk gigi di lapangan hijau! ⚽ Siapakah yang bakal membawa pulang trofi juara? 🏆🔥</p>
+                `
+            },
+            'duet-owner-secefu-zidan-uns-tower': {
+                title: '🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING DI UNS TOWER! 🎶',
+                subtitle: 'Persiapan Maraton & Peran Ganda Alviris Sebagai MC di Acara Bergengsi UNS Tower ✨',
+                img: 'pentas.png',
+                content: `
+                    <p><strong>SURAKARTA</strong> — Persiapan matang sedang dilakukan oleh Alviris, Owner SECEFU INDONESIA! 🔥 Demi menyuguhkan penampilan terbaik, Alviris kedapatan sedang intens latihan menyanyi duet bersama temannya, Zidan, sejak Senin lalu. Latihan maraton ini dijadwalkan berlangsung hingga Jumat, 14 Agustus 2026. 🗓️</p>
+                    <p>Keduanya bakal membawakan lagu legendaris penuh makna, "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band. 🎵 Liriknya yang mendalam dipastikan siap menguras emosi dan menyentuh hati para penonton yang hadir. 💧👨‍👦</p>
+                    <p>Penampilan spesial Alviris dan Zidan ini dipersiapkan khusus untuk memeriahkan acara Parent Gathering yang akan digelar di Gedung UNS Tower pada Sabtu pagi, 15 Agustus 2026. 🏢✨</p>
+                    <p>Hebatnya lagi, Alviris tidak hanya menyumbang suara emasnya bersama Zidan! Di acara bergengsi tersebut, sang Owner SECEFU INDONESIA juga akan langsung turun tangan memandu jalannya acara sebagai Master of Ceremony (MC). 🎙️👑</p>
+                    <p>Perpaduan bakat public speaking dan tarik suara dari Alviris, ditambah kolaborasi apik bersama Zidan, dijamin membuat atmosfer Parent Gathering besok menjadi sangat spektakuler, hangat, dan tak terlupakan! 🌟</p>
+                    <p>Sukses terus untuk latihannya, Alviris dan Zidan! Sampai jumpa di UNS Tower hari Sabtu nanti! 🙌🚀</p>
+                `
+            },
+            'struktur-kepanitiaan-secefu-2026': {
+                title: '🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆',
+                subtitle: 'Pembentukan Komite Resmi Penyelenggara Rangkaian Lomba Kemerdekaan 🇮🇩✨',
+                img: 'newspanitiaa.png',
+                content: `
+                    <p>Pada hari Sabtu, 1 Agustus 2026, Organisasi SECEFU (Semangat Ceria Bersama Futsal) Indonesia secara resmi membentuk susunan kepanitiaan baru. Komite ini dibentuk secara khusus untuk menyelenggarakan dan menyukseskan rangkaian acara SECEFU 2026 Spesial 17 Agustus!</p>
+                    <h3>👑 Pimpinan Utama</h3>
+                    <p><strong>Alviris</strong><br>💼 <strong>Peran:</strong> CEO, Founder, & Owner SECEFU Indonesia</p>
+                    <h3>⚽ Divisi Lomba Futsal</h3>
+                    <p>📅 <strong>Jadwal Lomba:</strong> Minggu, 16 Agustus 2026<br>
+                    ⏰ <strong>Waktu:</strong> 08:00 WIB – Selesai<br>
+                    📍 <strong>Lokasi:</strong> Lapangan Basket Griya Sakinah</p>
+                    <p><strong>Anggota Panitia:</strong></p>
+                    <ul>
+                        <li>👤 Bellva | 📞 Kontak: +62 856-4163-0500</li>
+                        <li>👤 Aisyah | 📞 Kontak: +62 851-1758-1011</li>
+                        <li>👤 Nayla | 📞 Kontak: +62 822-2705-1003</li>
+                        <li>👤 Mika | 📞 Kontak: +62 895-1522-4141</li>
+                    </ul>
+                    <h3>🎮 Divisi Lomba E-Sports (EA FC MOBILE)</h3>
+                    <p>📅 <strong>Jadwal Lomba:</strong> To Be Announced ⏳<br>
+                    📍 <strong>Lokasi:</strong> Online 🌐</p>
+                    <p><strong>Anggota Panitia:</strong></p>
+                    <ul>
+                        <li>👤 Raihan | 📞 Kontak: +62 812-3339-9608</li>
+                        <li>👤 Ridho | 📞 Kontak: +62 895-6231-50686</li>
+                        <li>👤 Angkasa | 📞 Kontak: +62 812-5285-2445</li>
+                    </ul>
+                `
+            },
+            'mengenang-alm-deyrril-almere-ghaisan': {
+                title: 'MENGENANG ALM. DEYRRIL ALMERE GHAISAN',
+                subtitle: 'Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨',
+                img: 'fotodeyrril.png',
+                content: `
+                    <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
+                    <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melatih, dan penuh tantangan. Namun, di hadapan penyakit tersebut, Deyrril justru menunjukkan ketangguhan luar biasa.</p>
+                    <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
+                    <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
+                `
+            }
+        };
+
         // Masuk dari Welcome Screen
         function enterSite() {
             document.getElementById('welcome-screen').classList.add('hidden');
             switchTab('home', true);
         }
 
-        // Perpindahan Tab & Sync URL
+        // Switching Tab & Update URL Path
         function switchTab(tabName, pushToHistory = true) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -905,7 +964,7 @@
             }
 
             let activeIndex = 0;
-            if (tabName === 'news') activeIndex = 1;
+            if (tabName === 'news' || tabName === 'news-detail') activeIndex = 1;
             if (tabName === 'lomba') activeIndex = 2;
 
             if (links[activeIndex]) {
@@ -923,11 +982,46 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Routing saat Halaman Dibuka / Direfresh
-        function handleInitialRouting() {
+        // MEMBUKA DETAIL BERITA SECARA FULL HALAMAN & MENGUBAH URL DENGAN SLUG
+        function openNewsDetail(slug, pushState = true) {
+            const data = newsDatabase[slug];
+            if (!data) return;
+
+            const detailContainer = document.getElementById('full-news-content');
+            detailContainer.innerHTML = `
+                <div class="memorial-thumbnail-container">
+                    <img src="${data.img}" alt="${data.title}" class="memorial-thumbnail">
+                </div>
+                <h1 class="card-title">${data.title}</h1>
+                <h2 class="card-subtitle">${data.subtitle}</h2>
+                <div class="content-body">
+                    ${data.content}
+                </div>
+            `;
+
+            switchTab('news-detail', false);
+
+            if (pushState) {
+                const newUrl = `/news/${slug}`;
+                history.pushState({ newsSlug: slug, tab: 'news-detail' }, '', newUrl);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Routing Saat Halaman Pertama Dimuat / Refresh / Direct Link / Back-Forward
+        function handleRouting() {
             const path = window.location.pathname;
-            
-            if (path === '/news') {
+
+            if (path.startsWith('/news/')) {
+                const slug = path.replace('/news/', '');
+                document.getElementById('welcome-screen').classList.add('hidden');
+                if (newsDatabase[slug]) {
+                    openNewsDetail(slug, false);
+                } else {
+                    switchTab('news', false);
+                }
+            } else if (path === '/news') {
                 document.getElementById('welcome-screen').classList.add('hidden');
                 switchTab('news', false);
             } else if (path === '/daftar-lomba') {
@@ -941,88 +1035,19 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', handleInitialRouting);
+        window.addEventListener('DOMContentLoaded', handleRouting);
+        window.addEventListener('popstate', handleRouting);
 
-        // Menangani Tombol Back / Forward di Browser (Popstate)
-        window.addEventListener('popstate', (event) => {
-            const path = window.location.pathname;
-            if (path === '/news') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('news', false);
-            } else if (path === '/daftar-lomba') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('lomba', false);
-            } else if (path === '/home') {
-                document.getElementById('welcome-screen').classList.add('hidden');
-                switchTab('home', false);
-            } else {
-                // Jika kembali ke /
-                document.getElementById('welcome-screen').classList.remove('hidden');
-                switchTab('home', false);
-            }
-        });
-
-        // Toggle Buka/Tutup Teks News Jadwal Dimajukan
-        function toggleJadwalText() {
-            const container = document.getElementById('news-jadwal-full');
-            const btn = document.getElementById('btn-news-jadwal-toggle');
-
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
-                btn.innerHTML = '⚡ Sembunyikan Berita';
-            } else {
-                btn.innerHTML = '📄 Baca Selengkapnya';
-            }
-        }
-
-        // Toggle Buka/Tutup Teks News Duet
-        function toggleDuetText() {
-            const container = document.getElementById('news-duet-full');
-            const btn = document.getElementById('btn-news-duet-toggle');
-
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
-                btn.innerHTML = '⚡ Sembunyikan Berita';
-            } else {
-                btn.innerHTML = '📄 Baca Selengkapnya';
-            }
-        }
-
-        // Toggle Buka/Tutup Teks News Panitia
-        function togglePanitiaText() {
-            const container = document.getElementById('news-panitia-full');
-            const btn = document.getElementById('btn-news-panitia-toggle');
-
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
-                btn.innerHTML = '⚡ Sembunyikan Berita';
-            } else {
-                btn.innerHTML = '📄 Baca Selengkapnya';
-            }
-        }
-
-        // Toggle Buka/Tutup Teks News Deyrril
-        function toggleNewsText() {
-            const container = document.getElementById('news-text-full');
-            const btn = document.getElementById('btn-news-toggle');
-
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
-                btn.innerHTML = '⚡ Sembunyikan Berita';
-            } else {
-                btn.innerHTML = '📄 Baca Selengkapnya';
-            }
-        }
-
-        // Toggle Buka/Tutup Teks Daftar Lomba
+        // Toggle Lomba Description
         function toggleLombaText() {
             const container = document.getElementById('lomba-text-full');
             const btn = document.getElementById('btn-lomba-toggle');
 
-            container.classList.toggle('open');
-            if (container.classList.contains('open')) {
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
                 btn.innerHTML = '⚡ Sembunyikan Deskripsi';
             } else {
+                container.style.display = 'none';
                 btn.innerHTML = '📄 Baca Selengkapnya';
             }
         }
