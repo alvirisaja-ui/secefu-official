@@ -624,10 +624,10 @@
                 <h2 class="section-header">📰 Berita Ringkas</h2>
                 <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px; margin-bottom: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING DI UNS TOWER! 🎶
+                        ⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        SURAKARTA — Persiapan matang sedang dilakukan oleh Alviris, Owner SECEFU INDONESIA! 🔥 Demi menyuguhkan penampilan terbaik, Alviris kedapatan sedang intens latihan menyanyi duet bersama temannya, Zidan...
+                        BERITA UTAMA — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama...
                     </p>
                     <button class="btn btn-outline" onclick="switchTab('news')">
                         📖 Baca Selengkapnya di News 📰
@@ -641,7 +641,41 @@
         <!-- ================= NEWS SECTION ================= -->
         <section id="tab-news" class="tab-content">
 
-            <!-- BERITA BARU 1: DUET OWNER SECEFU & ZIDAN DI UNS TOWER -->
+            <!-- BERITA BARU 1: JADWAL DIMAJUKAN -->
+            <div class="card">
+                <div class="memorial-thumbnail-container">
+                    <img src="newspanitiaa.png" alt="Jadwal Lomba Futsal SECEFU Indonesia Resmi Dimajukan" class="memorial-thumbnail">
+                </div>
+
+                <h1 class="card-title">⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆</h1>
+                <h2 class="card-subtitle">Perubahan Jadwal Resmi Menjadi Minggu, 16 Agustus 2026 Pukul 08.00 WIB Pagi ⚡☀️</h2>
+                
+                <div class="content-body">
+                    <p><strong>BERITA UTAMA</strong> — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama. 🔄</p>
+                </div>
+
+                <div id="news-jadwal-full" class="expandable-content">
+                    <div class="content-body">
+                        <p>Berdasarkan jadwal awal, kompetisi ini seharusnya digelar pada Sabtu, 22 Agustus 2026 pukul 16.00 WIB. Namun, agenda tersebut bentrok dengan kegiatan lain dari pihak manajemen. 🗓️</p>
+
+                        <p><em>"Awalnya mau diadakan tanggal 22 Agustus jam 4 sore, tapi saya tidak bisa karena ada acara lain berbarengan,"</em> ucap Alviris selaku Owner SECEFU INDONESIA saat memberikan keterangan resmi. 🎙️👑</p>
+
+                        <p>Alviris melanjutkan bahwa keputusan pemajuan jadwal ini diambil setelah melihat semangat luar biasa dari para peserta. Anak-anak dari Griya Sakinah dan Atlantis menunjukkan antusiasme yang sangat tinggi dan secara khusus meminta agar waktu perlombaan dimajukan agar bisa segera bertanding. 💥💪</p>
+
+                        <p>Melihat desakan positif dan semangat membara dari anak-anak Griya Sakinah maupun Atlantis, ditambah adanya agenda pribadi yang bertabrakan di jadwal lama, Alviris akhirnya mempertimbangkan keputusan tersebut secara mendalam. Hasilnya, manajemen resmi memajukan lomba futsal ke hari <strong>Minggu, 16 Agustus 2026 pukul 08.00 WIB pagi</strong>. ⚡☀️</p>
+
+                        <p>Perubahan ini diharapkan membawa atmosfer pertandingan yang jauh lebih segar di hari Minggu pagi, sekaligus menjawab langsung harapan besar dari tim Griya Sakinah dan Atlantis yang sudah tidak sabar untuk unjuk gigi di lapangan hijau! ⚽ Siapakah yang bakal membawa pulang trofi juara? 🏆🔥</p>
+                    </div>
+                </div>
+
+                <div class="button-group" style="margin-top: 15px;">
+                    <button class="btn btn-outline" id="btn-news-jadwal-toggle" onclick="toggleJadwalText()">
+                        📄 Baca Selengkapnya
+                    </button>
+                </div>
+            </div>
+
+            <!-- BERITA 2: DUET OWNER SECEFU & ZIDAN DI UNS TOWER -->
             <div class="card">
                 <div class="memorial-thumbnail-container">
                     <img src="pentas.png" alt="Duet Owner SECEFU & Zidan di UNS Tower" class="memorial-thumbnail">
@@ -675,7 +709,7 @@
                 </div>
             </div>
 
-            <!-- BERITA 2: KEPANITIAAN SECEFU 2026 -->
+            <!-- BERITA 3: KEPANITIAAN SECEFU 2026 -->
             <div class="card">
                 <div class="memorial-thumbnail-container">
                     <img src="newspanitiaa.png" alt="Struktur Kepanitiaan SECEFU 2026" class="memorial-thumbnail">
@@ -733,7 +767,7 @@
                 </div>
             </div>
 
-            <!-- BERITA 3: MEMORIAL DEYRRIL -->
+            <!-- BERITA 4: MEMORIAL DEYRRIL -->
             <div class="card">
                 <div class="memorial-thumbnail-container">
                     <img src="fotodeyrril.png" alt="Mengenang Alm. Deyrril Almere Ghaisan" class="memorial-thumbnail">
@@ -927,6 +961,19 @@
                 switchTab('home', false);
             }
         });
+
+        // Toggle Buka/Tutup Teks News Jadwal Dimajukan
+        function toggleJadwalText() {
+            const container = document.getElementById('news-jadwal-full');
+            const btn = document.getElementById('btn-news-jadwal-toggle');
+
+            container.classList.toggle('open');
+            if (container.classList.contains('open')) {
+                btn.innerHTML = '⚡ Sembunyikan Berita';
+            } else {
+                btn.innerHTML = '📄 Baca Selengkapnya';
+            }
+        }
 
         // Toggle Buka/Tutup Teks News Duet
         function toggleDuetText() {
