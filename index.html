@@ -702,17 +702,17 @@
                 </div>
             </div>
 
-            <!-- 3. BERITA RINGKAS -->
+            <!-- 3. BERITA RINGKAS TERKINI -->
             <div class="card">
                 <h2 class="section-header">📰 Berita Terkini</h2>
                 <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px; margin-bottom: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING SMP ABBS SURAKARTA DI UNS TOWER! ✨
+                        🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG MEGAH PARENT GATHERING DI UNS TOWER SURAKARTA ✨
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        Detail baru terungkap dari gelaran akbar Parent Gathering SMP ABBS Surakarta di Gedung UNS Tower! Alviris dipastikan berkolaborasi langsung dengan gurunya, Mr. Joe...
+                        Atmosfer haru, fokus, dan penuh semangat menyelimuti area rooftop SMP ABBS Surakarta sejak beberapa hari terakhir. Alviris bersama Zhidan siap berduet di UNS Tower...
                     </p>
-                    <button class="btn btn-primary" onclick="openNewsDetail('kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower')">
+                    <button class="btn btn-primary" onclick="openNewsDetail('haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta')">
                         🚀 Mulai Baca Berita
                     </button>
                 </div>
@@ -733,7 +733,23 @@
                 <!-- GRID KARTU BERITA KECIL KECIL / SAMPING-SAMPINGAN -->
                 <div class="news-grid">
 
-                    <!-- CARD BERITA 1 (TANPA GAMBAR): ALVIRIS & MR. JOE -->
+                    <!-- CARD BERITA BARU (TANPA GAMBAR): ALVIRIS & ZHIDAN UNS TOWER -->
+                    <div class="news-card">
+                        <div class="news-card-no-img">
+                            🎤 DUET SANGAT HARU<br>ALVIRIS & ZHIDAN
+                        </div>
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG MEGAH PARENT GATHERING DI UNS TOWER SURAKARTA ✨</h3>
+                            <p class="news-card-snippet">Atmosfer haru, fokus, dan penuh semangat menyelimuti area rooftop SMP ABBS Surakarta. Alviris & Zhidan telah merampungkan gladi bersih untuk acara Parent Gathering...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD BERITA (TANPA GAMBAR): ALVIRIS & MR. JOE -->
                     <div class="news-card">
                         <div class="news-card-no-img">
                             🎙️ DUET MC SENSASIONAL<br>ALVIRIS & MR. JOE
@@ -749,7 +765,7 @@
                         </div>
                     </div>
 
-                    <!-- CARD 2: JADWAL DIMAJUKAN -->
+                    <!-- CARD: JADWAL DIMAJUKAN -->
                     <div class="news-card">
                         <img src="newspanitiaa.png" alt="Jadwal Dimajukan" class="news-card-thumb">
                         <div class="news-card-body">
@@ -763,7 +779,7 @@
                         </div>
                     </div>
 
-                    <!-- CARD 3: DUET OWNER SECEFU & ZIDAN -->
+                    <!-- CARD: DUET OWNER SECEFU & ZIDAN -->
                     <div class="news-card">
                         <img src="pentas.png" alt="Duet UNS Tower" class="news-card-thumb">
                         <div class="news-card-body">
@@ -777,9 +793,9 @@
                         </div>
                     </div>
 
-                    <!-- CARD 4: KEPANITIAAN SECEFU 2026 -->
+                    <!-- CARD: KEPANITIAAN SECEFU 2026 -->
                     <div class="news-card">
-                        <img src="newspanitiaa.png" alt="KepStructure Panitia" class="news-card-thumb">
+                        <img src="newspanitiaa.png" alt="Structure Panitia" class="news-card-thumb">
                         <div class="news-card-body">
                             <h3 class="news-card-title">🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆</h3>
                             <p class="news-card-snippet">Pembentukan komite resmi penyelenggara perayaan 17 Agustus 2026. Susunan lengkap divisi futsal dan e-sports EA FC Mobile...</p>
@@ -791,7 +807,7 @@
                         </div>
                     </div>
 
-                    <!-- CARD 5: MEMORIAL DEYRRIL -->
+                    <!-- CARD: MEMORIAL DEYRRIL -->
                     <div class="news-card">
                         <img src="fotodeyrril.png" alt="Memorial Deyrril" class="news-card-thumb">
                         <div class="news-card-body">
@@ -904,6 +920,20 @@
     <!-- DATA BERITA TERINTEGRASI -->
     <script>
         const newsDatabase = {
+            'haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta': {
+                title: '🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG MEGAH PARENT GATHERING DI UNS TOWER SURAKARTA ✨',
+                subtitle: 'Persiapan Maraton, Gladi Bersih Tuntas, & Tugas Ganda Sang Owner SECEFU 🏢🎙️',
+                img: null, // Tanpa Gambar
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> — Atmosfer haru, fokus, dan penuh semangat menyelimuti area rooftop SMP ABBS Surakarta sejak beberapa hari terakhir. 🏢 Di bawah terik matahari dan embusan angin sore, Alviris, yang dikenal luas sebagai Owner SECEFU INDONESIA, terlihat begitu serius melakukan persiapan. Tidak sendiri, ia menggandeng sahabat sekaligus rekan duet terbaiknya, Zhidan, untuk mempersiapkan sebuah penampilan spektakuler yang dijamin akan menyentuh hati para penonton. 🎶</p>
+                    <p>Komitmen tinggi benar-benar ditunjukkan oleh kedua talenta muda ini. Demi menyuguhkan performa yang tanpa cela, Alviris dan Zhidan telah mengorbankan waktu dan energi mereka untuk melakoni latihan vokal serta koreografi super intensif. Proses latihan maraton ini berlangsung nonstop dari hari Senin hingga Kamis kemarin. 📅 Setiap detail nada, harmonisasi vokal, hingga penguasaan panggung mereka bedah bersama agar tampil sempurna.</p>
+                    <p>Puncaknya terjadi pada hari ini, Jumat, 14 Agustus 2026. Sejak pagi hari, rooftop SMP ABBS Surakarta disulap menjadi panggung simulasi. Alviris dan Zhidan sukses merampungkan seluruh rangkaian gladi kotor hingga gladi bersih (gladi resik) dengan penuh totalitas dan profesionalisme tinggi. 💪🔥 Keduanya tampak sangat kompak dan saling mengisi satu sama lain, menunjukkan chemistry luar biasa yang sudah terbangun selama masa latihan.</p>
+                    <p>Dalam agenda besar besok, duet maut ini didapuk untuk membawakan salah satu lagu legendaris paling emosional di Indonesia, yaitu "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band. 🎸🎹 Pilihan lagu ini dirasa sangat tepat dan diprediksi kuat bakal menguras air mata serta membawa atmosfer haru yang mendalam bagi seluruh orang tua yang hadir. Perpaduan suara emas Alviris dan penghayatan mendalam dari Zhidan dipastikan menjadi salah satu highlight yang paling dinantikan. 🥺❤️</p>
+                    <p>Pertunjukan berkelas ini dipersiapkan secara khusus untuk memeriahkan acara puncak Parent Gathering yang akan diselenggarakan di gedung megah UNS Tower Surakarta pada Sabtu pagi, 15 Agustus 2026. 🏛️ Menariknya, tantangan besar tidak hanya datang dari sektor tarik suara saja. Selain harus menguras emosi penonton lewat lagu duet, Alviris juga memikul tanggung jawab besar lainnya. Pemuda multitalenta ini dipercaya untuk memandu seluruh jalannya acara dari awal hingga akhir sebagai Master of Ceremony (MC) utama! 🎙️😎 Tugas ganda ini tentu membuktikan kapasitas Alviris yang tidak hanya andal dalam memimpin bisnis, tetapi juga piawai di atas panggung hiburan.</p>
+                    <p>Setelah sukses menuntaskan seluruh rangkaian gladi bersih di sekolah, Alviris dan Zhidan dikabarkan tidak langsung beristirahat. Sore ini, mereka dijadwalkan langsung bergeser ke lokasi utama untuk melakukan adaptasi panggung yang sesungguhnya. 🚗</p>
+                    <p>Bagaimanakah kesiapan akhir mereka di gedung pertunjukan yang sebenarnya? Saksikan terus update berita selanjutnya untuk mengintip eksklusif keseruan Alviris dan Zhidan saat menggelar Gladi Resik (GR) pamungkas langsung dari UNS Tower Surakarta! Jangan sampai kelewatan momen bersejarah ini! 📰✨</p>
+                `
+            },
             'kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower': {
                 title: '🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING SMP ABBS SURAKARTA DI UNS TOWER! ✨',
                 subtitle: 'Sinergi Kompak Guru dan Murid Memandu Acara Akbar di Gedung UNS Tower 🏢🤝',
