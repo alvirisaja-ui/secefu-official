@@ -254,7 +254,7 @@
             background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
         }
 
-        /* NEWS GRID LAYOUT (SAMPING-SAMPINGAN) */
+        /* NEWS GRID LAYOUT */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -284,7 +284,7 @@
             background-color: #000;
         }
 
-        /* BANNER TANPA GAMBAR (TEXT BANNER) */
+        /* BANNER TANPA GAMBAR */
         .news-card-no-img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -707,12 +707,12 @@
                 <h2 class="section-header">📰 Berita Terkini</h2>
                 <div style="background: var(--blue-soft); border-left: 4px solid var(--blue-accent); padding: 16px; border-radius: 12px; margin-bottom: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG MEGAH PARENT GATHERING DI UNS TOWER SURAKARTA ✨
+                        🏛️ Presiden Prabowo Sampaikan Pidato Kenegaraan dalam Sidang Tahunan MPR 2026
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        Atmosfer haru, fokus, dan penuh semangat menyelimuti area rooftop SMP ABBS Surakarta sejak beberapa hari terakhir. Alviris bersama Zhidan siap berduet di UNS Tower...
+                        Presiden RI Prabowo Subianto menghadiri Sidang Tahunan MPR RI serta Sidang Bersama DPR RI dan DPD RI Tahun 2026 di Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta...
                     </p>
-                    <button class="btn btn-primary" onclick="openNewsDetail('haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta')">
+                    <button class="btn btn-primary" onclick="openNewsDetail('presiden-prabowo-sampaikan-pidato-kenegaraan-dalam-sidang-tahunan-mpr-2026')">
                         🚀 Mulai Baca Berita
                     </button>
                 </div>
@@ -733,7 +733,21 @@
                 <!-- GRID KARTU BERITA KECIL KECIL / SAMPING-SAMPINGAN -->
                 <div class="news-grid">
 
-                    <!-- CARD BERITA BARU (TANPA GAMBAR): ALVIRIS & ZHIDAN UNS TOWER -->
+                    <!-- CARD BERITA BARU: PIDATO KENEGARAAN PRESIDEN PRABOWO -->
+                    <div class="news-card">
+                        <img src="prabowo.jpeg" alt="Presiden Prabowo Subianto" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🏛️ Presiden Prabowo Sampaikan Pidato Kenegaraan dalam Sidang Tahunan MPR 2026</h3>
+                            <p class="news-card-snippet">Presiden RI Prabowo Subianto menghadiri Sidang Tahunan MPR RI serta Sidang Bersama DPR RI dan DPD RI Tahun 2026 di Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('presiden-prabowo-sampaikan-pidato-kenegaraan-dalam-sidang-tahunan-mpr-2026')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD BERITA (TANPA GAMBAR): ALVIRIS & ZHIDAN UNS TOWER -->
                     <div class="news-card">
                         <div class="news-card-no-img">
                             🎤 DUET SANGAT HARU<br>ALVIRIS & ZHIDAN
@@ -920,6 +934,26 @@
     <!-- DATA BERITA TERINTEGRASI -->
     <script>
         const newsDatabase = {
+            'presiden-prabowo-sampaikan-pidato-kenegaraan-dalam-sidang-tahunan-mpr-2026': {
+                title: '🏛️ Presiden Prabowo Sampaikan Pidato Kenegaraan dalam Sidang Tahunan MPR 2026',
+                subtitle: 'Pemaparan 121 Kebijakan Transformatif & Arah Ekonomi Menjelang HUT Kemerdekaan RI Ke-81 🇮🇩💼',
+                img: 'prabowo.jpeg',
+                content: `
+                    <p><strong>JAKARTA, SECEFU News</strong> — Presiden RI Prabowo Subianto menghadiri Sidang Tahunan MPR RI serta Sidang Bersama DPR RI dan DPD RI Tahun 2026 di Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta. 🇮🇩 Agenda kenegaraan tahunan menjelang Hari Kemerdekaan RI ke-81 ini diselenggarakan untuk memaparkan capaian kinerja pemerintah dan arah kebijakan ekonomi ke depan. 💼</p>
+                    
+                    <h3>📌 Fakta Pelaksanaan Sidang</h3>
+                    <ul>
+                        <li><strong>📆 Waktu:</strong> Jumat pagi, 14 Agustus 2026 mulai pukul 08.30 WIB.</li>
+                        <li><strong>📍 Lokasi:</strong> Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta.</li>
+                        <li><strong>👥 Tokoh yang Hadir:</strong> Presiden ke-7 RI Joko Widodo, serta para mantan Wakil Presiden seperti Jusuf Kalla, Boediono, dan Ma'ruf Amin.</li>
+                        <li><strong>📜 Agenda Utama:</strong> Pidato kenegaraan presiden, pembukaan masa sidang, serta penyampaian RUU APBN Tahun 2027 beserta Nota Keuangannya.</li>
+                    </ul>
+
+                    <h3>🎙️ Deskripsi Isi Pidato Kenegaraan</h3>
+                    <p>Dalam pidatonya, Presiden Prabowo menegaskan bahwa pemerintahannya telah menjalankan 121 kebijakan transformatif dalam kurun waktu 21 bulan sejak dilantik. 📈 Kebijakan tersebut mencakup perbaikan infrastruktur sekolah, perluasan program Cek Kesehatan Gratis, hingga program Makan Bergizi Gratis. 🍱 Presiden juga menyatakan bahwa tantangan besar seperti pemberantasan korupsi dan kemiskinan masih menjadi fokus utama yang harus terus dituntaskan tanpa boleh berpuas diri. 🎯</p>
+                    <p>Suasana di dalam ruang rapat paripurna tampak khidmat dan dipenuhi oleh ratusan anggota dewan, menteri Kabinet Merah Putih, serta perwakilan duta besar negara sahabat. ✨ Informasi resmi dan tayangan ulang mengenai jalannya sidang ini dapat diakses langsung melalui laman Sekretariat Negara atau akun media sosial resmi DPR RI. 🌐</p>
+                `
+            },
             'haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta': {
                 title: '🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG MEGAH PARENT GATHERING DI UNS TOWER SURAKARTA ✨',
                 subtitle: 'Persiapan Maraton, Gladi Bersih Tuntas, & Tugas Ganda Sang Owner SECEFU 🏢🎙️',
