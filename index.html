@@ -284,7 +284,13 @@
             background-color: #000;
         }
 
-        /* BANNER TANPA GAMBAR */
+        .news-card-thumb-4-3 {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            background-color: #000;
+        }
+
         .news-card-no-img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -345,10 +351,21 @@
             gap: 8px;
         }
 
-        /* --- THUMBNAIL (16:9) --- */
+        /* --- THUMBNAIL CONTAINER --- */
         .memorial-thumbnail-container {
             width: 100%;
             aspect-ratio: 16 / 9;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            background-color: #000;
+        }
+
+        .memorial-thumbnail-container-4-3 {
+            width: 100%;
+            aspect-ratio: 4 / 3;
             border-radius: 14px;
             overflow: hidden;
             margin-bottom: 18px;
@@ -419,7 +436,6 @@
             background: var(--blue-soft);
         }
 
-        /* --- TOMBOL KEMBALI ICON-ONLY --- */
         .btn-back-icon {
             display: inline-flex;
             align-items: center;
@@ -464,6 +480,19 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        .badge-closed {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 0.9rem;
+            font-weight: 800;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid #fca5a5;
         }
 
         .content-body p {
@@ -525,6 +554,7 @@
             gap: 10px;
             flex-wrap: wrap;
             margin-top: 18px;
+            align-items: center;
         }
 
         /* --- FOOTER --- */
@@ -696,7 +726,7 @@
                     </p>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="switchTab('lomba')">
-                            🏆 Rincian & Daftar Lomba
+                            🏆 Rincian & Info Lomba
                         </button>
                     </div>
                 </div>
@@ -705,14 +735,15 @@
             <!-- 3. BERITA RINGKAS TERKINI -->
             <div class="card">
                 <h2 class="section-header">📰 Berita Terkini</h2>
-                <div style="background: var(--blue-soft); border-left: 4px solid var(--accent-orange); padding: 16px; border-radius: 12px; margin-bottom: 12px;">
+                
+                <div style="background: var(--blue-soft); border-left: 4px solid var(--accent-red); padding: 16px; border-radius: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        💃 TIM ABSARA SMP ABBS PUKAU PENGUNJUNG DI UNS TOWER, TAMPILKAN RATOH JAROE YANG MEMENCARKAN PESONA ACEH 🔥
+                        📰 TIM ABSARA SMP ABBS SUKSES HENTAK PANGGUNG PARENT GATHERING DI UNS TOWER, SAJIKAN TARI RATOH JAROE YANG SPEKTAKULER 💃🔥
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        Penampilan luar biasa dan penuh energi ditunjukkan oleh Tim ABSARA SMP ABBS Surakarta dalam sesi gladi resik yang digelar di gedung UNS Tower Surakarta. Tim kebanggaan sekolah tersebut sukses memukau seluruh hadirin...
+                        SURAKARTA, SECEFU News – Setelah sebelumnya sukses mencuri perhatian dalam sesi gladi resik, Tim Tari Ratoh Jaroe ABSARA dari SMP ABBS Surakarta akhirnya resmi tampil di panggung utama acara Parent Gathering di gedung UNS Tower Surakarta...
                     </p>
-                    <button class="btn btn-primary" onclick="openNewsDetail('tim-absara-smp-abbs-pukau-pengunjung-di-uns-tower-tampilkan-ratoh-jaroe-yang-memencarkan-pesona-aceh')">
+                    <button class="btn btn-primary" onclick="openNewsDetail('tim-absara-smp-abbs-sukses-hentak-panggung-parent-gathering-di-uns-tower-sajikan-tari-ratoh-jaroe-yang-spektakuler')">
                         🚀 Mulai Baca Berita
                     </button>
                 </div>
@@ -721,7 +752,7 @@
         </section>
 
 
-        <!-- ================= NEWS SECTION (LIST DAFTAR BERITA) ================= -->
+        <!-- ================= NEWS SECTION ================= -->
         <section id="tab-news" class="tab-content">
 
             <div class="card">
@@ -730,10 +761,61 @@
                     Klik <strong>"Mulai Baca 🚀"</strong> pada berita di bawah untuk membaca artikel selengkapnya.
                 </p>
 
-                <!-- GRID KARTU BERITA KECIL KECIL / SAMPING-SAMPINGAN -->
                 <div class="news-grid">
 
-                    <!-- CARD BERITA TERBARU: TIM ABSARA SMP ABBS -->
+                    <!-- BERITA BARU DITAMBAHKAN DI SINI (URUTAN TERATAS) -->
+                    <div class="news-card">
+                        <img src="absara.jpeg" alt="Tim ABSARA Ratoh Jaroe Parent Gathering UNS Tower" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 TIM ABSARA SMP ABBS SUKSES HENTAK PANGGUNG PARENT GATHERING DI UNS TOWER, SAJIKAN TARI RATOH JAROE YANG SPEKTAKULER 💃🔥</h3>
+                            <p class="news-card-snippet">SURAKARTA, SECEFU News – Setelah sebelumnya sukses mencuri perhatian dalam sesi gladi resik, Tim Tari Ratoh Jaroe ABSARA dari SMP ABBS Surakarta akhirnya resmi tampil di panggung utama...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('tim-absara-smp-abbs-sukses-hentak-panggung-parent-gathering-di-uns-tower-sajikan-tari-ratoh-jaroe-yang-spektakuler')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="secefulomba.jpeg" alt="Kicau Mania FC Juara 1 Futsal SECEFU 2026" class="news-card-thumb-4-3">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 KICAU MANIA FC SABET JUARA 1 FUTSAL SECEFU 2026, HAIKAL BAIS JADI TOP SCORER DENGAN CELEBRASI 9 GOL ⚽🏆</h3>
+                            <p class="news-card-snippet">SURAKARTA, SECEFU News – Turnamen Futsal SECEFU 2026 dalam rangka menyambut Hari Ulang Tahun (HUT) Kemerdekaan Republik Indonesia ke-81 sekaligus sebagai bentuk penghormatan untuk mengenang almarhum Deyrril secara resmi telah selesai digelar...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('kicau-mania-fc-sabet-juara-1-futsal-secefu-2026-haikal-bais-jadi-top-scorer-dengan-celebrasi-9-gol')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="zidal.jpeg" alt="Duet Alviris dan Zidane Parent Gathering" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 DUET MAUT ALVIRIS DAN ZHIDANE SUKSES HARUKAN UNS TOWER, BAWAKAN LAGU ‘YANG TERBAIK BAGIMU’ DENGAN PENUH HARMONI 🎤😭</h3>
+                            <p class="news-card-snippet">Suasana haru dan penuh emosi menyelimuti aula UNS Tower Surakarta dalam acara Parent Gathering SMP ABBS Surakarta. Momen puncak yang paling dinantikan akhirnya tiba saat duet vokal Alviris dan Zidane naik ke atas panggung utama...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('duet-maut-alviris-dan-zhidane-sukses-harukan-uns-tower-bawakan-lagu-yang-terbaik-bagimu-dengan-penuh-harmoni')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="padus.jpeg" alt="Dynamix Symphony Paduan Suara SMP ABBS" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 DYNAMIX SYMPHONY PUKAU WALI MURID DI UNS TOWER, TAMPILKAN HARMONI INDAH PADA PARENT GATHERING SMP ABBS SURAKARTA 🎶✨</h3>
+                            <p class="news-card-snippet">Setelah melalui proses latihan yang panjang dan disiplin, Tim Paduan Suara Dynamix Symphony akhirnya resmi tampil perdana di atas panggung utama UNS Tower Surakarta...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('dynamix-symphony-pukau-wali-murid-di-uns-tower-tampilkan-harmoni-indah-pada-parent-gathering-smp-abbs-surakarta')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="news-card">
                         <img src="absaraabbs.jpeg" alt="Tim ABSARA SMP ABBS Ratoh Jaroe" class="news-card-thumb">
                         <div class="news-card-body">
@@ -747,7 +829,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD BERITA: ZHIDAN LATIHAN SENDIRI SEBELUM TAMPIL GR -->
                     <div class="news-card">
                         <img src="zidanlatihan.jpeg" alt="Zhidan Latihan Sendiri Sebelum Tampil di GR Acara" class="news-card-thumb">
                         <div class="news-card-body">
@@ -761,7 +842,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD BERITA: PIDATO KENEGARAAN PRESIDEN PRABOWO -->
                     <div class="news-card">
                         <img src="prabowo.jpeg" alt="Presiden Prabowo Subianto" class="news-card-thumb">
                         <div class="news-card-body">
@@ -775,7 +855,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD BERITA (TANPA GAMBAR): ALVIRIS & ZHIDAN -->
                     <div class="news-card">
                         <div class="news-card-no-img">
                             🎤 DUET SANGAT HARU<br>ALVIRIS & ZHIDAN
@@ -791,7 +870,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD BERITA (TANPA GAMBAR): ALVIRIS & MR. JOE -->
                     <div class="news-card">
                         <div class="news-card-no-img">
                             🎙️ DUET MC SENSASIONAL<br>ALVIRIS & MR. JOE
@@ -807,7 +885,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD: JADWAL DIMAJUKAN -->
                     <div class="news-card">
                         <img src="newspanitiaa.png" alt="Jadwal Dimajukan" class="news-card-thumb">
                         <div class="news-card-body">
@@ -821,7 +898,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD: DUET OWNER SECEFU & ZIDAN -->
                     <div class="news-card">
                         <img src="pentas.png" alt="Duet Penampilan" class="news-card-thumb">
                         <div class="news-card-body">
@@ -835,7 +911,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD: KEPANITIAAN SECEFU 2026 -->
                     <div class="news-card">
                         <img src="newspanitiaa.png" alt="Structure Panitia" class="news-card-thumb">
                         <div class="news-card-body">
@@ -849,7 +924,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD: MEMORIAL DEYRRIL -->
                     <div class="news-card">
                         <img src="fotodeyrril.png" alt="Memorial Deyrril" class="news-card-thumb">
                         <div class="news-card-body">
@@ -869,16 +943,11 @@
         </section>
 
 
-        <!-- ================= FULL NEWS DETAIL READ SECTION (FULL TAMPILAN) ================= -->
+        <!-- ================= FULL NEWS DETAIL READ SECTION ================= -->
         <section id="tab-news-detail" class="tab-content">
             <div class="card">
-                <!-- TOMBOL KEMBALI HANYA BENTUK IKON PANAH (TANPA TEKS) -->
                 <button class="btn-back-icon" onclick="switchTab('news')">←</button>
-
-                <!-- KONTEN BERITA FULL HALAMAN -->
-                <div id="full-news-content">
-                    <!-- Dimuat dinamis melalui JS -->
-                </div>
+                <div id="full-news-content"></div>
             </div>
         </section>
 
@@ -905,9 +974,9 @@
                 </div>
 
                 <div class="button-group">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdARHGNmQ7Ya_xAU1l3iV98Bsx8TPi8lUco1iUSPAEiR7Ksew/viewform?usp=publish-editor" target="_blank" class="btn btn-primary" style="width: auto;">
-                        📝 Disini Untuk Memulai Pendaftaran
-                    </a>
+                    <span class="badge-closed">
+                        🔴 Lomba Selesai
+                    </span>
                     <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()" style="width: auto;">
                         📄 Baca Selengkapnya
                     </button>
@@ -962,14 +1031,106 @@
     <!-- DATA BERITA TERINTEGRASI -->
     <script>
         const newsDatabase = {
+            'tim-absara-smp-abbs-sukses-hentak-panggung-parent-gathering-di-uns-tower-sajikan-tari-ratoh-jaroe-yang-spektakuler': {
+                title: '📰 TIM ABSARA SMP ABBS SUKSES HENTAK PANGGUNG PARENT GATHERING DI UNS TOWER, SAJIKAN TARI RATOH JAROE YANG SPEKTAKULER 💃🔥',
+                subtitle: 'Penampilan Resmi Luar Biasa Penuh Energi dan Estetika Seni Budaya Aceh di Hadapan Ratusan Wali Murid 🏢🎭✨',
+                img: 'absara.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Setelah sebelumnya sukses mencuri perhatian dalam sesi gladi resik, Tim Tari Ratoh Jaroe ABSARA dari SMP ABBS Surakarta akhirnya resmi tampil di panggung utama. 🏢 Penampilan yang sangat dinantikan ini disajikan dengan luar biasa megah dalam acara Parent Gathering yang berlangsung di gedung UNS Tower Surakarta. 🎭✨</p>
+                    
+                    <p>Sorak-sorai dan tepuk tangan riuh dari ratusan wali murid langsung menggema saat para penari ABSARA mulai mengambil posisi duduk rapat di atas panggung. 👏 Tanpa rasa canggung, tim kebanggaan sekolah ini langsung menyuguhkan performa kelas tinggi yang penuh dengan energi, kecepatan, dan nilai estetika kebudayaan khas Serambi Mekah, Aceh. 🌟</p>
+
+                    <h3>🔥 Keunggulan Aksi Panggung Tim ABSARA</h3>
+                    <ul>
+                        <li><strong>💃 Gerakan Penari yang Sangat Bagus:</strong> Para penari menunjukkan kualitas papan atas lewat gerakan tepuk dada, tepuk tangan, dan gelengan kepala yang sangat cepat. ⚡ Sinkronisasi dan kekompakan mereka begitu presisi tanpa ada kesalahan satu pun, membuat penonton terpukau dari awal hingga akhir.</li>
+                        <li><strong>🎤 Lantunan Syahi yang Sangat Bagus:</strong> Pertunjukan ini terasa semakin magis berkat suara syahi (penyanyi pelantun syair) yang sangat merdu, lantang, dan penuh karakter. 🎶 Lantunan syair bernada spiritual tersebut mengalun indah, sukses mengomandoi perpindahan tempo gerakan penari secara harmonis.</li>
+                        <li><strong>✨ Formasi Visual yang Estetik:</strong> Perpaduan kostum adat yang cerah menghasilkan gradasi warna yang luar biasa indah di bawah sorotan lampu panggung UNS Tower seiring dengan perubahan posisi duduk dan liukan badan para siswi berbakat tersebut. 🌈</li>
+                    </ul>
+
+                    <p>Penampilan resmi Tim ABSARA di hadapan para orang tua murid ini berakhir dengan sangat sukses. 🏆 Gemuruh standing ovation (tepuk tangan sambil berdiri) dari seluruh hadirin menjadi bukti sahih bahwa kerja keras dan latihan disiplin yang mereka jalani berbuah prestasi seni yang luar biasa membanggakan. 🎉🥳</p>
+                `
+            },
+            'kicau-mania-fc-sabet-juara-1-futsal-secefu-2026-haikal-bais-jadi-top-scorer-dengan-celebrasi-9-gol': {
+                title: '📰 KICAU MANIA FC SABET JUARA 1 FUTSAL SECEFU 2026, HAIKAL BAIS JADI TOP SCORER DENGAN CELEBRASI 9 GOL ⚽🏆',
+                subtitle: 'Sengit & Penuh Drama Lapangan, Turnamen Memorial Alm. Deyrril Sukses Digelar Spesial HUT RI Ke-81 🇮🇩🍹',
+                img: 'secefulomba.jpeg',
+                aspectRatio: '4-3',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Turnamen Futsal SECEFU 2026 dalam rangka menyambut Hari Ulang Tahun (HUT) Kemerdekaan Republik Indonesia ke-81 sekaligus sebagai bentuk penghormatan untuk mengenang almarhum Deyrril secara resmi telah selesai digelar. 🏟️ Kompetisi ini berlangsung dengan tensi yang sangat tinggi, penuh keseriusan, dan diwarnai aksi saling kejar angka yang dramatis. ⚡</p>
+                    
+                    <p>Turnamen mini ini diikuti oleh 3 tim tangguh yang menggunakan format unik dengan formasi 3 orang pemain per tim. Mengingat gengsi kompetisi yang besar serta misi emosional demi mengenang mendiang sahabat mereka, para pemain tampil habis-habisan hingga sempat memicu perdebatan panas dan adu argumen yang sengit di atas lapangan hijau. 🔥</p>
+
+                    <h3>🏆 Hasil Akhir & Distribusi Juara Turnamen</h3>
+                    <ul>
+                        <li><strong>🥇 Juara 1 (Kicau Mania FC):</strong> Tampil dominan dengan taktik yang solid, tim ini sukses mengunci peringkat teratas dan membawa pulang predikat juara utama. 🏆</li>
+                        <li><strong>🥈 Juara 2 (81 RI FC):</strong> Menunjukkan semangat juang 45 yang luar biasa, tim ini memberikan perlawanan ketat hingga berhasil menduduki podium kedua. 🇮🇩</li>
+                        <li><strong>🥉 Juara 3 (SECEFU AGUSTUS FC):</strong> Harus puas berada di posisi ketiga setelah melewati perjuangan melelahkan dan drama lapangan yang menguras fisik. ⚽</li>
+                        <li><strong>🔥 Top Scorer (Haikal Bais Al-Ghifari):</strong> Gelar pencetak gol terbanyak jatuh kepada Haikal Bais Al-Ghifari yang tampil mengerikan di depan gawang lawan dengan torehan total 9 gol sepanjang turnamen. 👟⚽</li>
+                    </ul>
+
+                    <h3>🍹 Apresiasi Spesial: Bonus Es Teh Penthol JOSS Solo!</h3>
+                    <p>Sebagai bentuk apresiation atas keringat dan perjuangan di lapangan, panitia memberikan hadiah penyegar dahaga yang sangat spesial. Khusus untuk skuad Kicau Mania FC sebagai sang juara dan Haikal Bais Al-Ghifari selaku raja gol, berhak mendapatkan bonus Es Teh segar dari Penthol JOSS Solo! 🍹 Hadiah unik ini berhasil mendinginkan suasana setelah tensi pertandingan yang sempat memanas. 🎉</p>
+
+                    <p>Turnamen ini sukses menjadi wadah penyaluran bakat yang kompetitif sekaligus menjadi momentum berharga untuk mengenang almarhum Deyrril melalui semangat olahraga yang sportif. Selamat kepada para pemenang! 🏆👏</p>
+                `
+            },
+            'duet-maut-alviris-dan-zhidane-sukses-harukan-uns-tower-bawakan-lagu-yang-terbaik-bagimu-dengan-penuh-harmoni': {
+                title: '📰 DUET MAUT ALVIRIS DAN ZHIDANE SUKSES HARUKAN UNS TOWER, BAWAKAN LAGU ‘YANG TERBAIK BAGIMU’ DENGAN PENUH HARMONI 🎤😭',
+                subtitle: 'Penampilan Spesial Penuh Emosi Alviris & Zidane Menguras Air Mata Ratusan Wali Murid di Parent Gathering SMP ABBS Surakarta 🏢✨💖',
+                img: 'zidal.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Suasana haru dan penuh emosi menyelimuti aula UNS Tower Surakarta dalam acara Parent Gathering SMP ABBS Surakarta. 🏢 Momen puncak yang paling dinantikan akhirnya tiba saat duet vokal Alviris dan Zidane naik ke atas panggung utama untuk memberikan penampilan spesial mereka di hadapan ratusan wali murid yang hadir. 🌟✨</p>
+                    
+                    <p>Alviris dan Zidane secara luar biasa membawakan lagu legendaris <em>"Yang Terbaik Bagimu (Jangan Lupakan Ayah)"</em> karya ADA Band. 🎶 Penampilan kedua siswa berbakat ini sukses menghanyutkan perasaan seluruh hadirin melalui harmonisasi vokal yang sangat matang, jernih, dan penuh dengan penghayatan mendalam. 💖</p>
+
+                    <h3>😭 Momen Penampilan & Kualitas Harmoni</h3>
+                    <ul>
+                        <li><strong>😭 Suasana Haru Menyentuh Hati:</strong> Alunan vokal yang penuh penjiwaan dari Alviris dan Zidane berhasil menyentuh lubuk hati terdalam para orang tua. Tak sedikit dari hadirin yang tampak berkaca-kaca bahkan meneteskan air mata karena larut dalam pesan mendalam lagu tentang kasih sayang seorang ayah tersebut. 💧</li>
+                        <li><strong>🎤 Harmoni Vokal yang Sangat Bagus:</strong> Kombinasi karakter suara Alviris dan Zidane saling melengkapi dengan sempurna. Pembagian suara (splitting voice) yang rapi dan kontrol nada yang stabil membuat lagu ini terdengar begitu indah dari awal hingga akhir. ⚡</li>
+                    </ul>
+
+                    <h3>👑 Sentuhan Dingin Miss Putri</h3>
+                    <p>Kesuksesan besar penampilan yang menguras air mata ini tidak lepas dari peran penting Miss Putri selaku Penanggung Jawab (PJ) sekaligus pelatih utama mereka. 👩‍🏫✨</p>
+
+                    <ul>
+                        <li><strong>🎹 Pelatih Berbakat yang Teliti:</strong> Miss Putri terbukti memiliki bakat luar biasa dalam mengasah musikalitas siswa. Beliau dengan sabar melatih penyampaian rasa (soul), dinamika lagu, serta kematangan mental Alviris dan Zidane agar mampu menyampaikan pesan lagu secara maksimal ke telinga pendengar. 🎼🏆</li>
+                    </ul>
+
+                    <p>Penampilan spektakuler ini ditutup dengan tepuk tangan riuh yang panjang dari seluruh wali murid dan guru yang hadir sebagai bentuk apresiasi tertinggi. 👏 Kolaborasi epik antara Alviris, Zidane, dan bimbingan penuh kasih dari Miss Putri sukses menjadi momen paling berkesan dan tak terlupakan dalam sejarah Parent Gathering tahun ini. 🎉🏆</p>
+                `
+            },
+            'dynamix-symphony-pukau-wali-murid-di-uns-tower-tampilkan-harmoni-indah-pada-parent-gathering-smp-abbs-surakarta': {
+                title: '📰 DYNAMIX SYMPHONY PUKAU WALI MURID DI UNS TOWER, TAMPILKAN HARMONI INDAH PADA PARENT GATHERING SMP ABBS SURAKARTA 🎶✨',
+                subtitle: 'Penampilan Perdana Memukau Paduan Suara SMP ABBS Surakarta dengan Melantunkan Empat Lagu Spesial 🏢🎤💖',
+                img: 'padus.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Setelah melalui proses latihan yang panjang dan disiplin, Tim Paduan Suara Dynamix Symphony akhirnya resmi tampil perdana di atas panggung utama. 🎤 Performa memukau ini disajikan dalam acara Parent Gathering SMP ABBS Surakarta yang diselenggarakan dengan megah di UNS Tower Surakarta. 🏢 Pertunjukan ini sekaligus menjadi pembuktian kualitas olah vokal luar biasa dari para siswa kebanggaan sekolah. 🌟</p>
+                    
+                    <p>Dalam penampilan resmi kali ini, Dynamix Symphony sukses menghanyutkan emosi seluruh penonton yang hadir melalui pembawaan empat lagu krusial. 🎶 Pembukaan acara terasa sangat khidmat saat tim paduan suara melantunkan Asmaul Husna dengan penuh penghayatan, disusul dengan lagu kebangsaan Indonesia Raya yang membakar semangat nasionalisme di dalam aula. 🇮🇩 Tak hanya itu, mereka juga membawakan Mars Al-Abidin dengan penuh kebanggaan, serta lagu Indonesia Pusaka yang diaransemen dengan harmonisasi vokal yang sangat indah dan menyentuh hati. 💖</p>
+
+                    <h3>👑 Sosok di Balik Layar (Miss Wafda)</h3>
+                    <p>Kesuksesan besar penampilan Dynamix Symphony tidak lepas dari tangan dingin Miss Wafda, guru luar biasa dari SMP ABBS Surakarta yang bertindak langsung sebagai Penanggung Jawab (PJ) sekaligus otak di balik keindahan harmoni ini. 👩‍🏫✨</p>
+
+                    <ul>
+                        <li><strong>🎹 Guru Seni Multitalenta dengan Insting Musikalitas Tinggi:</strong> Miss Wafda dikenal sebagai pendidik yang memiliki bakat musik yang sangat luar biasa. Beliau memiliki kepekaan nada yang tajam, mampu membaca potensi vokal unik setiap siswa, dan meramu perbedaan karakter suara tersebut menjadi satu kesatuan harmoni yang bulat, merdu, dan menyentuh jiwa. 🎼</li>
+                        <li><strong>💪 Mentor Disiplin, Sabar, dan Penuh Motivasi:</strong> Di kalangan siswa, Miss Wafda dikenal sebagai sosok pelatih yang tegas namun sangat sabar. Beliau dengan teliti membimbing teknik pernapasan (breathing), ketepatan nada (intonation), artikulasi, hingga penjiwaan panggung (stage presence), sekaligus selalu memberikan suntikan mental positif agar para siswa tampil percaya diri di atas panggung besar. 🏆</li>
+                    </ul>
+
+                    <p>Penampilan perdana Dynamix Symphony di hadapan ratusan wali murid ini diakhiri dengan gemuruh tepuk tangan dan apresiasi yang luar biasa. 👏 Keberhasilan ini membuktikan bahwa di bawah bimbingan guru berbakat seperti Miss Wafda, SMP ABBS Surakarta terus konsisten melahirkan generasi yang unggul dalam bidang akademik sekaligus bersinar dalam bidang seni dan kreativitas. 🎉🏆</p>
+                `
+            },
             'tim-absara-smp-abbs-pukau-pengunjung-di-uns-tower-tampilkan-ratoh-jaroe-yang-memencarkan-pesona-aceh': {
                 title: '💃 TIM ABSARA SMP ABBS PUKAU PENGUNJUNG DI UNS TOWER, TAMPILKAN RATOH JAROE YANG MEMENCARKAN PESONA ACEH 🔥',
                 subtitle: 'Sajian Tarian Tradisional Legendaris Aceh Penuh Energi dan Harmoni di Sesi Gladi Resik 🏢🎭✨',
                 img: 'absaraabbs.jpeg',
+                aspectRatio: '16-9',
                 content: `
                     <p><strong>SURAKARTA, SECEFU News</strong> – Penampilan luar biasa dan penuh energi ditunjukkan oleh Tim ABSARA SMP ABBS Surakarta dalam sesi gladi resik yang digelar di gedung UNS Tower Surakarta. 🏢 Tim kebanggaan sekolah tersebut sukses memukau seluruh hadirin serta panitia lewat sajian Tari Ratoh Jaroe, tarian tradisional legendaris asal Serambi Mekah, Aceh. 🎭✨</p>
                     
-                    <p>Suasana di dalam aula UNS Tower seketika berubah menjadi sangat meriah dan bergemuruh saat para penari mulai mengambil posisi di atas panggung utama. 👏 Karakteristik Tari Ratoh Jaroe yang menuntut konsentrasi serta sinkronisasi tinggi mampu dieksekusi dengan sangat rapi dan tanpa celah oleh para siswi berbakat tersebut, meskipun statusnya masih dalam tahap gladi resik. 🌟</p>
+                    <p>Suasana di dalam aula UNS Tower seketika berubah menjadi sangat meriah dan bergemuruh saat para penari mulai mengambil posisi di atas panggung utama. 👏 Karakteristik Tari Ratoh Jaroe yang menuntut konsentrasi serta sinkronisasi tinggi mampu dieksecusi dengan sangat rapi dan tanpa celah oleh para siswi berbakat tersebut, meskipun statusnya masih dalam tahap gladi resik. 🌟</p>
 
                     <h3>🔥 Keunggulan Aksi Panggung Tim ABSARA</h3>
                     <ul>
@@ -985,6 +1146,7 @@
                 title: '🎵 SANGAT SERIUS! ZHIDAN LATIHAN SENDIRI LAGU "CINTA UNTUK MAMA" SEBELUM TAMPIL DI GR ACARA! ❤️✨',
                 subtitle: 'Memantapkan Hafalan Lirik dan Vokal Agar Tampil Lebih Maksimal dan Percaya Diri di Panggung GR 🎤',
                 img: 'zidanlatihan.jpeg',
+                aspectRatio: '16-9',
                 content: `
                     <p><strong>SURAKARTA, SECEFU News</strong> — Sebuah pemandangan penuh inspirasi terekam langsung di lokasi acara. Sebelum giliran penampilannya tiba di panggung Gladi Resik (GR), Zhidan tampak memilih untuk menyendiri dan berlatih vokal secara mandiri demi mengasah penampilannya. 🎤✨</p>
                     
@@ -1000,6 +1162,7 @@
                 title: '🏛️ Presiden Prabowo Sampaikan Pidato Kenegaraan dalam Sidang Tahunan MPR 2026',
                 subtitle: 'Pemaparan 121 Kebijakan Transformatif & Arah Ekonomi Menjelang HUT Kemerdekaan RI Ke-81 🇮🇩💼',
                 img: 'prabowo.jpeg',
+                aspectRatio: '16-9',
                 content: `
                     <p><strong>JAKARTA, SECEFU News</strong> — Presiden RI Prabowo Subianto menghadiri Sidang Tahunan MPR RI serta Sidang Bersama DPR RI dan DPD RI Tahun 2026 di Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta. 🇮🇩 Agenda kenegaraan tahunan menjelang Hari Kemerdekaan RI ke-81 ini diselenggarakan untuk memaparkan capaian kinerja pemerintah dan arah kebijakan ekonomi ke depan. 💼</p>
                     
@@ -1019,7 +1182,8 @@
             'haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta': {
                 title: '🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG PARENT GATHERING ✨',
                 subtitle: 'Persiapan Latihan Vokal Intensif Menuju Penampilan Terbaik 🏢🎙️',
-                img: null, // Tanpa Gambar
+                img: null,
+                aspectRatio: '16-9',
                 content: `
                     <p><strong>SECEFU News</strong> — Atmosfer haru, fokus, dan penuh semangat menyelimuti persiapan Alviris dan Zhidan. Alviris, selaku Owner SECEFU INDONESIA, bersama rekan duetnya Zhidan, telah menjalani proses latihan vokal intensif demi menyuguhkan penampilan yang berkesan. 🎶</p>
                     <p>Keduanya bersiap membawakan lagu emosional "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band untuk memeriahkan panggung acara Parent Gathering. Perpaduan vokal keduanya diprediksi menjadi salah satu momen yang paling dinantikan. ❤️✨</p>
@@ -1028,7 +1192,8 @@
             'kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower': {
                 title: '🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING! ✨',
                 subtitle: 'Sinergi Kompak Guru dan Murid Memandu Acara 🏢🤝',
-                img: null, // Tanpa Gambar
+                img: null,
+                aspectRatio: '16-9',
                 content: `
                     <p><strong>SECEFU News</strong> — Alviris dipastikan tampil berkolaborasi bersama gurunya, Mr. Joe, dalam memandu jalannya panggung acara Parent Gathering. 🤝⚡</p>
                     <p>Mr. Joe akan bertindak sebagai MC Utama untuk memimpin bagian formal, sedangkan Alviris bertindak sebagai MC Kedua untuk memberikan interaksi segar dan menjaga suasana tetap hangat dan antusias dari awal hingga akhir. 🎤👦👨‍🏫</p>
@@ -1038,6 +1203,7 @@
                 title: '⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆',
                 subtitle: 'Perubahan Jadwal Resmi Menjadi Minggu, 16 Agustus 2026 Pukul 08.00 WIB Pagi ⚡☀️',
                 img: 'newspanitiaa.png',
+                aspectRatio: '16-9',
                 content: `
                     <p><strong>BERITA UTAMA</strong> — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama. 🔄</p>
                     <p>Berdasarkan jadwal awal, kompetisi ini seharusnya digelar pada Sabtu, 22 Agustus 2026 pukul 16.00 WIB. Namun, agenda tersebut bentrok dengan kegiatan lain dari pihak manajemen. 🗓️</p>
@@ -1051,6 +1217,7 @@
                 title: '🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING! 🎶',
                 subtitle: 'Persiapan Maraton & Peran Ganda Alviris Sebagai MC ✨',
                 img: 'pentas.png',
+                aspectRatio: '16-9',
                 content: `
                     <p><strong>SECEFU News</strong> — Persiapan matang dilakukan oleh Alviris dan Zidan yang intens latihan duet membawakan lagu "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band untuk panggung Parent Gathering. 🎵</p>
                     <p>Selain menyumbangkan vokal emasnya, Alviris juga akan memandu jalannya acara sebagai Master of Ceremony (MC). Perpaduan public speaking dan aksi panggung keduanya dijamin membuat suasana menjadi berkesan! 🌟</p>
@@ -1060,6 +1227,7 @@
                 title: '🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆',
                 subtitle: 'Pembentukan Komite Resmi Penyelenggara Rangkaian Lomba Kemerdekaan 🇮🇩✨',
                 img: 'newspanitiaa.png',
+                aspectRatio: '16-9',
                 content: `
                     <p>Pada hari Sabtu, 1 Agustus 2026, Organisasi SECEFU (Semangat Ceria Bersama Futsal) Indonesia secara resmi membentuk susunan kepanitiaan baru. Komite ini dibentuk secara khusus untuk menyelenggarakan dan menyukseskan rangkaian acara SECEFU 2026 Spesial 17 Agustus!</p>
                     <h3>👑 Pimpinan Utama</h3>
@@ -1090,6 +1258,7 @@
                 title: 'MENGENANG ALM. DEYRRIL ALMERE GHAISAN',
                 subtitle: 'Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨',
                 img: 'fotodeyrril.png',
+                aspectRatio: '16-9',
                 content: `
                     <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
                     <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melatih, dan penuh tantangan. Namun, di hadapan penyakit tersebut, Deyrril justru menunjukkan ketangguhan luar biasa.</p>
@@ -1099,13 +1268,11 @@
             }
         };
 
-        // Masuk dari Welcome Screen
         function enterSite() {
             document.getElementById('welcome-screen').classList.add('hidden');
             switchTab('home', true);
         }
 
-        // Switching Tab & Update URL Path
         function switchTab(tabName, pushToHistory = true) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -1140,18 +1307,20 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // MEMBUKA DETAIL BERITA SECARA FULL HALAMAN & MENGUBAH URL DENGAN SLUG
         function openNewsDetail(slug, pushState = true) {
             const data = newsDatabase[slug];
             if (!data) return;
 
             const detailContainer = document.getElementById('full-news-content');
             
-            // Cek apakah artikel memiliki gambar atau tidak
             let imageHeader = '';
             if (data.img) {
+                const containerClass = (data.aspectRatio === '4-3') 
+                    ? 'memorial-thumbnail-container-4-3' 
+                    : 'memorial-thumbnail-container';
+                    
                 imageHeader = `
-                    <div class="memorial-thumbnail-container">
+                    <div class="${containerClass}">
                         <img src="${data.img}" alt="${data.title}" class="memorial-thumbnail">
                     </div>
                 `;
@@ -1176,7 +1345,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Routing Saat Halaman Pertama Dimuat / Refresh / Direct Link / Back-Forward
         function handleRouting() {
             const path = window.location.pathname;
 
@@ -1205,7 +1373,6 @@
         window.addEventListener('DOMContentLoaded', handleRouting);
         window.addEventListener('popstate', handleRouting);
 
-        // Toggle Lomba Description
         function toggleLombaText() {
             const container = document.getElementById('lomba-text-full');
             const btn = document.getElementById('btn-lomba-toggle');
