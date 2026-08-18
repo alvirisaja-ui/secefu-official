@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SECEFU - Semangat Ceria Bersama Futsal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="secefulogobaruu.png">
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "8fb8605b-a657-411b-adea-5e86b96e2d0c",
+          safari_web_id: "web.onesignal.auto.532534a2-fa6b-4796-aab8-c4e8f72a79c0",
+          notifyButton: {
+            enable: true,
+          },
+        });
+      });
+    </script>
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --blue-primary: #0f172a;
+            --blue-accent: #0284c7;
+            --blue-soft: #e0f2fe;
+            --accent-orange: #f97316;
+            --accent-red: #ef4444;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --nav-height: 65px;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            padding-bottom: 20px;
+        }
+
+        /* --- WELCOME SCREEN --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            text-align: center;
+            padding: 24px;
+        }
+
+        #welcome-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .welcome-logo-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .welcome-logo {
+            max-width: 180px;
+            width: 55vw;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2), 0 15px 35px rgba(239, 68, 68, 0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            background: linear-gradient(45deg, #ef4444, #f97316, #0284c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn-continue {
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .btn-continue:active {
+            transform: scale(0.98);
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(2, 132, 199, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: var(--blue-primary);
+        }
+
+        .nav-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--blue-accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 30px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        main {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 0 16px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.35s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- CARDS & GRID --- */
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--blue-accent));
+        }
+
+        /* NEWS GRID LAYOUT */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+        }
+
+        .news-card-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        .news-card-thumb-4-3 {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        .news-card-no-img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0284c7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .news-card-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .news-card-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--blue-primary);
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card-snippet {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-align: justify;
+        }
+
+        .news-card-footer {
+            margin-top: auto;
+        }
+
+        .section-header {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--blue-primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- THUMBNAIL CONTAINER --- */
+        .memorial-thumbnail-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            background-color: #000;
+        }
+
+        .memorial-thumbnail-container-4-3 {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            background-color: #000;
+        }
+
+        .memorial-thumbnail {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .card-title {
+            color: var(--blue-primary);
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+
+        .card-subtitle {
+            color: var(--blue-accent);
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--blue-accent);
+            color: var(--blue-accent);
+        }
+
+        .btn-outline:active {
+            background: var(--blue-soft);
+        }
+
+        .btn-back-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+            color: var(--blue-primary);
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.25s ease;
+            margin-bottom: 16px;
+        }
+
+        .btn-back-icon:hover {
+            background: var(--blue-soft);
+            color: var(--blue-accent);
+            transform: translateX(-3px);
+        }
+
+        /* --- FEATURED BOX --- */
+        .lomba-featured-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 18px;
+            margin-top: 10px;
+        }
+
+        .badge-populer {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-orange));
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-closed {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 0.9rem;
+            font-weight: 800;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid #fca5a5;
+        }
+
+        .content-body p {
+            color: var(--text-dark);
+            line-height: 1.75;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .content-body h3 {
+            color: var(--accent-orange);
+            margin: 18px 0 8px 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .content-body ul {
+            margin-left: 18px;
+            margin-bottom: 14px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* --- INFO GRID --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .info-card {
+            background: var(--blue-soft);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            padding: 14px;
+            border-radius: 12px;
+        }
+
+        .info-card span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--blue-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info-card p {
+            font-weight: 700;
+            color: var(--blue-primary);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+            align-items: center;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #ffffff;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* --- MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 650px) {
+            body {
+                padding-bottom: calc(var(--nav-height) + 20px);
+            }
+
+            header {
+                position: relative;
+                border-bottom: 1px solid #e2e8f0;
+                box-shadow: none;
+            }
+
+            nav {
+                justify-content: center;
+                padding: 12px 16px;
+            }
+
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: var(--nav-height);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                border-top: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0 10px;
+                z-index: 999;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+            }
+
+            .nav-menu li {
+                flex: 1;
+                text-align: center;
+            }
+
+            .nav-link {
+                flex-direction: column;
+                gap: 2px;
+                padding: 6px 0;
+                border-radius: 12px;
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+
+            .nav-link.active {
+                color: var(--accent-red);
+                font-weight: 800;
+            }
+
+            .nav-link-icon {
+                font-size: 1.25rem;
+            }
+
+            main {
+                margin: 15px auto;
+                padding: 0 12px;
+            }
+
+            .card {
+                padding: 16px;
+                border-radius: 16px;
+                margin-bottom: 16px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-screen">
+        <div class="welcome-logo-wrapper">
+            <img src="secefukeren.png" alt="Logo SECEFU" class="welcome-logo">
+        </div>
+        <h1 class="welcome-title">SECEFU</h1>
+        <p class="welcome-subtitle">Semangat Ceria Bersama Futsal ⚽🔥</p>
+        <button class="btn-continue" onclick="enterSite()">Lanjut 🚀</button>
+    </div>
+
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <img src="secefukeren.png" alt="Logo SECEFU" class="nav-logo">
+                <span>SECEFU</span>
+            </div>
+            <ul class="nav-menu">
+                <li>
+                    <a class="nav-link active" onclick="switchTab('home')">
+                        <span class="nav-link-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" onclick="switchTab('news')">
+                        <span class="nav-link-icon">📰</span>
+                        <span>News</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" onclick="switchTab('lomba')">
+                        <span class="nav-link-icon">🏆</span>
+                        <span>Daftar Lomba</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="tab-home" class="tab-content active">
+            
+            <div class="card">
+                <h2 class="section-header">📢 Tentang Platform SECEFU</h2>
+                <p style="color: var(--text-dark); line-height: 1.75; font-size: 0.95rem; text-align: justify;">
+                    <strong>SECEFU (Semangat Ceria Bersama Futsal)</strong> adalah wadah independen yang menyelenggarakan berbagai kompetisi olahraga futsal dan <em>e-sport</em> digital. Kami berkomitmen menciptakan ajang kompetisi yang menjunjung tinggi sportivitas, kebersamaan, dan wadah kreativitas positif bagi generasi muda.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2 class="section-header">🔥 Lomba Pilihan & Populer</h2>
+                <div class="lomba-featured-box" style="text-align: center; padding: 25px 18px;">
+                    <p style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600; margin-bottom: 16px;">
+                        Tidak ada lomba yang tersedia saat ini
+                    </p>
+                    <button class="btn btn-outline" onclick="switchTab('lomba')" style="width: auto; margin: 0 auto;">
+                        📜 Lihat Arsip Lomba Lalu
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-header">📰 Berita Terkini</h2>
+                
+                <div style="background: var(--blue-soft); border-left: 4px solid var(--accent-red); padding: 16px; border-radius: 12px;">
+                    <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
+                        🇮🇩 Khidmat dan Semarak, Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI di Istana Merdeka
+                    </h3>
+                    <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
+                        JAKARTA, SECEFU News – Peringatan Hari Ulang Tahun (HUT) ke-81 Kemerdekaan Republik Indonesia di Istana Merdeka, Jakarta, pada Senin (17/8/2026), berlangsung dengan penuh kekhidmatan dan kemeriahan...
+                    </p>
+                    <button class="btn btn-primary" onclick="openNewsDetail('khidmat-dan-semarak-presiden-prabowo-subianto-pimpin-upacara-hut-ke-81-ri-di-istana-merdeka')">
+                        🚀 Mulai Baca Berita
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section id="tab-news" class="tab-content">
+
+            <div class="card">
+                <h2 class="section-header">📰 Berita & Informasi Terkini SECEFU</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                    Klik <strong>"Mulai Baca 🚀"</strong> pada berita di bawah untuk membaca artikel selengkapnya.
+                </p>
+
+                <div class="news-grid">
+
+                    <div class="news-card">
+                        <img src="81ri.jpeg" alt="Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🇮🇩 Khidmat dan Semarak, Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI di Istana Merdeka</h3>
+                            <p class="news-card-snippet">JAKARTA, SECEFU News – Peringatan Hari Ulang Tahun (HUT) ke-81 Kemerdekaan Republik Indonesia di Istana Merdeka, Jakarta, pada Senin (17/8/2026), berlangsung dengan penuh kekhidmatan dan kemeriahan...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('khidmat-dan-semarak-presiden-prabowo-subianto-pimpin-upacara-hut-ke-81-ri-di-istana-merdeka')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="absara.jpeg" alt="Tim ABSARA Ratoh Jaroe Parent Gathering UNS Tower" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 TIM ABSARA SMP ABBS SUKSES HENTAK PANGGUNG PARENT GATHERING DI UNS TOWER, SAJIKAN TARI RATOH JAROE YANG SPEKTAKULER 💃🔥</h3>
+                            <p class="news-card-snippet">SURAKARTA, SECEFU News – Setelah sebelumnya sukses mencuri perhatian dalam sesi gladi resik, Tim Tari Ratoh Jaroe ABSARA dari SMP ABBS Surakarta akhirnya resmi tampil di panggung utama...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('tim-absara-smp-abbs-sukses-hentak-panggung-parent-gathering-di-uns-tower-sajikan-tari-ratoh-jaroe-yang-spektakuler')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="secefulomba.jpeg" alt="Kicau Mania FC Juara 1 Futsal SECEFU 2026" class="news-card-thumb-4-3">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 KICAU MANIA FC SABET JUARA 1 FUTSAL SECEFU 2026, HAIKAL BAIS JADI TOP SCORER DENGAN CELEBRASI 9 GOL ⚽🏆</h3>
+                            <p class="news-card-snippet">SURAKARTA, SECEFU News – Turnamen Futsal SECEFU 2026 dalam rangka menyambut Hari Ulang Tahun (HUT) Kemerdekaan Republik Indonesia ke-81 sekaligus sebagai bentuk penghormatan untuk mengenang almarhum Deyrril secara resmi telah selesai digelar...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('kicau-mania-fc-sabet-juara-1-futsal-secefu-2026-haikal-bais-jadi-top-scorer-dengan-celebrasi-9-gol')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="zidal.jpeg" alt="Duet Alviris dan Zidane Parent Gathering" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 DUET MAUT ALVIRIS DAN ZHIDANE SUKSES HARUKAN UNS TOWER, BAWAKAN LAGU ‘YANG TERBAIK BAGIMU’ DENGAN PENUH HARMONI 🎤😭</h3>
+                            <p class="news-card-snippet">Suasana haru dan penuh emosi menyelimuti aula UNS Tower Surakarta dalam acara Parent Gathering SMP ABBS Surakarta. Momen puncak yang paling dinantikan akhirnya tiba saat duet vokal Alviris dan Zidane naik ke atas panggung utama...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('duet-maut-alviris-dan-zhidane-sukses-harukan-uns-tower-bawakan-lagu-yang-terbaik-bagimu-dengan-penuh-harmoni')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="padus.jpeg" alt="Dynamix Symphony Paduan Suara SMP ABBS" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">📰 DYNAMIX SYMPHONY PUKAU WALI MURID DI UNS TOWER, TAMPILKAN HARMONI INDAH PADA PARENT GATHERING SMP ABBS SURAKARTA 🎶✨</h3>
+                            <p class="news-card-snippet">Setelah melalui proses latihan yang panjang dan disiplin, Tim Paduan Suara Dynamix Symphony akhirnya resmi tampil perdana di atas panggung utama UNS Tower Surakarta...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('dynamix-symphony-pukau-wali-murid-di-uns-tower-tampilkan-harmoni-indah-pada-parent-gathering-smp-abbs-surakarta')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="absaraabbs.jpeg" alt="Tim ABSARA SMP ABBS Ratoh Jaroe" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">💃 TIM ABSARA SMP ABBS PUKAU PENGUNJUNG DI UNS TOWER, TAMPILKAN RATOH JAROE YANG MEMENCARKAN PESONA ACEH 🔥</h3>
+                            <p class="news-card-snippet">Penampilan luar biasa dan penuh energi ditunjukkan oleh Tim ABSARA SMP ABBS Surakarta dalam sesi gladi resik yang digelar di UNS Tower Surakarta...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('tim-absara-smp-abbs-pukau-pengunjung-di-uns-tower-tampilkan-ratoh-jaroe-yang-memencarkan-pesona-aceh')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="zidanlatihan.jpeg" alt="Zhidan Latihan Sendiri Sebelum Tampil di GR Acara" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🎵 SANGAT SERIUS! ZHIDAN LATIHAN SENDIRI LAGU "CINTA UNTUK MAMA" SEBELUM TAMPIL DI GR ACARA! ❤️✨</h3>
+                            <p class="news-card-snippet">Zhidan melatih vokal dan hafalan lirik lagu 'Cinta Untuk Mama' secara mandiri di lokasi acara sebelum naik ke panggung Gladi Resik (GR)...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('zidan-latihan-sendiri-lagu-cinta-untuk-mama-saat-gr-di-uns-tower')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="prabowo.jpeg" alt="Presiden Prabowo Subianto" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🏛️ Presiden Prabowo Sampaikan Pidato Kenegaraan dalam Sidang Tahunan MPR 2026</h3>
+                            <p class="news-card-snippet">Presiden RI Prabowo Subianto menghadiri Sidang Tahunan MPR RI serta Sidang Bersama DPR RI dan DPD RI Tahun 2026 di Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('presiden-prabowo-sampaikan-pidato-kenegaraan-dalam-sidang-tahunan-mpr-2026')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-card-no-img">
+                            🎤 DUET SANGAT HARU<br>ALVIRIS & ZHIDAN
+                        </div>
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG PARENT GATHERING ✨</h3>
+                            <p class="news-card-snippet">Atmosfer haru, fokus, dan penuh semangat menyelimuti persiapan Alviris & Zhidan yang telah merampungkan persiapan untuk acara Parent Gathering...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-card-no-img">
+                            🎙️ DUET MC SENSASIONAL<br>ALVIRIS & MR. JOE
+                        </div>
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING! ✨</h3>
+                            <p class="news-card-snippet">Detail baru terungkap dari Parent Gathering, Alviris akan berkolaborasi dengan gurunya, Mr. Joe sebagai duet MC panggung...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="newspanitiaa.png" alt="Jadwal Dimajukan" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆</h3>
+                            <p class="news-card-snippet">Berdasarkan jadwal awal kompetisi digelar Sabtu 22 Agustus, kini resmi dimajukan ke Minggu, 16 Agustus 2026 pukul 08.00 WIB pagi karena antusiasme tinggi...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('jadwal-diupdate-lomba-futsal-secefu-indonesia-resmi-dimajukan-karena-antusiasme-tinggi')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="pentas.png" alt="Duet Penampilan" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING! 🎶</h3>
+                            <p class="news-card-snippet">Alviris dan Zidan intens latihan membawakan lagu 'Yang Terbaik Bagimu' karya ADA Band untuk Parent Gathering...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('duet-penuh-haru-owner-secefu-indonesia-zidan-siap-gebrak-panggung-parent-gathering-di-uns-tower')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="newspanitiaa.png" alt="Structure Panitia" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆</h3>
+                            <p class="news-card-snippet">Pembentukan komite resmi penyelenggara perayaan 17 Agustus 2026. Susunan lengkap divisi futsal dan e-sports EA FC Mobile...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('struktur-kepanitiaan-informasi-lomba-secefu-2026-spesial-17-agustus')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <img src="fotodeyrril.png" alt="Memorial Deyrril" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">MENGENANG ALM. DEYRRIL ALMERE GHAISAN</h3>
+                            <p class="news-card-snippet">Kisah tentang keberanian, keceriaan, dan senyum abadi pejuang kecil sejati melawan leukemia MDS-AML2...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('mengenang-alm-deyrril-almere-ghaisan')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <section id="tab-news-detail" class="tab-content">
+            <div class="card">
+                <button class="btn-back-icon" onclick="switchTab('news')">←</button>
+                <div id="full-news-content"></div>
+            </div>
+        </section>
+
+
+        <section id="tab-lomba" class="tab-content">
+            <div class="card">
+                <h1 class="card-title">Lomba Futsal & E-Sport</h1>
+                <h2 class="card-subtitle">Special 17 Agustus & Penghormatan Atas Meninggalnya Alm. Deyrril Almere Ghaisan ⚽🎮</h2>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <span>📅 Hari / Tanggal</span>
+                        <p>Minggu, 16 Agustus 2026</p>
+                    </div>
+                    <div class="info-card">
+                        <span>⏰ Waktu</span>
+                        <p>08.00 WIB s.d. Selesai</p>
+                    </div>
+                    <div class="info-card">
+                        <span>📍 Tempat</span>
+                        <p>LAPANGAN BASKET GRIYA SAKINAH</p>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <span class="badge-closed">
+                        🔴 Lomba Selesai
+                    </span>
+                    <button class="btn btn-outline" id="btn-lomba-toggle" onclick="toggleLombaText()" style="width: auto;">
+                        📄 Baca Selengkapnya
+                    </button>
+                </div>
+
+                <div id="lomba-text-full" style="display:none; margin-top: 15px;">
+                    <div class="content-body">
+                        <h3>PROPOSAL & DESKRIPSI ACARA</h3>
+                        <p><strong>TURNAMEN FUTSAL & E-SPORT 2026</strong><br>Spesial 17 Agustus & Memorial Penghormatan untuk Alm. Deyrril Almere Ghaisan</p>
+
+                        <h3>1. Waktu & Tempat Pelaksanaan</h3>
+                        <p><strong>Hari / Tanggal:</strong> Minggu, 16 Agustus 2026<br>
+                        <strong>Waktu:</strong> Jam 08.00 WIB s.d. Selesai<br>
+                        <strong>Tempat:</strong> LAPANGAN BASKET GRIYA SAKINAH</p>
+
+                        <h3>2. Latar Belakang & Dedikasi Khusus</h3>
+                        <p>Agustus tahun ini membawa arti yang sangat mendalam bagi kita semua. Di tengah semangat menyambut Hari Kemerdekaan Republik Indonesia, kita juga berkumpul untuk mengenang dan menghormati salah satu sahabat terbaik kita yang telah berpulang ke Rahmatullah, Alm. Deyrril Almere Ghaisan.</p>
+                        <p>Alm. Deyrril mengembuskan napas terakhirnya pada hari Kamis, 6 Agustus 2026, pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, setelah perjuangan panjang dan luar biasa melawan kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2).</p>
+                        <p>Semasa hidupnya, Deyrril dikenal sebagai anak yang sangat ceria dan periang. Senyum dan semangatnya selalu membawa kehangatan bagi siapa saja di sekelilingnya. Kebetulan yang sangat menyentuh, tanggal 17 Agustus adalah hari ulang tahunnya. Oleh karena itu, seluruh rangkaian kompetisi yang diadakan pada tanggal 16 Agustus 2026 jam 08.00 WIB di LAPANGAN BASKET GRIYA SAKINAH ini didedikasikan sepenuhnya untuk merayakan semangat hidup Deyrril, mengabadikan keceriaannya, serta menyatukan solidaritas kita melalui bidang yang penuh sportivitas.</p>
+
+                        <h3>3. Penjelasan Rangkaian Lomba</h3>
+                        <p>Turnamen memorial ini dibagi menjadi dua kategori utama yang memadukan aktivitas fisik dan ketangkasan digital:</p>
+
+                        <p><strong>⚽ Turnamen Futsal</strong></p>
+                        <ul>
+                            <li><strong>Konsep:</strong> Kompetisi sepak bola dalam ruangan yang mengutamakan kerja sama tim, sportivitas, dan solidaritas.</li>
+                            <li><strong>Tujuan:</strong> Menjadi wadah untuk menyalurkan energi positif, mempererat tali persaudaraan antarpeserta, dan meneladani ketangguhan Alm. Deyrril yang tidak pernah menyerah.</li>
+                            <li><strong>Sistem Lomba:</strong> Pertandingan menggunakan sistem gugur/setengah kompetisi (disesuaikan dengan jumlah tim) dengan durasi waktu resmi yang diawasi oleh wasit.</li>
+                        </ul>
+
+                        <p><strong>🎮 Turnamen E-Sport (EA SPORTS FC MOBILE)</strong></p>
+                        <ul>
+                            <li><strong>Konsep:</strong> Kompetisi mobile gaming menggunakan platform EA FC Mobile, game simulasi sepak bola terpopuler di dunia.</li>
+                            <li><strong>Tujuan:</strong> Mengakomodasi minat generasi muda di bidang olahraga digital (e-sport) sekaligus menghadirkan kompetisi yang tak kalah seru secara virtual.</li>
+                            <li><strong>Sistem Lomba:</strong> Pertandingan menggunakan mode Head-to-Head (H2H) secara real-time. Peserta akan bertanding satu lawan satu menggunakan skuad terbaik mereka untuk memperebutkan gelar juara.</li>
+                        </ul>
+
+                        <h3>4. Penutup & Nilai Acara</h3>
+                        <p>Melalui Lomba Futsal dan E-Sport EA FC Mobile ini, kita tidak hanya berkompetisi untuk meraih piala, tetapi juga untuk merayakan persahabatan. Mari kita bawa keceriaan dan keberanian yang selalu ditunjukkan oleh Alm. Deyrril Almere Ghaisan ke dalam lapangan futsal maupun ke dalam arena game. Semoga acara pada tanggal 16 Agustus jam 08.00 WIB nanti menjadi penghormatan terbaik bagi almarhum dan pengingat bagi kita semua untuk selalu bersyukur dan saling mendukung.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2026 SECEFU - Semangat Ceria Bersama Futsal. All Rights Reserved.
+    </footer>
+
+    <script>
+        const newsDatabase = {
+            'khidmat-dan-semarak-presiden-prabowo-subianto-pimpin-upacara-hut-ke-81-ri-di-istana-merdeka': {
+                title: '🇮🇩 Khidmat dan Semarak, Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI di Istana Merdeka',
+                subtitle: 'Peringatan Detik-Detik Proklamasi Berlangsung Khidmat dengan Tema "Indonesia Berdaulat, Adil, dan Makmur" 🏛️🌟',
+                img: '81ri.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>JAKARTA, SECEFU News</strong> – Peringatan Hari Ulang Tahun (HUT) ke-81 Kemerdekaan Republik Indonesia di Istana Merdeka, Jakarta, pada Senin (17/8/2026), berlangsung dengan penuh kekhidmatan dan kemeriahan. 🎉 Bertindak sebagai Inspektur Upacara, Presiden Prabowo Subianto memimpin langsung jalannya Upacara Peringatan Detik-Detik Proklamasi yang dihadiri oleh jajaran pejabat negara, tokoh nasional, serta ribuan warga masyarakat umum. 🇮🇩 Rangkaian upacara tahun ini mengusung tema besar "Indonesia Berdaulat, Adil, dan Makmur" yang merefleksikan visi jangka panjang bangsa menuju Indonesia Emas. 🌟</p>
+                    
+                    <p>Suasana akrab dan hangat sangat terasa di panggung utama Istana Merdeka sejak pagi hari. 🤝 Presiden Prabowo Subianto tampak duduk berdampingan diapit oleh Presiden ke-7 RI, Joko Widodo, dan Wakil Presiden Gibran Rakabuming Raka. 👤 Hadir pula Wakil Ketua DPR Sufmi Dasco Ahmad, Ketua DPR Puan Maharani, serta sejumlah tokoh nasional seperti Titiek Soeharto yang didampingi putranya, Didiet Hediprasetyo. Kehadiran para mantan presiden dan wakil presiden terdahulu ini menjadi simbol kuatnya persatuan dan kontinuitas kepemimpinan nasional di mata publik. ✨</p>
+
+                    <h3>🕊️ Momen Haru Mengheningkan Cipta untuk Bencana NTT</h3>
+                    <p>Di tengah kekhidmatan upacara, momen haru menyelimuti halaman Istana Merdeka saat Presiden Prabowo Subianto mengajak seluruh hadirin untuk mengheningkan cipta. 🕯️ Secara khusus, Presiden mengajak masyarakat mendoakan para korban bencana alam gempa bumi yang melanda wilayah Nusa Tenggara Timur (NTT) dan Sumatra. 🙏 Langkah ini mempertegas empati nasional di tengah hari kemenangan bangsa, yang kemudian diperkuat pada malam harinya melalui pesan solidaritas "Pray for NTT" dalam atraksi drone show di Jakarta. Keheningan yang tercipta selama beberapa menit tersebut menegaskan bahwa peringatan kemerdekaan bukan sekadar perayaan, melainkan juga ruang untuk merajut solidaritas kemanusiaan antar-anak bangsa. 🌌</p>
+
+                    <h3>🦅 Kesuksesan Tim Paskibraka "Indonesia Berdaulat"</h3>
+                    <p>Prosesi pengibaran bendera yang dimulai tepat pukul 10.00 WIB berhasil dilaksanakan dengan sempurna oleh Tim Pasukan Pengibar Bendera Pusaka (Paskibraka). 💂‍♂️ Siswi SMKN 5 Pontianak asal Kalimantan Barat, Celina Olivia Apriani Theo, sukses menjalankan tugas mulia sebagai pembawa baki Bendera Merah Putih dengan ketenangan yang luar biasa di bawah tatapan jutaan pasang mata. 🇮🇩</p>
+                    
+                    <p>Tugas pengibaran dikerjakan secara presisi oleh tim inti Kelompok 8, yaitu:</p>
+                    <ul>
+                        <li>🏹 <strong>M. Aryo Wira Zandhyka Y (Bengkulu)</strong> bertindak sebagai pembentang bendera.</li>
+                        <li>⚙️ <strong>I Nyoman Harya Dhanurendra Darmamukti (Kalimantan Selatan)</strong> bertindak sebagai pengerek bendera.</li>
+                        <li>🗣️ <strong>Achmad Fachri Mubarok (Jambi)</strong> dipercaya sebagai Komandan Kelompok 8.</li>
+                    </ul>
+                    <p>Di bawah komando Kolonel Inf Priyo Handoyo selaku Komandan Upacara, Sang Merah Putih berkibar gagah di langit Jakarta seiring berkumandangnya lagu kebangsaan Indonesia Raya yang diiringi oleh orkestra gabungan taruna akademi TNI dan Polri. 🎶</p>
+
+                    <h3>✈️ Atraksi Jet Tempur Rafale dan Karnaval Budaya</h3>
+                    <p>Sisi semarak peringatan ke-81 ini dimeriahkan oleh aksi memukau dari jajaran TNI dan Polri yang memamerkan kesiapan alutsista modern mereka. 🎖️ Langit di atas Istana Merdeka diguncang oleh manuver udara gemuruh dari jet tempur canggih Dassault Rafale milik TNI Angkatan Udara yang melakukan debut penampilannya dalam formasi flypast yang presisi. 🚀 Selain atraksi udara, sebanyak 17 penerjun payung dari Komando Pasukan Khusus (Kopassus) turut mendarat mulus tepat di titik tengah halaman Istana, mengundang gemuruh tepuk tangan dan decak kagum dari para tamu undangan. 🪂</p>
+                    <p>Kemeriahan berlanjut hingga sore dan malam hari melalui pergelaran Karnaval Kemerdekaan dan Pesta Rakyat yang melibatkan ribuan seniman dari berbagai provinsi. 🎭 Presiden Prabowo Subianto bersama Wapres Gibran Rakabuming Raka menyapa langsung lautan warga dari atas mobil taktis Maung buatan Pindad berwarna putih dalam iring-iringan kirab budaya yang melintasi rute Monas hingga Bundaran HI. Sepanjang rute kirab, masyarakat menyambut antusias antrean kendaraan hias, pawai busana adat, hingga suguhan musik tradisional yang merepresentasikan kekayaan budaya Nusantara. 🚘</p>
+
+                    <h3>🌅 Upacara Penurunan Bendera Menjadi Penutup Rangkaian</h3>
+                    <p>Rangkaian seremoni kenegaraan resmi ditutup dengan Upacara Penurunan Bendera Sang Merah Putih pada pukul 17.00 WIB saat matahari mulai tenggelam di ufuk barat Jakarta. 🌆 Dipimpin oleh Kombes Pol Jerrold Hendra Yosef Kumontoy selaku Komandan Upacara, prosesi penurunan bendera berjalan dengan sangat tertib, khidmat, dan tanpa hambatan sedikit pun. 👮‍♂️</p>
+                    <p>Setelah bendera berhasil disimpan kembali ke dalam kotak penyimpanan, Presiden Prabowo Subianto menyampaikan apresiasi setinggi-tingginya kepada seluruh elemen masyarakat, panitia penyelenggara, serta jajaran petugas keamanan yang berhasil menyukseskan seluruh rangkaian perayaan hari kemerdekaan tahun ini dengan penuh semangat persatuan, kedisiplinan, dan sportivitas yang tinggi. 🤝</p>
+                `
+            },
+            'tim-absara-smp-abbs-sukses-hentak-panggung-parent-gathering-di-uns-tower-sajikan-tari-ratoh-jaroe-yang-spektakuler': {
+                title: '📰 TIM ABSARA SMP ABBS SUKSES HENTAK PANGGUNG PARENT GATHERING DI UNS TOWER, SAJIKAN TARI RATOH JAROE YANG SPEKTAKULER 💃🔥',
+                subtitle: 'Penampilan Resmi Luar Biasa Penuh Energi dan Estetika Seni Budaya Aceh di Hadapan Ratusan Wali Murid 🏢🎭✨',
+                img: 'absara.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Setelah sebelumnya sukses mencuri perhatian dalam sesi gladi resik, Tim Tari Ratoh Jaroe ABSARA dari SMP ABBS Surakarta akhirnya resmi tampil di panggung utama. 🏢 Penampilan yang sangat dinantikan ini disajikan dengan luar biasa megah dalam acara Parent Gathering yang berlangsung di gedung UNS Tower Surakarta. 🎭✨</p>
+                    
+                    <p>Sorak-sorai dan tepuk tangan riuh dari ratusan wali murid langsung menggema saat para penari ABSARA mulai mengambil posisi duduk rapat di atas panggung. 👏 Tanpa rasa canggung, tim kebanggaan sekolah ini langsung menyuguhkan performa kelas tinggi yang penuh dengan energi, kecepatan, dan nilai estetika kebudayaan khas Serambi Mekah, Aceh. 🌟</p>
+
+                    <h3>🔥 Keunggulan Aksi Panggung Tim ABSARA</h3>
+                    <ul>
+                        <li><strong>💃 Gerakan Penari yang Sangat Bagus:</strong> Para penari menunjukkan kualitas papan atas lewat gerakan tepuk dada, tepuk tangan, dan gelengan kepala yang sangat cepat. ⚡ Sinkronisasi dan kekompakan mereka begitu presisi tanpa ada kesalahan satu pun, membuat penonton terpukau dari awal hingga akhir.</li>
+                        <li><strong>🎤 Lantunan Syahi yang Sangat Bagus:</strong> Pertunjukan ini terasa semakin magis berkat suara syahi (penyanyi pelantun syair) yang sangat merdu, lantang, dan penuh karakter. 🎶 Lantunan syair bernada spiritual tersebut mengalun indah, sukses mengomandoi perpindahan tempo gerakan penari secara harmonis.</li>
+                        <li><strong>✨ Formasi Visual yang Estetik:</strong> Perpaduan kostum adat yang cerah menghasilkan gradasi warna yang luar biasa indah di bawah sorotan lampu panggung UNS Tower seiring dengan perubahan posisi duduk dan liukan badan para siswi berbakat tersebut. 🌈</li>
+                    </ul>
+
+                    <p>Penampilan resmi Tim ABSARA di hadapan para orang tua murid ini berakhir dengan sangat sukses. 🏆 Gemuruh standing ovation (tepuk tangan sambil berdiri) dari seluruh hadirin menjadi bukti sahih bahwa kerja keras dan latihan disiplin yang mereka jalani berbuah prestasi seni yang luar biasa membanggakan. 🎉🥳</p>
+                `
+            },
+            'kicau-mania-fc-sabet-juara-1-futsal-secefu-2026-haikal-bais-jadi-top-scorer-dengan-celebrasi-9-gol': {
+                title: '📰 KICAU MANIA FC SABET JUARA 1 FUTSAL SECEFU 2026, HAIKAL BAIS JADI TOP SCORER DENGAN CELEBRASI 9 GOL ⚽🏆',
+                subtitle: 'Sengit & Penuh Drama Lapangan, Turnamen Memorial Alm. Deyrril Sukses Digelar Spesial HUT RI Ke-81 🇮🇩🍹',
+                img: 'secefulomba.jpeg',
+                aspectRatio: '4-3',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Turnamen Futsal SECEFU 2026 dalam rangka menyambut Hari Ulang Tahun (HUT) Kemerdekaan Republik Indonesia ke-81 sekaligus sebagai bentuk penghormatan untuk mengenang almarhum Deyrril secara resmi telah selesai digelar. 🏟️ Kompetisi ini berlangsung dengan tensi yang sangat tinggi, penuh keseriusan, dan diwarnai aksi saling kejar angka yang dramatis. ⚡</p>
+                    
+                    <p>Turnamen mini ini diikuti oleh 3 tim tangguh yang menggunakan format unik dengan formasi 3 orang pemain per tim. Mengingat gengsi kompetisi yang besar serta misi emosional demi mengenang mendiang sahabat mereka, para pemain tampil habis-habisan hingga sempat memicu perdebatan panas dan adu argumen yang sengit di atas lapangan hijau. 🔥</p>
+
+                    <h3>🏆 Hasil Akhir & Distribusi Juara Turnamen</h3>
+                    <ul>
+                        <li><strong>🥇 Juara 1 (Kicau Mania FC):</strong> Tampil dominan dengan taktik yang solid, tim ini sukses mengunci peringkat teratas dan membawa pulang predikat juara utama. 🏆</li>
+                        <li><strong>🥈 Juara 2 (81 RI FC):</strong> Menunjukkan semangat juang 45 yang luar biasa, tim ini memberikan perlawanan ketat hingga berhasil menduduki podium kedua. 🇮🇩</li>
+                        <li><strong>🥉 Juara 3 (SECEFU AGUSTUS FC):</strong> Harus puas berada di posisi ketiga setelah melewati perjuangan melelahkan dan drama lapangan yang menguras fisik. ⚽</li>
+                        <li><strong>🔥 Top Scorer (Haikal Bais Al-Ghifari):</strong> Gelar pencetak gol terbanyak jatuh kepada Haikal Bais Al-Ghifari yang tampil mengerikan di depan gawang lawan dengan torehan total 9 gol sepanjang turnamen. 👟⚽</li>
+                    </ul>
+
+                    <h3>🍹 Apresiasi Spesial: Bonus Es Teh Penthol JOSS Solo!</h3>
+                    <p>Sebagai bentuk apresiation atas keringat dan perjuangan di lapangan, panitia memberikan hadiah penyegar dahaga yang sangat spesial. Khusus untuk skuad Kicau Mania FC sebagai sang juara dan Haikal Bais Al-Ghifari selaku raja gol, berhak mendapatkan bonus Es Teh segar dari Penthol JOSS Solo! 🍹 Hadiah unik ini berhasil mendinginkan suasana setelah tensi pertandingan yang sempat memanas. 🎉</p>
+
+                    <p>Turnamen ini sukses menjadi wadah penyaluran bakat yang kompetitif sekaligus menjadi momentum berharga untuk mengenang almarhum Deyrril melalui semangat olahraga yang sportif. Selamat kepada para pemenang! 🏆👏</p>
+                `
+            },
+            'duet-maut-alviris-dan-zhidane-sukses-harukan-uns-tower-bawakan-lagu-yang-terbaik-bagimu-dengan-penuh-harmoni': {
+                title: '📰 DUET MAUT ALVIRIS DAN ZHIDANE SUKSES HARUKAN UNS TOWER, BAWAKAN LAGU ‘YANG TERBAIK BAGIMU’ DENGAN PENUH HARMONI 🎤😭',
+                subtitle: 'Penampilan Spesial Penuh Emosi Alviris & Zidane Menguras Air Mata Ratusan Wali Murid di Parent Gathering SMP ABBS Surakarta 🏢✨💖',
+                img: 'zidal.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Suasana haru dan penuh emosi menyelimuti aula UNS Tower Surakarta dalam acara Parent Gathering SMP ABBS Surakarta. 🏢 Momen puncak yang paling dinantikan akhirnya tiba saat duet vokal Alviris dan Zidane naik ke atas panggung utama untuk memberikan penampilan spesial mereka di hadapan ratusan wali murid yang hadir. 🌟✨</p>
+                    
+                    <p>Alviris dan Zidane secara luar biasa membawakan lagu legendaris <em>"Yang Terbaik Bagimu (Jangan Lupakan Ayah)"</em> karya ADA Band. 🎶 Penampilan kedua siswa berbakat ini sukses menghanyutkan perasaan seluruh hadirin melalui harmonisasi vokal yang sangat matang, jernih, dan penuh dengan penghayatan mendalam. 💖</p>
+
+                    <h3>😭 Momen Penampilan & Kualitas Harmoni</h3>
+                    <ul>
+                        <li><strong>😭 Suasana Haru Menyentuh Hati:</strong> Alunan vokal yang penuh penjiwaan dari Alviris dan Zidane berhasil menyentuh lubuk hati terdalam para orang tua. Tak sedikit dari hadirin yang tampak berkaca-kaca bahkan meneteskan air mata karena larut dalam pesan mendalam lagu tentang kasih sayang seorang ayah tersebut. 💧</li>
+                        <li><strong>🎤 Harmoni Vokal yang Sangat Bagus:</strong> Kombinasi karakter suara Alviris dan Zidane saling melengkapi dengan sempurna. Pembagian suara (splitting voice) yang rapi dan kontrol nada yang stabil membuat lagu ini terdengar begitu indah dari awal hingga akhir. ⚡</li>
+                    </ul>
+
+                    <h3>👑 Sentuhan Dingin Miss Putri</h3>
+                    <p>Kesuksesan besar penampilan yang menguras air mata ini tidak lepas dari peran penting Miss Putri selaku Penanggung Jawab (PJ) sekaligus pelatih utama mereka. 👩‍🏫✨</p>
+
+                    <ul>
+                        <li><strong>🎹 Pelatih Berbakat yang Teliti:</strong> Miss Putri terbukti memiliki bakat luar biasa dalam mengasah musikalitas siswa. Beliau dengan sabar melatih penyampaian rasa (soul), dinamika lagu, serta kematangan mental Alviris dan Zidane agar mampu menyampaikan pesan lagu secara maksimal ke telinga pendengar. 🎼🏆</li>
+                    </ul>
+
+                    <p>Penampilan spektakuler ini ditutup dengan tepuk tangan riuh yang panjang dari seluruh wali murid dan guru yang hadir sebagai bentuk apresiasi tertinggi. 👏 Kolaborasi epik antara Alviris, Zidane, dan bimbingan penuh kasih dari Miss Putri sukses menjadi momen paling berkesan dan tak terlupakan dalam sejarah Parent Gathering tahun ini. 🎉🏆</p>
+                `
+            },
+            'dynamix-symphony-pukau-wali-murid-di-uns-tower-tampilkan-harmoni-indah-pada-parent-gathering-smp-abbs-surakarta': {
+                title: '📰 DYNAMIX SYMPHONY PUKAU WALI MURID DI UNS TOWER, TAMPILKAN HARMONI INDAH PADA PARENT GATHERING SMP ABBS SURAKARTA 🎶✨',
+                subtitle: 'Penampilan Perdana Memukau Paduan Suara SMP ABBS Surakarta dengan Melantunkan Empat Lagu Spesial 🏢🎤💖',
+                img: 'padus.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Setelah melalui proses latihan yang panjang dan disiplin, Tim Paduan Suara Dynamix Symphony akhirnya resmi tampil perdana di atas panggung utama. 🎤 Performa memukau ini disajikan dalam acara Parent Gathering SMP ABBS Surakarta yang diselenggarakan dengan megah di UNS Tower Surakarta. 🏢 Pertunjukan ini sekaligus menjadi pembuktian kualitas olah vokal luar biasa dari para siswa kebanggaan sekolah. 🌟</p>
+                    
+                    <p>Dalam penampilan resmi kali ini, Dynamix Symphony sukses menghanyutkan emosi seluruh penonton yang hadir melalui pembawaan empat lagu krusial. 🎶 Pembukaan acara terasa sangat khidmat saat tim paduan suara melantunkan Asmaul Husna dengan penuh penghayatan, disusul dengan lagu kebangsaan Indonesia Raya yang membakar semangat nasionalisme di dalam aula. 🇮🇩 Tak hanya itu, mereka juga membawakan Mars Al-Abidin dengan penuh kebanggaan, serta lagu Indonesia Pusaka yang diaransemen dengan harmonisasi vokal yang sangat indah dan menyentuh hati. 💖</p>
+
+                    <h3>👑 Sosok di Balik Layar (Miss Wafda)</h3>
+                    <p>Kesuksesan besar penampilan Dynamix Symphony tidak lepas dari tangan dingin Miss Wafda, guru luar biasa dari SMP ABBS Surakarta yang bertindak langsung sebagai Penanggung Jawab (PJ) sekaligus otak di balik keindahan harmoni ini. 👩‍🏫✨</p>
+
+                    <ul>
+                        <li><strong>🎹 Guru Seni Multitalenta dengan Insting Musikalitas Tinggi:</strong> Miss Wafda dikenal sebagai pendidik yang memiliki bakat musik yang sangat luar biasa. Beliau memiliki kepekaan nada yang tajam, mampu membaca potensi vokal unik setiap siswa, dan meramu perbedaan karakter suara tersebut menjadi satu kesatuan harmoni yang bulat, merdu, dan menyentuh jiwa. 🎼</li>
+                        <li><strong>💪 Mentor Disiplin, Sabar, dan Penuh Motivasi:</strong> Di kalangan siswa, Miss Wafda dikenal sebagai sosok pelatih yang tegas namun sangat sabar. Beliau dengan teliti membimbing teknik pernapasan (breathing), ketepatan nada (intonation), artikulasi, hingga penjiwaan panggung (stage presence), sekaligus selalu memberikan suntikan mental positif agar para siswa tampil percaya diri di atas panggung besar. 🏆</li>
+                    </ul>
+
+                    <p>Penampilan perdana Dynamix Symphony di hadapan ratusan wali murid ini diakhiri dengan gemuruh tepuk tangan dan apresiasi yang luar biasa. 👏 Keberhasilan ini membuktikan bahwa di bawah bimbingan guru berbakat seperti Miss Wafda, SMP ABBS Surakarta terus konsisten melahirkan generasi yang unggul dalam bidang akademik sekaligus bersinar dalam bidang seni dan kreativitas. 🎉🏆</p>
+                `
+            },
+            'tim-absara-smp-abbs-pukau-pengunjung-di-uns-tower-tampilkan-ratoh-jaroe-yang-memencarkan-pesona-aceh': {
+                title: '💃 TIM ABSARA SMP ABBS PUKAU PENGUNJUNG DI UNS TOWER, TAMPILKAN RATOH JAROE YANG MEMENCARKAN PESONA ACEH 🔥',
+                subtitle: 'Sajian Tarian Tradisional Legendaris Aceh Penuh Energi dan Harmoni di Sesi Gladi Resik 🏢🎭✨',
+                img: 'absaraabbs.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Penampilan luar biasa dan penuh energi ditunjukkan oleh Tim ABSARA SMP ABBS Surakarta dalam sesi gladi resik yang digelar di gedung UNS Tower Surakarta. 🏢 Tim kebanggaan sekolah tersebut sukses memukau seluruh hadirin serta panitia lewat sajian Tari Ratoh Jaroe, tarian tradisional legendaris asal Serambi Mekah, Aceh. 🎭✨</p>
+                    
+                    <p>Suasana di dalam aula UNS Tower seketika berubah menjadi sangat meriah dan bergemuruh saat para penari mulai mengambil posisi di atas panggung utama. 👏 Karakteristik Tari Ratoh Jaroe yang menuntut konsentrasi serta sinkronisasi tinggi mampu dieksecusi dengan sangat rapi dan tanpa celah oleh para siswi berbakat tersebut, meskipun statusnya masih dalam tahap gladi resik. 🌟</p>
+
+                    <h3>🔥 Keunggulan Aksi Panggung Tim ABSARA</h3>
+                    <ul>
+                        <li><strong>💃 Gerakan Penari yang Sangat Bagus:</strong> Kekompakan adalah kunci utama, di mana kombinasi gerakan tepuk dada, tepuk tangan, dan gelengan kepala dilakukan dalam tempo cepat serta presisi tinggi tanpa ada kesalahan sedikit pun. ⚡</li>
+                        <li><strong>🎤 Lantunan Syahi yang Sangat Bagus:</strong> Penampilan ini semakin hidup berkat suara syahi atau penyanyi pelantun syair yang terdengar sangat merdu, lantang, dan berkarakter. Suara emasnya sukses memandu perubahan ritme gerakan penari secara harmonis dari awal hingga akhir. 🎶</li>
+                        <li><strong>✨ Formasi dan Kostum Estetik:</strong> Perpaduan kostum adat yang cerah menghasilkan gradasi warna yang luar biasa indah seiring dengan perubahan posisi duduk dan liukan badan para penari di bawah sorotan lampu panggung. 🌈</li>
+                    </ul>
+
+                    <p>Penampilan yang sangat matang dalam sesi gladi resik ini menjadi bukti nyata dari kerja keras dan kesiapan total Tim ABSARA untuk menggebrak panggung utama. 🏆 Tepuk tangan riuh dan sorak kagum dari seluruh penonton yang hadir mengiringi akhir dari penampilan spektakuler yang sarat akan nilai budaya ini. 🥳</p>
+                `
+            },
+            'zidan-latihan-sendiri-lagu-cinta-untuk-mama-saat-gr-di-uns-tower': {
+                title: '🎵 SANGAT SERIUS! ZHIDAN LATIHAN SENDIRI LAGU "CINTA UNTUK MAMA" SEBELUM TAMPIL DI GR ACARA! ❤️✨',
+                subtitle: 'Memantapkan Hafalan Lirik dan Vokal Agar Tampil Lebih Maksimal dan Percaya Diri di Panggung GR 🎤',
+                img: 'zidanlatihan.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> — Sebuah pemandangan penuh inspirasi terekam langsung di lokasi acara. Sebelum giliran penampilannya tiba di panggung Gladi Resik (GR), Zhidan tampak memilih untuk menyendiri dan berlatih vokal secara mandiri demi mengasah penampilannya. 🎤✨</p>
+                    
+                    <p>Sambil membawa teks lirik dan memfokuskan konsentrasinya, Zhidan mengulang lagu emosional berjudul <em>"Cinta Untuk Mama"</em> secara konsisten. Langkah ini ia ambil murni karena tekad yang kuat agar dapat menguasai setiap lekuk nada, kontrol pernapasan, serta hafalan kata demi kata tanpa ada satupun lirik yang terlewat atau salah saat gilirannya naik ke atas panggung GR. 🥺❤️</p>
+
+                    <h3>🔥 Fokus Tinggi dan Dedikasi Tanpa Kompromi</h3>
+                    <p>Meskipun kondisi di sekitar lokasi cukup ramai oleh persiapan teknis lainnya, hal tersebut sama sekali tidak mengabaikan fokus Zhidan. Ia memanfaatkan setiap menit jeda waktu yang ada dengan duduk tenang di sudut ruangan, menyanyikan bait demi bait dengan ketelitian tinggi.</p>
+
+                    <p>Keseriusan dan kedisiplinan yang ditunjukkan oleh Zhidan ini mendapat apresiasi hangat dari banyak pihak. Dedikasi untuk terus memantapkan hafalan secara solo membuktikan profesionalisme dan rasa tanggung jawab yang luar biasa, sehingga saat berada di atas panggung nanti, ia bisa tampil lepas, percaya diri, dan menyentuh hati semua penonton yang mendengarkan. 🎶🌟</p>
+                `
+            },
+            'presiden-prabowo-sampaikan-pidato-kenegaraan-dalam-sidang-tahunan-mpr-2026': {
+                title: '🏛️ Presiden Prabowo Sampaikan Pidato Kenegaraan dalam Sidang Tahunan MPR 2026',
+                subtitle: 'Pemaparan 121 Kebijakan Transformatif & Arah Ekonomi Menjelang HUT Kemerdekaan RI Ke-81 🇮🇩💼',
+                img: 'prabowo.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>JAKARTA, SECEFU News</strong> — Presiden RI Prabowo Subianto menghadiri Sidang Tahunan MPR RI serta Sidang Bersama DPR RI dan DPD RI Tahun 2026 di Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta. 🇮🇩 Agenda kenegaraan tahunan menjelang Hari Kemerdekaan RI ke-81 ini diselenggarakan untuk memaparkan capaian kinerja pemerintah dan arah kebijakan ekonomi ke depan. 💼</p>
+                    
+                    <h3>📌 Fakta Pelaksanaan Sidang</h3>
+                    <ul>
+                        <li><strong>📆 Waktu:</strong> Jumat pagi, 14 Agustus 2026 mulai pukul 08.30 WIB.</li>
+                        <li><strong>📍 Lokasi:</strong> Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta.</li>
+                        <li><strong>👥 Tokoh yang Hadir:</strong> Presiden ke-7 RI Joko Widodo, serta para mantan Wakil Presiden seperti Jusuf Kalla, Boediono, dan Ma'ruf Amin.</li>
+                        <li><strong>📜 Agenda Utama:</strong> Pidato kenegaraan presiden, pembukaan masa sidang, serta penyampaian RUU APBN Tahun 2027 beserta Nota Keuangannya.</li>
+                    </ul>
+
+                    <h3>🎙️ Deskripsi Isi Pidato Kenegaraan</h3>
+                    <p>Dalam pidatonya, Presiden Prabowo menegaskan bahwa pemerintahannya telah menjalankan 121 kebijakan transformatif dalam kurun waktu 21 bulan sejak dilantik. 📈 Kebijakan tersebut mencakup perbaikan infrastruktur sekolah, perluasan program Cek Kesehatan Gratis, hingga program Makan Bergizi Gratis. 🍱 Presiden juga menyatakan bahwa tantangan besar seperti pemberantasan korupsi dan kemiskinan masih menjadi fokus utama yang harus terus dituntaskan tanpa boleh berpuas diri. 🎯</p>
+                    <p>Suasana di dalam ruang rapat paripurna tampak khidmat dan dipenuhi oleh ratusan anggota dewan, menteri Kabinet Merah Putih, serta perwakilan duta besar negara sahabat. ✨ Informasi resmi dan tayangan ulang mengenai jalannya sidang ini dapat diakses langsung melalui laman Sekretariat Negara atau akun media sosial resmi DPR RI. 🌐</p>
+                `
+            },
+            'haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta': {
+                title: '🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG PARENT GATHERING ✨',
+                subtitle: 'Persiapan Latihan Vokal Intensif Menuju Penampilan Terbaik 🏢🎙️',
+                img: null,
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SECEFU News</strong> — Atmosfer haru, fokus, dan penuh semangat menyelimuti persiapan Alviris dan Zhidan. Alviris, selaku Owner SECEFU INDONESIA, bersama rekan duetnya Zhidan, telah menjalani proses latihan vokal intensif demi menyuguhkan penampilan yang berkesan. 🎶</p>
+                    <p>Keduanya bersiap membawakan lagu emosional "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band untuk memeriahkan panggung acara Parent Gathering. Perpaduan vokal keduanya diprediksi menjadi salah satu momen yang paling dinantikan. ❤️✨</p>
+                `
+            },
+            'kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower': {
+                title: '🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING! ✨',
+                subtitle: 'Sinergi Kompak Guru dan Murid Memandu Acara 🏢🤝',
+                img: null,
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SECEFU News</strong> — Alviris dipastikan tampil berkolaborasi bersama gurunya, Mr. Joe, dalam memandu jalannya panggung acara Parent Gathering. 🤝⚡</p>
+                    <p>Mr. Joe akan bertindak sebagai MC Utama untuk memimpin bagian formal, sedangkan Alviris bertindak sebagai MC Kedua untuk memberikan interaksi segar dan menjaga suasana tetap hangat dan antusias dari awal hingga akhir. 🎤👦👨‍🏫</p>
+                `
+            },
+            'jadwal-diupdate-lomba-futsal-secefu-indonesia-resmi-dimajukan-karena-antusiasme-tinggi': {
+                title: '⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆',
+                subtitle: 'Perubahan Jadwal Resmi Menjadi Minggu, 16 Agustus 2026 Pukul 08.00 WIB Pagi ⚡☀️',
+                img: 'newspanitiaa.png',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>BERITA UTAMA</strong> — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama. 🔄</p>
+                    <p>Berdasarkan jadwal awal, kompetisi ini seharusnya digelar pada Sabtu, 22 Agustus 2026 pukul 16.00 WIB. Namun, agenda tersebut bentrok dengan kegiatan lain dari pihak manajemen. 🗓️</p>
+                    <p><em>"Awalnya mau diadakan tanggal 22 Agustus jam 4 sore, tapi saya tidak bisa karena ada acara lain berbarengan,"</em> ucap Alviris selaku Owner SECEFU INDONESIA saat memberikan keterangan resmi. 🎙️👑</p>
+                    <p>Alviris melanjutkan bahwa keputusan pemajuan jadwal ini diambil setelah melihat semangat luar biasa dari para peserta. Anak-anak dari Griya Sakinah dan Atlantis menunjukkan antusiasme yang sangat tinggi dan secara khusus meminta agar waktu perlombaan dimajukan agar bisa segera bertanding. 💥💪</p>
+                    <p>Melihat desakan positif dan semangat membara dari anak-anak Griya Sakinah maupun Atlantis, ditambah adanya agenda pribadi yang bertabrakan di jadwal lama, Alviris akhirnya mempertimbangkan keputusan tersebut secara mendalam. Hasilnya, manajemen resmi memajukan lomba futsal ke hari <strong>Minggu, 16 Agustus 2026 pukul 08.00 WIB pagi</strong>. ⚡☀️</p>
+                    <p>Perubahan ini diharapkan membawa atmosfer pertandingan yang jauh lebih segar di hari Minggu pagi, sekaligus menjawab langsung harapan besar dari tim Griya Sakinah dan Atlantis yang sudah tidak sabar untuk unjuk gigi di lapangan hijau! ⚽ Siapakah yang bakal membawa pulang trofi juara? 🏆🔥</p>
+                `
+            },
+            'duet-penuh-haru-owner-secefu-indonesia-zidan-siap-gebrak-panggung-parent-gathering-di-uns-tower': {
+                title: '🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING! 🎶',
+                subtitle: 'Persiapan Maraton & Peran Ganda Alviris Sebagai MC ✨',
+                img: 'pentas.png',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>SECEFU News</strong> — Persiapan matang dilakukan oleh Alviris dan Zidan yang intens latihan duet membawakan lagu "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band untuk panggung Parent Gathering. 🎵</p>
+                    <p>Selain menyumbangkan vokal emasnya, Alviris juga akan memandu jalannya acara sebagai Master of Ceremony (MC). Perpaduan public speaking dan aksi panggung keduanya dijamin membuat suasana menjadi berkesan! 🌟</p>
+                `
+            },
+            'struktur-kepanitiaan-informasi-lomba-secefu-2026-spesial-17-agustus': {
+                title: '🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆',
+                subtitle: 'Pembentukan Komite Resmi Penyelenggara Rangkaian Lomba Kemerdekaan 🇮🇩✨',
+                img: 'newspanitiaa.png',
+                aspectRatio: '16-9',
+                content: `
+                    <p>Pada hari Sabtu, 1 Agustus 2026, Organisasi SECEFU (Semangat Ceria Bersama Futsal) Indonesia secara resmi membentuk susunan kepanitiaan baru. Komite ini dibentuk secara khusus untuk menyelenggarakan dan menyukseskan rangkaian acara SECEFU 2026 Spesial 17 Agustus!</p>
+                    <h3>👑 Pimpinan Utama</h3>
+                    <p><strong>Alviris</strong><br>💼 <strong>Peran:</strong> CEO, Founder, & Owner SECEFU Indonesia</p>
+                    <h3>⚽ Divisi Lomba Futsal</h3>
+                    <p>📅 <strong>Jadwal Lomba:</strong> Minggu, 16 Agustus 2026<br>
+                    ⏰ <strong>Waktu:</strong> 08:00 WIB – Selesai<br>
+                    📍 <strong>Lokasi:</strong> Lapangan Basket Griya Sakinah</p>
+                    <p><strong>Anggota Panitia:</strong></p>
+                    <ul>
+                        <li>👤 Bellva | 📞 Kontak: +62 856-4163-0500</li>
+                        <li>👤 Aisyah | 📞 Kontak: +62 851-1758-1011</li>
+                        <li>👤 Nayla | 📞 Kontak: +62 822-2705-1003</li>
+                        <li>👤 Mika | 📞 Kontak: +62 895-1522-4141</li>
+                    </ul>
+                    <h3>🎮 Divisi Lomba E-Sports (EA FC MOBILE)</h3>
+                    <p>📅 <strong>Jadwal Lomba:</strong> To Be Announced ⏳<br>
+                    📍 <strong>Lokasi:</strong> Online 🌐</p>
+                    <p><strong>Anggota Panitia:</strong></p>
+                    <ul>
+                        <li>👤 Raihan | 📞 Kontak: +62 812-3339-9608</li>
+                        <li>👤 Ridho | 📞 Kontak: +62 895-6231-50686</li>
+                        <li>👤 Angkasa | 📞 Kontak: +62 812-5285-2445</li>
+                    </ul>
+                `
+            },
+            'mengenang-alm-deyrril-almere-ghaisan': {
+                title: 'MENGENANG ALM. DEYRRIL ALMERE GHAISAN',
+                subtitle: 'Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨',
+                img: 'fotodeyrril.png',
+                aspectRatio: '16-9',
+                content: `
+                    <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
+                    <p>Deyrril adalah definisi nyata dari seorang pejuang sejati. Di usia mudanya, ia harus berhadapan dengan badai besar bernama kanker leukemia jenis Myelodysplastic Syndrome - Acute Myeloid Leukemia (MDS-AML2). Sebuah perjuangan medis yang sangat berat, melatih, dan penuh tantangan. Namun, di hadapan penyakit tersebut, Deyrril justru menunjukkan ketangguhan luar biasa.</p>
+                    <p>Sebuah takdir yang sangat menyentuh hati, tanggal 17 Agustus adalah hari ulang tahunnya. Bulan Agustus kini bertransformasi menjadi bulan memorial untuk mengenang seluruh kebaikan dan semangat hidupnya yang luar biasa.</p>
+                    <p>Alm. Deyrril Almere Ghaisan telah pulang dengan damai, meninggalkan jejak indah yang tidak akan pernah terhapus oleh waktu. Ia akan selalu dikenang sebagai pahlawan kecil yang mengajari kita semua arti dari sebuah senyuman di tengah perjuangan.</p>
+                `
+            }
+        };
+
+        function enterSite() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            switchTab('home', true);
+        }
+
+        function switchTab(tabName, pushToHistory = true) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+
+            const targetTab = document.getElementById('tab-' + tabName);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            } else {
+                document.getElementById('tab-home').classList.add('active');
+                tabName = 'home';
+            }
+
+            let activeIndex = 0;
+            if (tabName === 'news' || tabName === 'news-detail') activeIndex = 1;
+            if (tabName === 'lomba') activeIndex = 2;
+
+            if (links[activeIndex]) {
+                links[activeIndex].classList.add('active');
+            }
+
+            if (pushToHistory) {
+                let newPath = '/home';
+                if (tabName === 'news') newPath = '/news';
+                if (tabName === 'lomba') newPath = '/daftar-lomba';
+                
+                history.pushState({ tab: tabName }, '', newPath);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openNewsDetail(slug, pushState = true) {
+            const data = newsDatabase[slug];
+            if (!data) return;
+
+            const detailContainer = document.getElementById('full-news-content');
+            
+            let imageHeader = '';
+            if (data.img) {
+                const containerClass = (data.aspectRatio === '4-3') 
+                    ? 'memorial-thumbnail-container-4-3' 
+                    : 'memorial-thumbnail-container';
+                    
+                imageHeader = `
+                    <div class="${containerClass}">
+                        <img src="${data.img}" alt="${data.title}" class="memorial-thumbnail">
+                    </div>
+                `;
+            }
+
+            detailContainer.innerHTML = `
+                ${imageHeader}
+                <h1 class="card-title">${data.title}</h1>
+                <h2 class="card-subtitle">${data.subtitle}</h2>
+                <div class="content-body">
+                    ${data.content}
+                </div>
+            `;
+
+            switchTab('news-detail', false);
+
+            if (pushState) {
+                const newUrl = `/news/${slug}`;
+                history.pushState({ newsSlug: slug, tab: 'news-detail' }, '', newUrl);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleRouting() {
+            const path = window.location.pathname;
+
+            if (path.startsWith('/news/')) {
+                const slug = path.replace('/news/', '');
+                document.getElementById('welcome-screen').classList.add('hidden');
+                if (newsDatabase[slug]) {
+                    openNewsDetail(slug, false);
+                } else {
+                    switchTab('news', false);
+                }
+            } else if (path === '/news') {
+                document.getElementById('welcome-screen').classList.add('hidden');
+                switchTab('news', false);
+            } else if (path === '/daftar-lomba') {
+                document.getElementById('welcome-screen').classList.add('hidden');
+                switchTab('lomba', false);
+            } else if (path === '/home') {
+                document.getElementById('welcome-screen').classList.add('hidden');
+                switchTab('home', false);
+            } else {
+                switchTab('home', false);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', handleRouting);
+        window.addEventListener('popstate', handleRouting);
+
+        function toggleLombaText() {
+            const container = document.getElementById('lomba-text-full');
+            const btn = document.getElementById('btn-lomba-toggle');
+
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+                btn.innerHTML = '⚡ Sembunyikan Deskripsi';
+            } else {
+                container.style.display = 'none';
+                btn.innerHTML = '📄 Baca Selengkapnya';
+            }
+        }
+    </script>
+</body>
+</html>
