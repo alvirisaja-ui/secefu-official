@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SECEFU - Semangat Ceria Bersama Futsal</title>
     
-    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="secefulogobaruu.png">
 
-    <!-- ONESIGNAL PUSH NOTIFICATION SDK -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -659,7 +656,6 @@
 </head>
 <body>
 
-    <!-- WELCOME / LANDING SCREEN -->
     <div id="welcome-screen">
         <div class="welcome-logo-wrapper">
             <img src="secefukeren.png" alt="Logo SECEFU" class="welcome-logo">
@@ -669,7 +665,6 @@
         <button class="btn-continue" onclick="enterSite()">Lanjut 🚀</button>
     </div>
 
-    <!-- MAIN NAVBAR -->
     <header>
         <nav>
             <div class="nav-brand">
@@ -699,13 +694,10 @@
         </nav>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
     <main>
         
-        <!-- ================= HOME SECTION ================= -->
         <section id="tab-home" class="tab-content active">
             
-            <!-- 1. RINGKASAN INFORMASI PLATFORM -->
             <div class="card">
                 <h2 class="section-header">📢 Tentang Platform SECEFU</h2>
                 <p style="color: var(--text-dark); line-height: 1.75; font-size: 0.95rem; text-align: justify;">
@@ -713,7 +705,6 @@
                 </p>
             </div>
 
-            <!-- 2. LOMBA PILIHAN -->
             <div class="card">
                 <h2 class="section-header">🔥 Lomba Pilihan & Populer</h2>
                 <div class="lomba-featured-box" style="text-align: center; padding: 25px 18px;">
@@ -726,18 +717,17 @@
                 </div>
             </div>
 
-            <!-- 3. BERITA RINGKAS TERKINI -->
             <div class="card">
                 <h2 class="section-header">📰 Berita Terkini</h2>
                 
                 <div style="background: var(--blue-soft); border-left: 4px solid var(--accent-red); padding: 16px; border-radius: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        📰 TIM ABSARA SMP ABBS SUKSES HENTAK PANGGUNG PARENT GATHERING DI UNS TOWER, SAJIKAN TARI RATOH JAROE YANG SPEKTAKULER 💃🔥
+                        🇮🇩 Khidmat dan Semarak, Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI di Istana Merdeka
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        SURAKARTA, SECEFU News – Setelah sebelumnya sukses mencuri perhatian dalam sesi gladi resik, Tim Tari Ratoh Jaroe ABSARA dari SMP ABBS Surakarta akhirnya resmi tampil di panggung utama acara Parent Gathering di gedung UNS Tower Surakarta...
+                        JAKARTA, SECEFU News – Peringatan Hari Ulang Tahun (HUT) ke-81 Kemerdekaan Republik Indonesia di Istana Merdeka, Jakarta, pada Senin (17/8/2026), berlangsung dengan penuh kekhidmatan dan kemeriahan...
                     </p>
-                    <button class="btn btn-primary" onclick="openNewsDetail('tim-absara-smp-abbs-sukses-hentak-panggung-parent-gathering-di-uns-tower-sajikan-tari-ratoh-jaroe-yang-spektakuler')">
+                    <button class="btn btn-primary" onclick="openNewsDetail('khidmat-dan-semarak-presiden-prabowo-subianto-pimpin-upacara-hut-ke-81-ri-di-istana-merdeka')">
                         🚀 Mulai Baca Berita
                     </button>
                 </div>
@@ -746,7 +736,6 @@
         </section>
 
 
-        <!-- ================= NEWS SECTION ================= -->
         <section id="tab-news" class="tab-content">
 
             <div class="card">
@@ -756,6 +745,19 @@
                 </p>
 
                 <div class="news-grid">
+
+                    <div class="news-card">
+                        <img src="81ri.jpeg" alt="Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🇮🇩 Khidmat dan Semarak, Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI di Istana Merdeka</h3>
+                            <p class="news-card-snippet">JAKARTA, SECEFU News – Peringatan Hari Ulang Tahun (HUT) ke-81 Kemerdekaan Republik Indonesia di Istana Merdeka, Jakarta, pada Senin (17/8/2026), berlangsung dengan penuh kekhidmatan dan kemeriahan...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('khidmat-dan-semarak-presiden-prabowo-subianto-pimpin-upacara-hut-ke-81-ri-di-istana-merdeka')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="news-card">
                         <img src="absara.jpeg" alt="Tim ABSARA Ratoh Jaroe Parent Gathering UNS Tower" class="news-card-thumb">
@@ -936,7 +938,6 @@
         </section>
 
 
-        <!-- ================= FULL NEWS DETAIL READ SECTION ================= -->
         <section id="tab-news-detail" class="tab-content">
             <div class="card">
                 <button class="btn-back-icon" onclick="switchTab('news')">←</button>
@@ -945,7 +946,6 @@
         </section>
 
 
-        <!-- ================= DAFTAR LOMBA SECTION ================= -->
         <section id="tab-lomba" class="tab-content">
             <div class="card">
                 <h1 class="card-title">Lomba Futsal & E-Sport</h1>
@@ -1016,14 +1016,45 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer>
         &copy; 2026 SECEFU - Semangat Ceria Bersama Futsal. All Rights Reserved.
     </footer>
 
-    <!-- DATA BERITA TERINTEGRASI -->
     <script>
         const newsDatabase = {
+            'khidmat-dan-semarak-presiden-prabowo-subianto-pimpin-upacara-hut-ke-81-ri-di-istana-merdeka': {
+                title: '🇮🇩 Khidmat dan Semarak, Presiden Prabowo Subianto Pimpin Upacara HUT ke-81 RI di Istana Merdeka',
+                subtitle: 'Peringatan Detik-Detik Proklamasi Berlangsung Khidmat dengan Tema "Indonesia Berdaulat, Adil, dan Makmur" 🏛️🌟',
+                img: '81ri.jpeg',
+                aspectRatio: '16-9',
+                content: `
+                    <p><strong>JAKARTA, SECEFU News</strong> – Peringatan Hari Ulang Tahun (HUT) ke-81 Kemerdekaan Republik Indonesia di Istana Merdeka, Jakarta, pada Senin (17/8/2026), berlangsung dengan penuh kekhidmatan dan kemeriahan. 🎉 Bertindak sebagai Inspektur Upacara, Presiden Prabowo Subianto memimpin langsung jalannya Upacara Peringatan Detik-Detik Proklamasi yang dihadiri oleh jajaran pejabat negara, tokoh nasional, serta ribuan warga masyarakat umum. 🇮🇩 Rangkaian upacara tahun ini mengusung tema besar "Indonesia Berdaulat, Adil, dan Makmur" yang merefleksikan visi jangka panjang bangsa menuju Indonesia Emas. 🌟</p>
+                    
+                    <p>Suasana akrab dan hangat sangat terasa di panggung utama Istana Merdeka sejak pagi hari. 🤝 Presiden Prabowo Subianto tampak duduk berdampingan diapit oleh Presiden ke-7 RI, Joko Widodo, dan Wakil Presiden Gibran Rakabuming Raka. 👤 Hadir pula Wakil Ketua DPR Sufmi Dasco Ahmad, Ketua DPR Puan Maharani, serta sejumlah tokoh nasional seperti Titiek Soeharto yang didampingi putranya, Didiet Hediprasetyo. Kehadiran para mantan presiden dan wakil presiden terdahulu ini menjadi simbol kuatnya persatuan dan kontinuitas kepemimpinan nasional di mata publik. ✨</p>
+
+                    <h3>🕊️ Momen Haru Mengheningkan Cipta untuk Bencana NTT</h3>
+                    <p>Di tengah kekhidmatan upacara, momen haru menyelimuti halaman Istana Merdeka saat Presiden Prabowo Subianto mengajak seluruh hadirin untuk mengheningkan cipta. 🕯️ Secara khusus, Presiden mengajak masyarakat mendoakan para korban bencana alam gempa bumi yang melanda wilayah Nusa Tenggara Timur (NTT) dan Sumatra. 🙏 Langkah ini mempertegas empati nasional di tengah hari kemenangan bangsa, yang kemudian diperkuat pada malam harinya melalui pesan solidaritas "Pray for NTT" dalam atraksi drone show di Jakarta. Keheningan yang tercipta selama beberapa menit tersebut menegaskan bahwa peringatan kemerdekaan bukan sekadar perayaan, melainkan juga ruang untuk merajut solidaritas kemanusiaan antar-anak bangsa. 🌌</p>
+
+                    <h3>🦅 Kesuksesan Tim Paskibraka "Indonesia Berdaulat"</h3>
+                    <p>Prosesi pengibaran bendera yang dimulai tepat pukul 10.00 WIB berhasil dilaksanakan dengan sempurna oleh Tim Pasukan Pengibar Bendera Pusaka (Paskibraka). 💂‍♂️ Siswi SMKN 5 Pontianak asal Kalimantan Barat, Celina Olivia Apriani Theo, sukses menjalankan tugas mulia sebagai pembawa baki Bendera Merah Putih dengan ketenangan yang luar biasa di bawah tatapan jutaan pasang mata. 🇮🇩</p>
+                    
+                    <p>Tugas pengibaran dikerjakan secara presisi oleh tim inti Kelompok 8, yaitu:</p>
+                    <ul>
+                        <li>🏹 <strong>M. Aryo Wira Zandhyka Y (Bengkulu)</strong> bertindak sebagai pembentang bendera.</li>
+                        <li>⚙️ <strong>I Nyoman Harya Dhanurendra Darmamukti (Kalimantan Selatan)</strong> bertindak sebagai pengerek bendera.</li>
+                        <li>🗣️ <strong>Achmad Fachri Mubarok (Jambi)</strong> dipercaya sebagai Komandan Kelompok 8.</li>
+                    </ul>
+                    <p>Di bawah komando Kolonel Inf Priyo Handoyo selaku Komandan Upacara, Sang Merah Putih berkibar gagah di langit Jakarta seiring berkumandangnya lagu kebangsaan Indonesia Raya yang diiringi oleh orkestra gabungan taruna akademi TNI dan Polri. 🎶</p>
+
+                    <h3>✈️ Atraksi Jet Tempur Rafale dan Karnaval Budaya</h3>
+                    <p>Sisi semarak peringatan ke-81 ini dimeriahkan oleh aksi memukau dari jajaran TNI dan Polri yang memamerkan kesiapan alutsista modern mereka. 🎖️ Langit di atas Istana Merdeka diguncang oleh manuver udara gemuruh dari jet tempur canggih Dassault Rafale milik TNI Angkatan Udara yang melakukan debut penampilannya dalam formasi flypast yang presisi. 🚀 Selain atraksi udara, sebanyak 17 penerjun payung dari Komando Pasukan Khusus (Kopassus) turut mendarat mulus tepat di titik tengah halaman Istana, mengundang gemuruh tepuk tangan dan decak kagum dari para tamu undangan. 🪂</p>
+                    <p>Kemeriahan berlanjut hingga sore dan malam hari melalui pergelaran Karnaval Kemerdekaan dan Pesta Rakyat yang melibatkan ribuan seniman dari berbagai provinsi. 🎭 Presiden Prabowo Subianto bersama Wapres Gibran Rakabuming Raka menyapa langsung lautan warga dari atas mobil taktis Maung buatan Pindad berwarna putih dalam iring-iringan kirab budaya yang melintasi rute Monas hingga Bundaran HI. Sepanjang rute kirab, masyarakat menyambut antusias antrean kendaraan hias, pawai busana adat, hingga suguhan musik tradisional yang merepresentasikan kekayaan budaya Nusantara. 🚘</p>
+
+                    <h3>🌅 Upacara Penurunan Bendera Menjadi Penutup Rangkaian</h3>
+                    <p>Rangkaian seremoni kenegaraan resmi ditutup dengan Upacara Penurunan Bendera Sang Merah Putih pada pukul 17.00 WIB saat matahari mulai tenggelam di ufuk barat Jakarta. 🌆 Dipimpin oleh Kombes Pol Jerrold Hendra Yosef Kumontoy selaku Komandan Upacara, prosesi penurunan bendera berjalan dengan sangat tertib, khidmat, dan tanpa hambatan sedikit pun. 👮‍♂️</p>
+                    <p>Setelah bendera berhasil disimpan kembali ke dalam kotak penyimpanan, Presiden Prabowo Subianto menyampaikan apresiasi setinggi-tingginya kepada seluruh elemen masyarakat, panitia penyelenggara, serta jajaran petugas keamanan yang berhasil menyukseskan seluruh rangkaian perayaan hari kemerdekaan tahun ini dengan penuh semangat persatuan, kedisiplinan, dan sportivitas yang tinggi. 🤝</p>
+                `
+            },
             'tim-absara-smp-abbs-sukses-hentak-panggung-parent-gathering-di-uns-tower-sajikan-tari-ratoh-jaroe-yang-spektakuler': {
                 title: '📰 TIM ABSARA SMP ABBS SUKSES HENTAK PANGGUNG PARENT GATHERING DI UNS TOWER, SAJIKAN TARI RATOH JAROE YANG SPEKTAKULER 💃🔥',
                 subtitle: 'Penampilan Resmi Luar Biasa Penuh Energi dan Estetika Seni Budaya Aceh di Hadapan Ratusan Wali Murid 🏢🎭✨',
