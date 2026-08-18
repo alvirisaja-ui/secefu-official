@@ -342,21 +342,6 @@
             gap: 8px;
         }
 
-        /* --- TANGGAL DIBUATNYA BERITA (DETAIL) --- */
-        .news-date-badge {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(2, 132, 199, 0.08);
-            padding: 4px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(2, 132, 199, 0.2);
-        }
-
         /* --- THUMBNAIL (16:9) --- */
         .memorial-thumbnail-container {
             width: 100%;
@@ -581,7 +566,7 @@
                 backdrop-filter: blur(15px);
                 border-top: 1px solid #e2e8f0;
                 display: flex;
-                justify-around: space-around;
+                justify-content: space-around;
                 align-items: center;
                 padding: 0 10px;
                 z-index: 999;
@@ -712,12 +697,12 @@
                 <h2 class="section-header">📰 Berita Terkini</h2>
                 <div style="background: var(--blue-soft); border-left: 4px solid var(--accent-orange); padding: 16px; border-radius: 12px; margin-bottom: 12px;">
                     <h3 style="color: var(--blue-primary); font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4;">
-                        📰 DUET MAUT ALVIRIS DAN ZHIDANE SUKSES HARUKAN UNS TOWER, BAWAKAN LAGU ‘YANG TERBAIK BAGIMU’ DENGAN PENUH HARMONI 🎤😭
+                        🏆 KICAU MANIA FC SUKSES RAIH JUARA SECEFU 2026, HAIKAL BAIS REBUT GELAR TOP SCORER! ⚽🔥
                     </h3>
                     <p style="color: var(--text-dark); line-height: 1.65; font-size: 0.9rem; margin-bottom: 14px; text-align: justify;">
-                        Suasana haru dan penuh emosi menyelimuti aula UNS Tower Surakarta dalam acara Parent Gathering SMP ABBS Surakarta saat duet vokal Alviris dan Zidane membawakan lagu 'Yang Terbaik Bagimu'...
+                        Turnamen Futsal SECEFU 2026 berlangsung sengit dan sukses diselenggarakan pada 16 Agustus 2026. Kicau Mania FC berhasil mengukuhkan diri sebagai sang juara, sementara Haikal Bais Al-Ghifari menyabet gelar pencetak gol terbanyak...
                     </p>
-                    <button class="btn btn-primary" onclick="openNewsDetail('duet-maut-alviris-dan-zhidane-sukses-harukan-uns-tower-bawakan-lagu-yang-terbaik-bagimu-dengan-penuh-harmoni')">
+                    <button class="btn btn-primary" onclick="openNewsDetail('kicau-mania-fc-raih-juara-turnamen-futsal-secefu-2026-haikal-bais-top-scorer')">
                         🚀 Mulai Baca Berita
                     </button>
                 </div>
@@ -735,6 +720,19 @@
                 </p>
 
                 <div class="news-grid">
+
+                    <div class="news-card">
+                        <img src="secefulomba.jpeg" alt="Kicau Mania FC Juara SECEFU 2026" class="news-card-thumb">
+                        <div class="news-card-body">
+                            <h3 class="news-card-title">🏆 KICAU MANIA FC SUKSES RAIH JUARA SECEFU 2026, HAIKAL BAIS REBUT GELAR TOP SCORER! ⚽🔥</h3>
+                            <p class="news-card-snippet">Turnamen Futsal SECEFU 2026 yang berlangsung sengit pada 16 Agustus 2026 akhirnya menobatkan Kicau Mania FC sebagai sang juara utama, sementara gelar Top Scorer diraih oleh Haikal Bais Al-Ghifari...</p>
+                            <div class="news-card-footer">
+                                <button class="btn btn-primary" onclick="openNewsDetail('kicau-mania-fc-raih-juara-turnamen-futsal-secefu-2026-haikal-bais-top-scorer')">
+                                    Mulai Baca 🚀
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="news-card">
                         <img src="zidal.jpeg" alt="Duet Alviris dan Zidane Parent Gathering" class="news-card-thumb">
@@ -975,10 +973,28 @@
 
     <script>
         const newsDatabase = {
+            'kicau-mania-fc-raih-juara-turnamen-futsal-secefu-2026-haikal-bais-top-scorer': {
+                title: '🏆 KICAU MANIA FC SUKSES RAIH JUARA SECEFU 2026, HAIKAL BAIS REBUT GELAR TOP SCORER! ⚽🔥',
+                subtitle: 'Euforia Kemenangan dan Gelar Pencetak Gol Terbanyak di Turnamen Futsal SECEFU 2026 🥇👟',
+                img: 'secefulomba.jpeg',
+                content: `
+                    <p><strong>SURAKARTA, SECEFU News</strong> – Turnamen Futsal SECEFU 2026 yang diselenggarakan pada Minggu, 16 Agustus 2026 di Lapangan Basket Griya Sakinah berlangsung sengit, meriah, dan penuh semangat sportivitas. ⚽🔥</p>
+                    
+                    <p>Setelah melewati berbagai laga sengit, <strong>Kicau Mania FC</strong> secara spektakuler keluar sebagai <strong>Juara Utama Turnamen Futsal SECEFU 2026</strong>. 🏆 Kerjasama tim yang solid serta mental juara membawa mereka memuncaki tahta kompetisi tahun ini.</p>
+
+                    <h3>👟 Haikal Bais Al-Ghifari Sabet Predikat Top Scorer</h3>
+                    <p>Selain kemenangan manis Kicau Mania FC, panggung kehormatan juga milik <strong>Haikal Bais Al-Ghifari</strong> yang berhasil memborong gol sepanjang kompetisi. 🌟</p>
+                    <ul>
+                        <li><strong>🎯 Ketajaman Tanpa Kompromi:</strong> Haikal Bais tampil mengesankan dengan pundi-pundi gol terbanyak, mengantarkannya secara resmi menyabet gelar <strong>Top Scorer Turnamen Futsal SECEFU 2026</strong>. 🥇</li>
+                        <li><strong>🔥 Penyelesaian Akhir Mematikan:</strong> Pergerakan yang lincah dan insting mencetak gol yang tajam menjadikannya ancaman nyata bagi pertahanan lawan di setiap pertandingan.</li>
+                    </ul>
+
+                    <p>Selamat kepada Kicau Mania FC atas gelar Juara dan Haikal Bais Al-Ghifari atas raihan Top Scorer! Semoga ajang ini terus memupuk kebersamaan dan kecintaan terhadap olahraga futsal. 🥳🎉</p>
+                `
+            },
             'duet-maut-alviris-dan-zhidane-sukses-harukan-uns-tower-bawakan-lagu-yang-terbaik-bagimu-dengan-penuh-harmoni': {
                 title: '📰 DUET MAUT ALVIRIS DAN ZHIDANE SUKSES HARUKAN UNS TOWER, BAWAKAN LAGU ‘YANG TERBAIK BAGIMU’ DENGAN PENUH HARMONI 🎤😭',
                 subtitle: 'Penampilan Spesial Penuh Emosi Alviris & Zidane Menguras Air Mata Ratusan Wali Murid di Parent Gathering SMP ABBS Surakarta 🏢✨💖',
-                date: '15 Agustus 2026',
                 img: 'zidal.jpeg',
                 content: `
                     <p><strong>SURAKARTA, SECEFU News</strong> – Suasana haru dan penuh emosi menyelimuti aula UNS Tower Surakarta dalam acara Parent Gathering SMP ABBS Surakarta. 🏢 Momen puncak yang paling dinantikan akhirnya tiba saat duet vokal Alviris dan Zidane naik ke atas panggung utama untuk memberikan penampilan spesial mereka di hadapan ratusan wali murid yang hadir. 🌟✨</p>
@@ -1004,7 +1020,6 @@
             'dynamix-symphony-pukau-wali-murid-di-uns-tower-tampilkan-harmoni-indah-pada-parent-gathering-smp-abbs-surakarta': {
                 title: '📰 DYNAMIX SYMPHONY PUKAU WALI MURID DI UNS TOWER, TAMPILKAN HARMONI INDAH PADA PARENT GATHERING SMP ABBS SURAKARTA 🎶✨',
                 subtitle: 'Penampilan Perdana Memukau Paduan Suara SMP ABBS Surakarta dengan Melantunkan Empat Lagu Spesial 🏢🎤💖',
-                date: '15 Agustus 2026',
                 img: 'padus.jpeg',
                 content: `
                     <p><strong>SURAKARTA, SECEFU News</strong> – Setelah melalui proses latihan yang panjang dan disiplin, Tim Paduan Suara Dynamix Symphony akhirnya resmi tampil perdana di atas panggung utama. 🎤 Performa memukau ini disajikan dalam acara Parent Gathering SMP ABBS Surakarta yang diselenggarakan dengan megah di UNS Tower Surakarta. 🏢 Pertunjukan ini sekaligus menjadi pembuktian kualitas olah vokal luar biasa dari para siswa kebanggaan sekolah. 🌟</p>
@@ -1025,7 +1040,6 @@
             'tim-absara-smp-abbs-pukau-pengunjung-di-uns-tower-tampilkan-ratoh-jaroe-yang-memencarkan-pesona-aceh': {
                 title: '💃 TIM ABSARA SMP ABBS PUKAU PENGUNJUNG DI UNS TOWER, TAMPILKAN RATOH JAROE YANG MEMENCARKAN PESONA ACEH 🔥',
                 subtitle: 'Sajian Tarian Tradisional Legendaris Aceh Penuh Energi dan Harmoni di Sesi Gladi Resik 🏢🎭✨',
-                date: '15 Agustus 2026',
                 img: 'absaraabbs.jpeg',
                 content: `
                     <p><strong>SURAKARTA, SECEFU News</strong> – Penampilan luar biasa dan penuh energi ditunjukkan oleh Tim ABSARA SMP ABBS Surakarta dalam sesi gladi resik yang digelar di gedung UNS Tower Surakarta. 🏢 Tim kebanggaan sekolah tersebut sukses memukau seluruh hadirin serta panitia lewat sajian Tari Ratoh Jaroe, tarian tradisional legendaris asal Serambi Mekah, Aceh. 🎭✨</p>
@@ -1045,7 +1059,6 @@
             'zidan-latihan-sendiri-lagu-cinta-untuk-mama-saat-gr-di-uns-tower': {
                 title: '🎵 SANGAT SERIUS! ZHIDAN LATIHAN SENDIRI LAGU "CINTA UNTUK MAMA" SEBELUM TAMPIL DI GR ACARA! ❤️✨',
                 subtitle: 'Memantapkan Hafalan Lirik dan Vokal Agar Tampil Lebih Maksimal dan Percaya Diri di Panggung GR 🎤',
-                date: '15 Agustus 2026',
                 img: 'zidanlatihan.jpeg',
                 content: `
                     <p><strong>SURAKARTA, SECEFU News</strong> — Sebuah pemandangan penuh inspirasi terekam langsung di lokasi acara. Sebelum giliran penampilannya tiba di panggung Gladi Resik (GR), Zhidan tampak memilih untuk menyendiri dan berlatih vokal secara mandiri demi mengasah penampilannya. 🎤✨</p>
@@ -1061,7 +1074,6 @@
             'presiden-prabowo-sampaikan-pidato-kenegaraan-dalam-sidang-tahunan-mpr-2026': {
                 title: '🏛️ Presiden Prabowo Sampaikan Pidato Kenegaraan dalam Sidang Tahunan MPR 2026',
                 subtitle: 'Pemaparan 121 Kebijakan Transformatif & Arah Ekonomi Menjelang HUT Kemerdekaan RI Ke-81 🇮🇩💼',
-                date: '14 Agustus 2026',
                 img: 'prabowo.jpeg',
                 content: `
                     <p><strong>JAKARTA, SECEFU News</strong> — Presiden RI Prabowo Subianto menghadiri Sidang Tahunan MPR RI serta Sidang Bersama DPR RI dan DPD RI Tahun 2026 di Gedung Nusantara, Kompleks Parlemen, Senayan, Jakarta. 🇮🇩 Agenda kenegaraan tahunan menjelang Hari Kemerdekaan RI ke-81 ini diselenggarakan untuk memaparkan capaian kinerja pemerintah dan arah kebijakan ekonomi ke depan. 💼</p>
@@ -1082,7 +1094,6 @@
             'haru-dan-penuh-semangat-alviris-zhidan-siap-guncang-panggung-megah-parent-gathering-di-uns-tower-surakarta': {
                 title: '🎤 HARU DAN PENUH SEMANGAT! ALVIRIS & ZHIDAN SIAP GUNCANG PANGGUNG PARENT GATHERING ✨',
                 subtitle: 'Persiapan Latihan Vokal Intensif Menuju Penampilan Terbaik 🏢🎙️',
-                date: '14 Agustus 2026',
                 img: null, // Tanpa Gambar
                 content: `
                     <p><strong>SECEFU News</strong> — Atmosfer haru, fokus, dan penuh semangat menyelimuti persiapan Alviris dan Zhidan. Alviris, selaku Owner SECEFU INDONESIA, bersama rekan duetnya Zhidan, telah menjalani proses latihan vokal intensif demi menyuguhkan penampilan yang berkesan. 🎶</p>
@@ -1092,7 +1103,6 @@
             'kolaborasi-sensasional-alviris-duet-bersama-mr-joe-jadi-mc-parent-gathering-smp-abbs-surakarta-di-uns-tower': {
                 title: '🎙️ KOLABORASI SENSASIONAL! ALVIRIS DUET BERSAMA MR. JOE JADI MC PARENT GATHERING! ✨',
                 subtitle: 'Sinergi Kompak Guru dan Murid Memandu Acara 🏢🤝',
-                date: '14 Agustus 2026',
                 img: null, // Tanpa Gambar
                 content: `
                     <p><strong>SECEFU News</strong> — Alviris dipastikan tampil berkolaborasi bersama gurunya, Mr. Joe, dalam memandu jalannya panggung acara Parent Gathering. 🤝⚡</p>
@@ -1102,7 +1112,6 @@
             'jadwal-diupdate-lomba-futsal-secefu-indonesia-resmi-dimajukan-karena-antusiasme-tinggi': {
                 title: '⚽ JADWAL DIUPDATE! LOMBA FUTSAL SECEFU INDONESIA RESMI DIMAJUKAN KARENA ANTUSIASME TINGGI! 🏆',
                 subtitle: 'Perubahan Jadwal Resmi Menjadi Minggu, 16 Agustus 2026 Pukul 08.00 WIB Pagi ⚡☀️',
-                date: '12 Agustus 2026',
                 img: 'newspanitiaa.png',
                 content: `
                     <p><strong>BERITA UTAMA</strong> — Kabar penting datang dari turnamen futsal bergengsi SECEFU INDONESIA! 🔥 Jadwal pertandingan yang semula direncanakan matang kini resmi mengalami perubahan waktu menjadi jauh lebih awal dari agenda pertama. 🔄</p>
@@ -1116,7 +1125,6 @@
             'duet-penuh-haru-owner-secefu-indonesia-zidan-siap-gebrak-panggung-parent-gathering-di-uns-tower': {
                 title: '🎤 DUET PENUH HARU! OWNER SECEFU INDONESIA & ZIDAN SIAP GEBRAK PANGGUNG PARENT GATHERING! 🎶',
                 subtitle: 'Persiapan Maraton & Peran Ganda Alviris Sebagai MC ✨',
-                date: '13 Agustus 2026',
                 img: 'pentas.png',
                 content: `
                     <p><strong>SECEFU News</strong> — Persiapan matang dilakukan oleh Alviris dan Zidan yang intens latihan duet membawakan lagu "Yang Terbaik Bagimu (Jangan Lupakan Ayah)" karya ADA Band untuk panggung Parent Gathering. 🎵</p>
@@ -1126,7 +1134,6 @@
             'struktur-kepanitiaan-informasi-lomba-secefu-2026-spesial-17-agustus': {
                 title: '🏆 Struktur Kepanitiaan & Informasi Lomba SECEFU 2026 – Spesial 17 Agustus 🏆',
                 subtitle: 'Pembentukan Komite Resmi Penyelenggara Rangkaian Lomba Kemerdekaan 🇮🇩✨',
-                date: '1 Agustus 2026',
                 img: 'newspanitiaa.png',
                 content: `
                     <p>Pada hari Sabtu, 1 Agustus 2026, Organisasi SECEFU (Semangat Ceria Bersama Futsal) Indonesia secara resmi membentuk susunan kepanitiaan baru. Komite ini dibentuk secara khusus untuk menyelenggarakan dan menyukseskan rangkaian acara SECEFU 2026 Spesial 17 Agustus!</p>
@@ -1157,7 +1164,6 @@
             'mengenang-alm-deyrril-almere-ghaisan': {
                 title: 'MENGENANG ALM. DEYRRIL ALMERE GHAISAN',
                 subtitle: 'Kisah Tentang Keberanian, Keceriaan, dan Senyum yang Abadi ✨',
-                date: '7 Agustus 2026',
                 img: 'fotodeyrril.png',
                 content: `
                     <p>Agustus tahun ini meninggalkan torehan rasa kehilangan yang mendalam, sekaligus sebuah kebanggaan luar biasa di hati kita semua. Pada hari Kamis, 6 Agustus 2026, tepat pukul 20.00 WIB di Rumah Sakit Onkologi Surakarta, Alm. Deyrril Almere Ghaisan telah menyelesaikan perjalanan panjangnya di dunia ini dan kembali ke pangkuan Sang Pencipta.</p>
@@ -1216,9 +1222,6 @@
 
             const detailContainer = document.getElementById('full-news-content');
             
-            // Header tanggal dibuatnya berita
-            const dateBadge = data.date ? `<div class="news-date-badge">📅 Dipublikasikan: ${data.date}</div>` : '';
-
             // Cek apakah artikel memiliki gambar atau tidak
             let imageHeader = '';
             if (data.img) {
@@ -1229,9 +1232,7 @@
                 `;
             }
 
-            // Menampilkan tanggal persis DI ATAS GAMBAR BERITA
             detailContainer.innerHTML = `
-                ${dateBadge}
                 ${imageHeader}
                 <h1 class="card-title">${data.title}</h1>
                 <h2 class="card-subtitle">${data.subtitle}</h2>
