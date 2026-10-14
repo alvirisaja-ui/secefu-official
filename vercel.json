@@ -2,9 +2,9 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/((?!410\\.html$).*)",
+      "source": "/",
       "statusCode": 410,
-      "destination": "/410.html"
+      "destination": "/index.html"
     }
   ]
 }
