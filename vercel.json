@@ -2,9 +2,9 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/",
-      "statusCode": 410,
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "statusCode": 301,
+      "destination": "https://itemic.gt.tc/"
     }
   ]
 }
